@@ -1,14 +1,16 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { AuthProvider } from "../auth/useAuth";
+import NavMenu from "../navMenu/NavMenu";
+import Routers from "./Routers";
 
-const Layout = ({ location }) => {
+const Layout = () => {
   return (
-    <div>
-      <div>Navbar - Path: "{location.pathname}"</div>
+    <AuthProvider>
+      <NavMenu />
       <div className="container mx-auto py-3">
-        <Outlet />
+        <Routers />
       </div>
-    </div>
+    </AuthProvider>
   );
 };
 
