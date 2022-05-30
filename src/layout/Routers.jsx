@@ -9,6 +9,7 @@ import { useAuth } from "../auth/useAuth";
 import Home from "./Home";
 import Login from "../login/Login";
 import Dashboard from "../dashboard/Dashboard";
+import ChecklistList from "../checklists/ChecklistList";
 
 const Routers = () => {
   const location = useLocation();
@@ -26,6 +27,16 @@ const Routers = () => {
         element={
           <AuthRequired>
             <Dashboard />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="checklists"
+        element={
+          <AuthRequired>
+            <ChecklistList />
           </AuthRequired>
         }
       ></Route>
