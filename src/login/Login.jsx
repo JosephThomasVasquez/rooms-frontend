@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2 className="text-4xl">Login</h2>
       <form onSubmit={handleLogin}>
         <div>
           <label htmlFor="email">Email</label>
