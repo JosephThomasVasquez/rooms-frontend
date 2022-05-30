@@ -4,15 +4,13 @@ import { useAuth } from "./useAuth";
 
 const AuthRequired = ({ children }) => {
   const auth = useAuth();
-
-  console.log("REQUIRED REQUIRED REQUIRED!!!", auth.user);
-  console.log("children", children);
+  const location = useLocation();
 
   if (!auth.user) {
     console.log("User not authenticated", auth.user);
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" state={{ path: location.pathname }} />;
   }
-  console.log("User is authenticated", auth.user);
+
   return children;
 };
 

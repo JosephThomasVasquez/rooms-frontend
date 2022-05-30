@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 
 const Login = () => {
   const [user, setUser] = useState("");
   const auth = useAuth();
+  const location = useLocation();
   const navigate = useNavigate();
+
+  const redirectPath = location.state?.path || "/";
 
   const handleChange = ({ target }) => {
     setUser({ ...user, [target.name]: target.value });
@@ -14,7 +17,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     auth.loginUser(user);
-    navigate("/");
+    navigate(redirectPath, { replace: true });
   };
 
   return (
