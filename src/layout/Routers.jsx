@@ -10,6 +10,9 @@ import Home from "./Home";
 import Login from "../login/Login";
 import Dashboard from "../dashboard/Dashboard";
 import ChecklistList from "../checklists/ChecklistList";
+import ChecklistForm from "../checklists/ChecklistForm";
+import RoomsList from "../directory/rooms/RoomsList";
+import BuildingsList from "../directory/buildings/BuildingsList";
 
 const Routers = () => {
   const location = useLocation();
@@ -37,6 +40,36 @@ const Routers = () => {
         element={
           <AuthRequired>
             <ChecklistList />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="checklists/create"
+        element={
+          <AuthRequired>
+            <ChecklistForm />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="rooms"
+        element={
+          <AuthRequired>
+            <RoomsList />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="buildings"
+        element={
+          <AuthRequired>
+            <BuildingsList />
           </AuthRequired>
         }
       ></Route>

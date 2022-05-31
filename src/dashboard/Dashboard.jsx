@@ -5,8 +5,10 @@ const Dashboard = () => {
   const auth = useAuth();
   return (
     <div>
-      <h2 className="text-4xl">Dashboard</h2>
-      <div>Welcome {JSON.stringify(auth.user)}</div>
+      <h2 className="">Dashboard</h2>
+      <div className="fs-5 fw-bold">
+        Welcome <span className="text-primary">{auth.user.email}</span>
+      </div>
     </div>
   );
 };

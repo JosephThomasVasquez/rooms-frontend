@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { SearchIcon } from "@heroicons/react/solid";
+import "./navMenu.styles.css";
 
 const NavMenu = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -7,8 +9,12 @@ const NavMenu = () => {
   console.log(openNav);
   const menuRef = useRef();
 
+  const activeStyle = {
+    backgroundColor: "#0088cc",
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav className="ps-5 navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div className="container-fluid">
         <a className="navbar-brand fw-bold" href="#">
           Rooms
@@ -36,15 +42,49 @@ const NavMenu = () => {
                 Dashboard
               </Link>
             </li>
-            <li className="nav-item">
-              <Link
-                to="/checklists"
-                className="nav-link"
-                aria-current="page"
+
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
                 href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
               >
-                Checklists
-              </Link>
+                Directory
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <NavLink
+                    to="/rooms"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Rooms
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/buildings"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Buildings
+                  </NavLink>
+                </li>
+                <li>
+                  <hr className="dropdown-divider" />
+                </li>
+              </ul>
             </li>
             <li className="nav-item dropdown">
               <a
@@ -55,51 +95,49 @@ const NavMenu = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Checklists
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <NavLink
-                    to="/checklists"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                  >
-                    Checklists
-                  </NavLink>
-                </li>
                 <li>
                   <NavLink
                     to="/checklists/create"
                     className="dropdown-item"
                     aria-current="page"
                     href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
                   >
                     New Checklist
                   </NavLink>
                 </li>
-                <li>className="dropdown-divider"></li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Something else here
-                  </a>
+                  <NavLink
+                    to="/checklists"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    View Checklists
+                  </NavLink>
+                </li>
+                <li>
+                  <hr className="dropdown-divider" />
                 </li>
               </ul>
             </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
-            </li>
           </ul>
-          <form className="d-flex" role="search">
+          <form className="d-flex align-items-center me-5" role="search">
             <input
               className="form-control me-2"
               type="search"
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
+            <SearchIcon className="search-icon" type="submit" />
           </form>
         </div>
       </div>

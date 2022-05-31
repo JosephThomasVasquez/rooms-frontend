@@ -15,7 +15,7 @@ const ChecklistList = () => {
     return () => abortController.abort();
   };
 
-  useEffect(loadChecklists, []);
+  useEffect(loadChecklists, [setChecklists]);
 
   const sortByBuildingNames = () => {
     for (let i = 0; i < checklists.length; i++) {
