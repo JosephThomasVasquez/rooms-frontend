@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavMenu = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -8,10 +8,10 @@ const NavMenu = () => {
   const menuRef = useRef();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-3">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Navbar
+        <a className="navbar-brand fw-bold" href="#">
+          Rooms
         </a>
         <button
           className="navbar-toggler"
@@ -59,14 +59,24 @@ const NavMenu = () => {
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Action
-                  </a>
+                  <NavLink
+                    to="/checklists"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                  >
+                    Checklists
+                  </NavLink>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Another action
-                  </a>
+                  <NavLink
+                    to="/checklists/create"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                  >
+                    New Checklist
+                  </NavLink>
                 </li>
                 <li>className="dropdown-divider"></li>
                 <li>
