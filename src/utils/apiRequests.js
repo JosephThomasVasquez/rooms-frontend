@@ -44,3 +44,37 @@ export const getChecklists = async (params, signal) => {
 
   return await fetchJson(url, { headers, signal }, []);
 };
+
+//_____________________________________________________________________________________________________
+// API REQUESTS
+// Rooms
+//_____________________________________________________________________________________________________
+
+export const getRooms = async (params, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/rooms`);
+  if (params) {
+    // Append params to the url
+    Object.entries(params).forEach(([key, value]) =>
+      url.searchParams.append(key, value.toString())
+    );
+  }
+
+  return await fetchJson(url, { headers, signal }, []);
+};
+
+//_____________________________________________________________________________________________________
+// API REQUESTS
+// Buildings
+//_____________________________________________________________________________________________________
+
+export const getBuildings = async (params, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/buildings`);
+  if (params) {
+    // Append params to the url
+    Object.entries(params).forEach(([key, value]) =>
+      url.searchParams.append(key, value.toString())
+    );
+  }
+
+  return await fetchJson(url, { headers, signal }, []);
+};

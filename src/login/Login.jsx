@@ -39,10 +39,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <button
-            type="submit"
-            className="rounded bg-black text-gray-400 shadow"
-          >
+          <button type="submit" className="btn btn-primary shadow">
             Login
           </button>
         </div>
