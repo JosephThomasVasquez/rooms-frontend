@@ -50,8 +50,6 @@ const ChecklistTemplateSelector = ({ listTemplateItems }) => {
           ... Create Template
         </option>
       </select>
-      <div>{selectedTemplate}</div>
-      {JSON.stringify(templates)}
     </div>
   );
 };

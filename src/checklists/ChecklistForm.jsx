@@ -10,9 +10,25 @@ const ChecklistForm = () => {
         return template.id === templateId;
       });
 
-      setTemplateItems(findTemplate?.items);
+      setTemplateItems(findTemplate.items);
     }
   };
+
+  const handleClickedItem = (item) => {
+    console.log(item);
+  };
+
+  const mapTemplateItems = templateItems?.map((item) => (
+    <li
+      key={`template-item-id-${item}`}
+      name={item}
+      className="row border rounded shadow-sm my-1 p-2 list-unstyled template-item"
+      onClick={() => handleClickedItem(item)}
+      value={item}
+    >
+      {item}
+    </li>
+  ));
 
   return (
     <div className="container">
@@ -25,8 +41,8 @@ const ChecklistForm = () => {
         </div>
       </div>
 
-      <div className="row">Rooms</div>
-      <div>{templateItems && templateItems}</div>
+      <div className="row fs-4 fw-bold">Rooms</div>
+      <div>{templateItems && mapTemplateItems}</div>
     </div>
   );
 };

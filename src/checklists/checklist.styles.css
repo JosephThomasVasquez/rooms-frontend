@@ -20,3 +20,16 @@
     background-color: #ffccde;
     border-radius: 50%;
 }
+
+.template-item {
+    transition: background-color 0.5s ease;
+}
+
+.template-item:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    transition: background-color 0.5s ease;
+}
+
+.template-item-complete {
+
+}
