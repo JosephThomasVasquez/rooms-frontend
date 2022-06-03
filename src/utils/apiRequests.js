@@ -96,3 +96,19 @@ export const readChecklist = async (params, signal) => {
 
   return await fetchJson(url, options, {});
 };
+
+//_____________________________________________________________________________________________________
+// API REQUESTS
+// Checklist Templates
+//_____________________________________________________________________________________________________
+
+export const getTemplates = async (signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/checklist-templates`);
+  const options = {
+    method: "GET",
+    headers,
+    signal,
+  };
+
+  return await fetchJson(url, options, []);
+};
