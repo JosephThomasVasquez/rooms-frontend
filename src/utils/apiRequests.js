@@ -78,3 +78,21 @@ export const getBuildings = async (params, signal) => {
 
   return await fetchJson(url, { headers, signal }, []);
 };
+
+//_____________________________________________________________________________________________________
+// API REQUESTS
+// Checklists
+//_____________________________________________________________________________________________________
+
+export const readChecklist = async (params, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${params}`);
+  // console.log(url);
+
+  const options = {
+    method: "GET",
+    headers,
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};

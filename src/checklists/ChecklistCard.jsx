@@ -1,13 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import "./checklist.styles.css";
 
 const ChecklistCard = ({ checklist }) => {
   const formattedDate = dayjs(checklist.date_completed).format("MMM DD, YYYY");
+  const urlDate = dayjs(checklist.date_completed).format("MM-DD-YYYY");
 
   return (
-    <div className="card py-2 px-4 my-2 shadow">
+    <Link
+      to={`${urlDate}/${checklist.id}`}
+      className="card py-2 px-4 my-2 shadow text-decoration-none"
+      state={checklist}
+    >
       <div className="">
         <div className="row fs-5 fw-bold">{checklist.building_name}</div>
         <div className="row">{formattedDate}</div>
@@ -23,7 +29,7 @@ const ChecklistCard = ({ checklist }) => {
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

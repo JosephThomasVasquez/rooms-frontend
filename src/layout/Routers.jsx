@@ -13,6 +13,7 @@ import ChecklistList from "../checklists/ChecklistList";
 import ChecklistForm from "../checklists/ChecklistForm";
 import RoomsList from "../directory/rooms/RoomsList";
 import BuildingsList from "../directory/buildings/BuildingsList";
+import ChecklistDetails from "../checklists/ChecklistDetails";
 
 const Routers = () => {
   const location = useLocation();
@@ -40,6 +41,16 @@ const Routers = () => {
         element={
           <AuthRequired>
             <ChecklistList />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="checklists/:checklistDate/:checklistId"
+        element={
+          <AuthRequired>
+            <ChecklistDetails />
           </AuthRequired>
         }
       ></Route>
