@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ChecklistTemplateSelector from "../checklistTemplates/ChecklistTemplateSelector";
+import stringifyFields from "../utils/browserStorage";
 
 const ChecklistForm = () => {
   const [templateItems, setTemplateItems] = useState(null);
+  const [browserSavedItems, setBrowserSavedItems] = useState(null);
 
   const listTemplateItems = (templateId, templates) => {
     if (templates?.length > 0 && templateId) {
@@ -37,7 +39,13 @@ const ChecklistForm = () => {
       </div>
       <div className="row d-flex justify-content-center align-items-center">
         <div className="col-4">
-          <ChecklistTemplateSelector listTemplateItems={listTemplateItems} />
+          <label htmlFor="template-selector" className="mb-1">
+            Choose Template
+          </label>
+          <ChecklistTemplateSelector
+            anme="template-selector"
+            listTemplateItems={listTemplateItems}
+          />
         </div>
       </div>
 

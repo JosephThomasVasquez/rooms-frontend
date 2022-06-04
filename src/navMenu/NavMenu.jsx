@@ -121,11 +121,37 @@ const NavMenu = () => {
                       isActive ? activeStyle : undefined
                     }
                   >
-                    View Checklists
+                    Checklists
                   </NavLink>
                 </li>
                 <li>
                   <hr className="dropdown-divider" />
+                </li>
+                <li>
+                  <NavLink
+                    to="/checklist-templates/create"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    New Template
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/checklist-templates"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Templates
+                  </NavLink>
                 </li>
               </ul>
             </li>
