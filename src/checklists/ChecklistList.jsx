@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getChecklists } from "../utils/apiRequests";
 import ChecklistCard from "./ChecklistCard";
+import "./checklist.styles.css";
 
 const ChecklistList = () => {
   const [checklists, setChecklists] = useState(null);
@@ -17,15 +18,15 @@ const ChecklistList = () => {
 
   useEffect(loadChecklists, [setChecklists]);
 
-  const sortByBuildingNames = () => {
-    for (let i = 0; i < checklists.length; i++) {
-      if (checklists[i].building_name) {
-      }
-    }
-  };
+  // const sortByBuildingNames = () => {
+  //   for (let i = 0; i < checklists.length; i++) {
+  //     if (checklists[i].building_name) {
+  //     }
+  //   }
+  // };
 
   const mapChecklists = checklists?.map((checklist) => (
-    <div key={checklist.id} className="col-3">
+    <div key={checklist.id} className="col-4 checklist">
       <ChecklistCard checklist={checklist} />
     </div>
   ));

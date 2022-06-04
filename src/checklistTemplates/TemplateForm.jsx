@@ -6,6 +6,7 @@ const TemplateForm = ({ user }) => {
     template_name: "",
     template_description: "",
     items: [],
+    location: "",
     created_by: user.email,
   };
 
@@ -63,7 +64,7 @@ const TemplateForm = ({ user }) => {
   };
 
   const handleInputChange = ({ target }) => {
-    const validInputs = ["template_name", "template_description"];
+    const validInputs = ["template_name", "template_description", "location"];
 
     if (validInputs.includes(target.name)) {
       setNewTemplate({ ...newTemplate, [target.name]: target.value });
@@ -115,6 +116,20 @@ const TemplateForm = ({ user }) => {
               aria-describedby="template-description"
               onChange={handleInputChange}
               value={newTemplate?.template_description}
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="location" className="form-label">
+              Location
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="location"
+              id="location"
+              aria-describedby="location"
+              onChange={handleInputChange}
+              value={newTemplate?.location}
             />
           </div>
 

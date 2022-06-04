@@ -21,6 +21,23 @@
     border-radius: 50%;
 }
 
+.icon-create {
+    width: 48px;
+    height: 48px;
+    color: rgba(255, 255, 255, 1);
+    background: rgb(0, 141, 236);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.5s ease;
+}
+
+.icon-create:hover {
+    border: none;
+    cursor: pointer;
+    transform: scale(1.25);
+    transition: all 0.5s ease;
+}
+
 .template-item {
     transition: background-color 0.5s ease;
 }
@@ -34,10 +51,23 @@
 
 }
 
+.link-color-completed {
+    color: rgb(114, 114, 114);
+}
+
 .link-color {
     color: #1f1f2d;
 }
 
 .link-color:hover {
     color: #368d77;
+}
+
+.checklist {
+    transition: transform 0.5s ease;
+}
+
+.checklist:hover {
+transform: scale(1.05);
+transition: transform 0.5s ease;
 }

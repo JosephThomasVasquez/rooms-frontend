@@ -26,7 +26,8 @@ const ChecklistDetails = () => {
         Checklist <span className="text-primary">{checklistDetails?.id}</span>
       </h2>
       <div className="row fs-5">
-        <div className="col">Building: {checklistDetails?.building_name}</div>
+        <div className="col">Checklist: {checklistDetails?.checklist_name}</div>
+        <div className="col">Location: {checklistDetails?.location}</div>
         <div className="col">
           Completed by: {checklistDetails?.completed_by}
         </div>
