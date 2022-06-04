@@ -15,6 +15,7 @@ import RoomsList from "../directory/rooms/RoomsList";
 import BuildingsList from "../directory/buildings/BuildingsList";
 import ChecklistDetails from "../checklists/ChecklistDetails";
 import TemplateForm from "../checklistTemplates/TemplateForm";
+import ChecklistTemplates from "../checklistTemplates/ChecklistTemplates";
 
 const Routers = () => {
   const location = useLocation();
@@ -71,7 +72,17 @@ const Routers = () => {
         path="checklist-templates/create"
         element={
           <AuthRequired>
-            <TemplateForm />
+            <TemplateForm user={auth.user} />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="checklist-templates"
+        element={
+          <AuthRequired>
+            <ChecklistTemplates />
           </AuthRequired>
         }
       ></Route>

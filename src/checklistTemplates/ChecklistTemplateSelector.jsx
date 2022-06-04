@@ -43,7 +43,6 @@ const ChecklistTemplateSelector = ({ listTemplateItems }) => {
         className="form-select form-select-sm"
         aria-label=".form-select-sm example"
         onChange={handleSelectTemplate}
-        // value={templateSelected}
       >
         {mapTemplates}
         <option name="Sample Checklist" value="0">

@@ -33,3 +33,11 @@
 .template-item-complete {
 
 }
+
+.link-color {
+    color: #1f1f2d;
+}
+
+.link-color:hover {
+    color: #368d77;
+}

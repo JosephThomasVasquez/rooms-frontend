@@ -1,13 +1,40 @@
 import React, { useState, useEffect } from "react";
+import { createTemplate } from "../utils/apiRequests";
 
-const TemplateForm = () => {
-  const [itemsList, setItemsList] = useState([]);
-  const [createdItems, setCreatedItems] = useState([]);
+const TemplateForm = ({ user }) => {
+  const initialFormData = {
+    template_name: "",
+    template_description: "",
+    items: [],
+    created_by: user.email,
+  };
+
+  const [newTemplate, setNewTemplate] = useState({ ...initialFormData });
+  const [createdItems, setCreatedItems] = useState(null);
+
+  // fetches checklists from the backend
+  const createNewTemplate = async () => {
+    const abortController = new AbortController();
+
+    try {
+      const response = await createTemplate(
+        newTemplate,
+        abortController.abort()
+      );
+
+      console.log("response", response);
+    } catch (error) {
+      console.log("error", error);
+    }
+
+    return () => abortController.abort();
+  };
 
   useEffect(() => {
     // console.log("XXXXXXXXXXX", itemsList);
     console.log("createdItems", createdItems);
-  }, [itemsList, createdItems]);
+    setNewTemplate({ ...newTemplate, items: createdItems });
+  }, [createdItems]);
 
   const createChecklistItem = (items) => {
     let itemsArray = [];
@@ -21,30 +48,43 @@ const TemplateForm = () => {
         console.log(isValid);
 
         if (isValid) {
-          itemsArray.push({ name: item, checked: false });
+          // itemsArray.push({ name: item, checked: false });
+          itemsArray.push(item);
         } else {
-          itemsArray.push({ name: "Invalid Characters", checked: false });
+          // itemsArray.push({ name: "Invalid Characters", checked: false });
+          itemsArray.push("Invalid Characters");
         }
       });
 
       setCreatedItems(itemsArray);
     } else if (items[0].name === "") {
-      setCreatedItems("");
+      setCreatedItems(null);
     }
   };
 
-  const handleChange = ({ target }) => {
+  const handleInputChange = ({ target }) => {
+    const validInputs = ["template_name", "template_description"];
+
+    if (validInputs.includes(target.name)) {
+      setNewTemplate({ ...newTemplate, [target.name]: target.value });
+    }
+  };
+
+  const handleChecklistItem = ({ target }) => {
     const items = target.value.split(",");
     console.log("items", items);
 
     createChecklistItem(items);
   };
 
-  const saveTemplate = () => {};
+  const saveTemplate = (e) => {
+    e.preventDefault();
+    createNewTemplate();
+  };
 
   return (
     <div className="container">
-      <div className="row mb-3">
+      <div className="row d-flex align-items-center mb-3">
         <h2>New Template</h2>
       </div>
       <div className="row mb-5">
@@ -56,8 +96,11 @@ const TemplateForm = () => {
             <input
               type="text"
               className="form-control"
+              name="template_name"
               id="template_name"
-              aria-describedby="emailHelp"
+              aria-describedby="template-name"
+              onChange={handleInputChange}
+              value={newTemplate?.template_name}
             />
           </div>
           <div className="mb-3">
@@ -67,7 +110,11 @@ const TemplateForm = () => {
             <input
               type="text"
               className="form-control"
+              name="template_description"
               id="template_description"
+              aria-describedby="template-description"
+              onChange={handleInputChange}
+              value={newTemplate?.template_description}
             />
           </div>
 
@@ -79,7 +126,7 @@ const TemplateForm = () => {
               className="form-control"
               placeholder="Insert items separated by comma's here i.e. item1, item2, item3..."
               id="floatingTextarea"
-              onChange={handleChange}
+              onChange={handleChecklistItem}
             ></textarea>
           </div>
           <div className="row d-flex align-items-center mt-3">
@@ -110,7 +157,7 @@ const TemplateForm = () => {
       <div className="row fs-4 fw-bold">
         <div className="col-1">Items</div>
       </div>
-      <div className="row">{JSON.stringify(createdItems)}</div>
+      <div className="row">{JSON.stringify(newTemplate)}</div>
     </div>
   );
 };
