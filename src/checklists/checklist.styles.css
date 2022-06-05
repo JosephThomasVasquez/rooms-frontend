@@ -21,6 +21,19 @@
     border-radius: 50%;
 }
 
+.checklist-edit-icon {
+    width: 32px;
+    height: 32px;
+    color: rgb(114, 114, 114, 1);
+    transition: all 0.5s ease;
+}
+
+.checklist-edit-icon:hover {
+   transform: scale(1.5);
+    color: #00bf8c;
+    transition: all 0.5s ease;
+}
+
 .icon-create {
     width: 48px;
     height: 48px;
@@ -51,7 +64,9 @@
 .template-item-check {
     color: rgb(145, 171, 145);
     background: rgb(220, 255, 220);
-    margin-left: 5px;
+ 
+    
+    margin-left: 300px;
     border-left: 10px solid green !important;
     transition: all 0.5s ease;
 }

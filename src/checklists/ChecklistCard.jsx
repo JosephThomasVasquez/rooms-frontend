@@ -17,9 +17,12 @@ const ChecklistCard = ({ checklist }) => {
     <div className={`card py-2 px-4 my-2 shadow ${isCompleted}`}>
       <div className="row">
         <div className="col-10 fs-6 fw-bold">{checklist.checklist_name}</div>
-        <div className="col-2">
-          <PencilAltIcon className="check-icon" />
-        </div>
+        <Link
+          to={`/checklists/edit/${checklist.date_completed}/${checklist.id}`}
+          className="col-2"
+        >
+          <PencilAltIcon className="checklist-edit-icon" />
+        </Link>
       </div>
       <Link
         to={`${urlDate}/${checklist.id}`}
