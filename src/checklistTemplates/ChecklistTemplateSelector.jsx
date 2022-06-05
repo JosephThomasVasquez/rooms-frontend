@@ -40,7 +40,7 @@ const ChecklistTemplateSelector = ({ listTemplateItems }) => {
   return (
     <div>
       <select
-        className="form-select form-select-sm"
+        className="form-select form-select-sm fw-bold"
         aria-label=".form-select-sm example"
         onChange={handleSelectTemplate}
       >

@@ -51,8 +51,13 @@
 
 }
 
+.checklist-completed {
+    opacity: 1;
+    background-color: rgba(240, 240, 240, 1);
+}
+
 .link-color-completed {
-    color: rgb(114, 114, 114);
+    color: rgb(114, 114, 114, 1);
 }
 
 .link-color {

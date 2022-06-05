@@ -16,12 +16,13 @@ import BuildingsList from "../directory/buildings/BuildingsList";
 import ChecklistDetails from "../checklists/ChecklistDetails";
 import TemplateForm from "../checklistTemplates/TemplateForm";
 import ChecklistTemplates from "../checklistTemplates/ChecklistTemplates";
+import EditChecklist from "../checklists/EditChecklist";
 
 const Routers = () => {
   const location = useLocation();
 
   const auth = useAuth();
-  console.log("auth:", auth.user);
+  // console.log("auth:", auth.user);
 
   return (
     <Routes>
@@ -63,6 +64,16 @@ const Routers = () => {
         element={
           <AuthRequired>
             <ChecklistForm />
+          </AuthRequired>
+        }
+      ></Route>
+
+      <Route
+        exact
+        path="checklists/edit/:checklistDate/:checklistId"
+        element={
+          <AuthRequired>
+            <EditChecklist />
           </AuthRequired>
         }
       ></Route>

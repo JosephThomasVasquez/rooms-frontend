@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../auth/useAuth";
+import dayjs from "dayjs";
 import ChecklistTemplateSelector from "../checklistTemplates/ChecklistTemplateSelector";
-import stringifyFields from "../utils/browserStorage";
+import { createChecklist } from "../utils/apiRequests";
 import { PlusSmIcon } from "@heroicons/react/outline";
 import "./checklist.styles.css";
 
 const ChecklistForm = () => {
+  const auth = useAuth();
+
+  const navigate = useNavigate();
+
   const initialChecklistData = {
     checklist_name: "",
     items: [],
@@ -13,17 +20,19 @@ const ChecklistForm = () => {
     missed: [],
     is_completed: false,
     completed_by: "",
+    date_completed: null,
   };
 
   const [newChecklist, setNewChecklist] = useState({ ...initialChecklistData });
-  const [templateItems, setTemplateItems] = useState(null);
-  const [browserSavedItems, setBrowserSavedItems] = useState(null);
 
   const listTemplateItems = (templateId, templates) => {
     if (templates?.length > 0 && templateId) {
       const findTemplate = templates.find((template) => {
         return template.id === templateId;
       });
+
+      const createDateNow = dayjs().format("YYYY-MM-DD");
+      console.log("date now", createDateNow);
 
       const checklistData = {
         checklist_name: findTemplate.template_name,
@@ -32,13 +41,40 @@ const ChecklistForm = () => {
         passed: [],
         missed: [],
         is_completed: false,
-        completed_by: "",
+        completed_by: auth.user.email,
+        date_completed: createDateNow,
       };
 
       setNewChecklist(checklistData);
-
-      // setTemplateItems(findTemplate.items);
     }
+  };
+
+  // Create new Checklist
+  const handleCreateChecklist = () => {
+    const abortController = new AbortController();
+
+    const makeChecklist = async () => {
+      try {
+        const response = await createChecklist(
+          newChecklist,
+          abortController.abort()
+        );
+
+        if (response) {
+          const { date_completed, id } = response;
+
+          const dateFormatted = dayjs(date_completed).format("YYYY-MM-DD");
+
+          navigate(`/checklists/edit/${dateFormatted}/${id}`);
+        }
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    makeChecklist("");
+
+    return () => abortController.abort();
   };
 
   const handleClickedItem = (item) => {
@@ -57,15 +93,13 @@ const ChecklistForm = () => {
     </li>
   ));
 
-  const handleCreateChecklist = () => {};
-
   return (
     <div className="container">
       <div className="row mb-3">
         <h2>New Checklist</h2>
       </div>
 
-      <div className="row mb-3">
+      <div className="row">
         <label htmlFor="template-selector" className="mb-1">
           Choose Template
         </label>
@@ -83,7 +117,9 @@ const ChecklistForm = () => {
             />
           </div>
         </div>
-        <div className="row ms-1">Location: {newChecklist.location}</div>
+        <div className="row fw-bold ms-1 mt-3">
+          Location: {newChecklist.location}
+        </div>
       </div>
 
       <div className="row fs-4 fw-bold ms-1">

@@ -11,12 +11,10 @@ const ChecklistCard = ({ checklist }) => {
   const fromNow = dayjs(checklist.date_completed).fromNow();
   const urlDate = dayjs(checklist.date_completed).format("MM-DD-YYYY");
 
-  const isCompleted = checklist.is_completed
-    ? "link-color-completed"
-    : "link-color";
+  const isCompleted = checklist.is_completed ? "checklist-completed" : "";
 
   return (
-    <div className="card py-2 px-4 my-2 shadow">
+    <div className={`card py-2 px-4 my-2 shadow ${isCompleted}`}>
       <div className="row">
         <div className="col-10 fs-6 fw-bold">{checklist.checklist_name}</div>
         <div className="col-2">
@@ -25,12 +23,14 @@ const ChecklistCard = ({ checklist }) => {
       </div>
       <Link
         to={`${urlDate}/${checklist.id}`}
-        className={`text-decoration-none ${isCompleted}`}
+        className="text-decoration-none link-color"
         state={checklist}
       >
         <div className="">
           <div className="col">{checklist.location}</div>
-          <div className="col">{formattedDate}</div>
+          <div className="col">
+            {formattedDate === "Invalid Date" ? "Not completed" : formattedDate}
+          </div>
 
           {checklist.is_completed ? (
             <div className="col fw-light fst-italic">Completed {fromNow}</div>
