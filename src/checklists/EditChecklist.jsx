@@ -16,19 +16,6 @@ const EditChecklist = () => {
   const [checkedItems, setCheckedItems] = useState([]);
   const isMounted = useRef(false);
 
-  //   useEffect(() => {
-  //     // console.log("Triggered", checkedItems);
-  //     // console.log(checklistDetails);
-  //     // createItems();
-
-  //     if (isMounted.current) {
-  //       console.log("mount:", isMounted);
-  //       saveChecked();
-  //     } else {
-  //       isMounted.current = true;
-  //     }
-  //   }, [checklistDetails]);
-
   useEffect(() => {
     const abortController = new AbortController();
     setChecklistDetails(null);
@@ -58,12 +45,6 @@ const EditChecklist = () => {
     if (checklistDetails?.items?.length > 0) {
       const percentage = (11 / checklistDetails.items.length) * 100;
       console.log("percentage", percentage);
-      //   makeCheckedItems();
-      //   console.log(
-      //     "typeof:",
-      //     typeof checklistDetails.status,
-      //     checklistDetails.status["Shanghai"]
-      //   );
 
       setCheckedItems([...checklistDetails.items]);
 
@@ -103,7 +84,7 @@ const EditChecklist = () => {
       updatedArray[findChecked] = { [Object.keys(item).toString()]: false };
     }
     const updatedChecklist = { ...checklistDetails, items: updatedArray };
-    console.log("Updated checklsit items:", updatedChecklist);
+    console.log("Updated checklist items:", updatedChecklist);
 
     setCheckedItems(updatedArray);
     setChecklistDetails(updatedChecklist);
@@ -153,7 +134,7 @@ const EditChecklist = () => {
       </div>
       <div className="row fw-bold">{percentChecked}% Completed</div>
       <div className="row mt-5 rounded-top shadow">
-        <div className="row">{JSON.stringify(checkedItems)}</div>
+        {/* <div className="row">{JSON.stringify(checkedItems)}</div> */}
         {/* <CheckIcon className="check-icon icon-bg-round-passed" /> */}
         <ul className="fs-4">{checkedItems && createItems()}</ul>
       </div>

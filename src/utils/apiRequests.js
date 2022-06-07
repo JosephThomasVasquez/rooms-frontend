@@ -113,7 +113,7 @@ export const createChecklist = async (newChecklist, signal) => {
 
 export const updateChecklist = async (checklist, signal) => {
   const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${checklist.id}`);
-  // console.log(url);
+  console.log('API cehcklist id', url);
 
   const options = {
     method: "PUT",
