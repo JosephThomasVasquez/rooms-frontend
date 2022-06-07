@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { readChecklist } from "../utils/apiRequests";
+import { readChecklist, updateChecklist } from "../utils/apiRequests";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
+import ItemCard from "./ItemCard";
 
 const EditChecklist = () => {
   const { checklistId } = useParams();
@@ -12,7 +13,21 @@ const EditChecklist = () => {
 
   const [checklistDetails, setChecklistDetails] = useState(null);
   const [percentChecked, setPercentChecked] = useState(0);
-  const [checkedItems, setCheckedItems] = useState({ ...initialCheckedItems });
+  const [checkedItems, setCheckedItems] = useState([]);
+  const isMounted = useRef(false);
+
+  //   useEffect(() => {
+  //     // console.log("Triggered", checkedItems);
+  //     // console.log(checklistDetails);
+  //     // createItems();
+
+  //     if (isMounted.current) {
+  //       console.log("mount:", isMounted);
+  //       saveChecked();
+  //     } else {
+  //       isMounted.current = true;
+  //     }
+  //   }, [checklistDetails]);
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -32,67 +47,92 @@ const EditChecklist = () => {
       } catch (error) {}
     };
 
-    getChecklist();
+    if (!checklistDetails) {
+      getChecklist();
+    }
 
     return () => abortController.abort();
   }, [checklistId]);
 
   useEffect(() => {
     if (checklistDetails?.items?.length > 0) {
-      const percentage = (2 / checklistDetails.items.length) * 100;
-      console.log(percentage);
-      makeCheckedItems();
+      const percentage = (11 / checklistDetails.items.length) * 100;
+      console.log("percentage", percentage);
+      //   makeCheckedItems();
+      //   console.log(
+      //     "typeof:",
+      //     typeof checklistDetails.status,
+      //     checklistDetails.status["Shanghai"]
+      //   );
+
+      setCheckedItems([...checklistDetails.items]);
+
       setPercentChecked(percentage.toFixed());
     }
   }, [checklistDetails]);
 
-  const makeCheckedItems = async () => {
-    const items = await checklistDetails.items;
-
-    const mappedItems = {};
-
-    if (items) {
-      console.log("items:", items);
-      items.map((i) => {
-        return (mappedItems[i] = false);
-      });
-
-      setCheckedItems({ ...mappedItems });
-    }
+  const createItems = () => {
+    return checkedItems?.map((item) => (
+      <ItemCard
+        key={`checklist-item-id-${Object.keys(item)}`}
+        item={item}
+        handleClickedItem={handleClickedItem}
+      />
+    ));
   };
 
   const handleClickedItem = (item) => {
-    console.log("Search for:", item);
+    // console.log(target.name);
+    console.log(item);
 
-    const isExistingItem = checklistDetails.items.find((i) => i === item);
+    // Validate if item exists
+    // const isExistingItem = checklistDetails?.items?.find((i) => i === item);
 
-    console.log("item Exists >>>", isExistingItem);
+    // Find index of checked item
+    const findChecked = checkedItems?.findIndex((i) => i === item);
 
-    if (item === isExistingItem) {
-      const toggleClicked = (checkedItems[item] = !checkedItems[item]);
+    const updatedArray = [...checkedItems];
 
-      setCheckedItems({
-        ...checkedItems,
-        [checkedItems[item]]: !checkedItems[item],
-      });
+    // Switch to true
+    if (Object.values(checkedItems[findChecked]).toString() === "false") {
+      updatedArray[findChecked] = { [Object.keys(item).toString()]: true };
     }
 
-    console.log(checkedItems);
+    // Switch to false
+    if (Object.values(checkedItems[findChecked]).toString() === "true") {
+      updatedArray[findChecked] = { [Object.keys(item).toString()]: false };
+    }
+    const updatedChecklist = { ...checklistDetails, items: updatedArray };
+    console.log("Updated checklsit items:", updatedChecklist);
+
+    setCheckedItems(updatedArray);
+    setChecklistDetails(updatedChecklist);
+
+    saveChecked(updatedChecklist);
+
+    // console.log(checklistDetails);
   };
 
-  const mapItems = checklistDetails?.items?.map((item) => (
-    <li
-      key={`checklist-item-id-${item}`}
-      name={item}
-      className={`row border rounded shadow-sm my-1 p-2 list-unstyled ${
-        checkedItems[item] ? "template-item-check" : "template-item"
-      }`}
-      onClick={() => handleClickedItem(item)}
-      value={item}
-    >
-      {item}
-    </li>
-  ));
+  const saveChecked = (checklist) => {
+    console.log("saving...", checklist);
+    const abortController = new AbortController();
+
+    const updateChecklistItems = async () => {
+      try {
+        const response = await updateChecklist(
+          checklist,
+          abortController.signal
+        );
+
+        if (response) {
+          console.log("UPDATE response", response);
+          setChecklistDetails(response);
+        }
+      } catch (error) {}
+    };
+
+    updateChecklistItems();
+  };
 
   return (
     <div className="container">
@@ -115,7 +155,7 @@ const EditChecklist = () => {
       <div className="row mt-5 rounded-top shadow">
         <div className="row">{JSON.stringify(checkedItems)}</div>
         {/* <CheckIcon className="check-icon icon-bg-round-passed" /> */}
-        <ul className="fs-4">{checklistDetails && mapItems}</ul>
+        <ul className="fs-4">{checkedItems && createItems()}</ul>
       </div>
       <div className="row mt-5 rounded-top shadow">
         <p className="d-flex align-items-center rounded-top shadow">

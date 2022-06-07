@@ -111,6 +111,20 @@ export const createChecklist = async (newChecklist, signal) => {
   return await fetchJson(url, options, {});
 };
 
+export const updateChecklist = async (checklist, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${checklist.id}`);
+  // console.log(url);
+
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: checklist }),
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};
+
 //_____________________________________________________________________________________________________
 // API REQUESTS
 // Checklist Templates

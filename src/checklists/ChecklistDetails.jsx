@@ -16,9 +16,45 @@ const ChecklistDetails = () => {
       .catch((error) => {
         console.log(error);
       });
-
+    console.log(checklistDetails);
     return () => abortController.abort();
   }, [checklistId]);
+
+  const completedItems = () => {
+    const filterCompleted = checklistDetails.items.filter((item) => {
+      console.log(Object.values(item)[0]);
+      return Object.values(item)[0] === true;
+    });
+
+    console.log(filterCompleted);
+
+    const displayItems = filterCompleted.map((item) => (
+      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+        <li className="list-unstyled">{Object.keys(item)}</li>
+      </div>
+    ));
+    // console.log(items);
+
+    return displayItems;
+  };
+
+  const missedItems = () => {
+    const filterCompleted = checklistDetails.items.filter((item) => {
+      console.log(Object.values(item)[0]);
+      return Object.values(item)[0] === false;
+    });
+
+    // console.log(filterCompleted);
+
+    const displayItems = filterCompleted.map((item) => (
+      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+        <li className="list-unstyled">{Object.keys(item)}</li>
+      </div>
+    ));
+    // console.log(items);
+
+    return displayItems;
+  };
 
   return (
     <div className="container">
@@ -46,14 +82,7 @@ const ChecklistDetails = () => {
               : "none"}
           </span>
         </p>
-        <ul className="row">
-          {checklistDetails?.passed &&
-            checklistDetails?.passed.map((item) => (
-              <div key={`item-id-${item}`} className="col-3">
-                <li className="list-unstyled">{item}</li>
-              </div>
-            ))}
-        </ul>
+        <ul className="row">{checklistDetails?.items && completedItems()}</ul>
       </div>
       <div className="row mt-5 rounded-top shadow">
         <p className="d-flex align-items-center rounded-top shadow">
@@ -64,14 +93,7 @@ const ChecklistDetails = () => {
               : "none"}
           </span>
         </p>
-        <ul className="row">
-          {checklistDetails?.missed &&
-            checklistDetails?.missed.map((item) => (
-              <div key={`item-id-${item}`} className="col-3">
-                <li className="list-unstyled">{item}</li>
-              </div>
-            ))}
-        </ul>
+        <ul className="row">{checklistDetails?.items && missedItems()}</ul>
       </div>
     </div>
   );
