@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getBuildings } from "../../utils/apiRequests";
 import BuildingCard from "./BuildingCard";
 
-const BuildingsList = () => {
+const BuildingsList = ({ errorHandler }) => {
   const [buildings, setBuildings] = useState(null);
   const [buildingsError, setBuildingsError] = useState(null);
 
