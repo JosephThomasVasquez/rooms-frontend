@@ -35,6 +35,8 @@ const TemplateForm = ({ user }) => {
     // console.log("XXXXXXXXXXX", itemsList);
     console.log("createdItems", createdItems);
     setNewTemplate({ ...newTemplate, items: createdItems });
+
+    console.log("newTemplate", newTemplate);
   }, [createdItems]);
 
   const createChecklistItem = (items) => {

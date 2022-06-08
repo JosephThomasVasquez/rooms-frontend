@@ -38,6 +38,7 @@ const Routers = () => {
         }
       ></Route>
 
+      {/* CHECKLIST ROUTES */}
       <Route
         exact
         path="checklists"
@@ -78,6 +79,7 @@ const Routers = () => {
         }
       ></Route>
 
+      {/* CHECKLIST TEMPLATES ROUTES */}
       <Route
         exact
         path="checklist-templates/create"
@@ -98,6 +100,7 @@ const Routers = () => {
         }
       ></Route>
 
+      {/* ROOMS ROUTES */}
       <Route
         exact
         path="rooms"
@@ -108,6 +111,7 @@ const Routers = () => {
         }
       ></Route>
 
+      {/* BUILDINGS ROUTES */}
       <Route
         exact
         path="buildings"
