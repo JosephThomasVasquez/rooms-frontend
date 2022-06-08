@@ -46,11 +46,11 @@ const TemplateForm = ({ user }) => {
         let hasValidCharacters = new RegExp(/^[a-zA-Z0-9_.-]*$/);
 
         const isValid = hasValidCharacters.test(item);
-        console.log(isValid);
+        console.log("isValid", isValid);
 
         if (isValid) {
-          // itemsArray.push({ name: item, checked: false });
-          itemsArray.push(item);
+          itemsArray.push({ [item]: false });
+          // itemsArray.push(item);
         } else {
           // itemsArray.push({ name: "Invalid Characters", checked: false });
           itemsArray.push("Invalid Characters");

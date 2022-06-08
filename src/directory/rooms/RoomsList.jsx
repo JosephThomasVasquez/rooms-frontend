@@ -20,9 +20,6 @@ const RoomsList = () => {
           buildings[building_name] = filterRooms;
         });
 
-        console.log("buildings", buildings);
-        // console.log(typeof buildings);
-
         setRooms([...rooms]);
       })
       .catch(setRoomsError);
@@ -36,23 +33,6 @@ const RoomsList = () => {
       {room.room_name}
     </div>
   ));
-
-  //   table.increments("id").primary();
-  //   table.string("room_name").notNullable();
-  //   table.string("room_type");
-  //   table.string("area_of_building");
-  //   table.integer("floor").notNullable();
-  //   table.integer("max_capacity");
-  //   table.string("arrangement_type");
-  //   table.string("room_status");
-  //   table.json("room_images");
-  //   table.integer("building_id").unsigned().notNullable();
-  //   table
-  //     .foreign("building_id")
-  //     .references("id")
-  //     .inTable("buildings")
-  //     .onDelete("CASCADE");
-  //   table.timestamps(true, true);
 
   const tableHeaders = () => {
     if (rooms?.length > 0) {

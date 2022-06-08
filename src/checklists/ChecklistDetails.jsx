@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { readChecklist } from "../utils/apiRequests";
-import { CheckIcon, XIcon } from "@heroicons/react/solid";
+import { CheckIcon, XIcon, PencilAltIcon } from "@heroicons/react/solid";
 
 const ChecklistDetails = () => {
   const { checklistId } = useParams();
   const [checklistDetails, setChecklistDetails] = useState(null);
+
+  const urlDate = dayjs(checklistDetails?.date_completed).format("MM-DD-YYYY");
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -16,52 +18,56 @@ const ChecklistDetails = () => {
       .catch((error) => {
         console.log(error);
       });
-    console.log(checklistDetails);
+
     return () => abortController.abort();
   }, [checklistId]);
 
+  //   Filter completed items =================================================================
   const completedItems = () => {
-    const filterCompleted = checklistDetails.items.filter((item) => {
-      console.log(Object.values(item)[0]);
-      return Object.values(item)[0] === true;
-    });
+    const missedArray = [];
 
-    console.log(filterCompleted);
+    const filterCompleted = checklistDetails.items.filter((item) => {
+      return Object.values(item).toString() == "true";
+    });
 
     const displayItems = filterCompleted.map((item) => (
       <div key={`item-id-${Object.keys(item)}`} className="col-3">
         <li className="list-unstyled">{Object.keys(item)}</li>
       </div>
     ));
-    // console.log(items);
 
     return displayItems;
   };
 
+  //   Filter missed items =================================================================
   const missedItems = () => {
-    const filterCompleted = checklistDetails.items.filter((item) => {
-      console.log(Object.values(item)[0]);
-      return Object.values(item)[0] === false;
+    const filterCompleted = checklistDetails?.items?.filter((item) => {
+      return Object.values(item).toString() == "false";
     });
-
-    // console.log(filterCompleted);
 
     const displayItems = filterCompleted.map((item) => (
       <div key={`item-id-${Object.keys(item)}`} className="col-3">
         <li className="list-unstyled">{Object.keys(item)}</li>
       </div>
     ));
-    // console.log(items);
 
     return displayItems;
   };
 
   return (
     <div className="container">
-      <h2>
-        Checklist <span className="text-primary">{checklistDetails?.id}</span>
-      </h2>
-      <div className="row fs-5">
+      <div className="d-flex align-items-center">
+        <h2>
+          Checklist <span className="text-primary">{checklistDetails?.id}</span>
+        </h2>
+        <Link
+          to={`/checklists/edit/${urlDate}/${checklistDetails?.id}`}
+          className="col-2 ms-3 mb-2"
+        >
+          <PencilAltIcon className="checklist-edit-icon" />
+        </Link>
+      </div>
+      <div className="card row fs-5">
         <div className="col">Checklist: {checklistDetails?.checklist_name}</div>
         <div className="col">Location: {checklistDetails?.location}</div>
         <div className="col">
@@ -77,9 +83,7 @@ const ChecklistDetails = () => {
         <p className="d-flex align-items-center rounded-top shadow">
           <CheckIcon className="check-icon icon-bg-round-passed" />
           <span className="fs-4 ms-2">
-            {checklistDetails?.passed
-              ? checklistDetails?.passed.length
-              : "none"}
+            {checklistDetails?.items ? completedItems().length : "none"}
           </span>
         </p>
         <ul className="row">{checklistDetails?.items && completedItems()}</ul>
@@ -88,9 +92,7 @@ const ChecklistDetails = () => {
         <p className="d-flex align-items-center rounded-top shadow">
           <XIcon className="x-icon icon-bg-round-missed" />
           <span className="fs-4 ms-2">
-            {checklistDetails?.missed
-              ? checklistDetails?.missed.length
-              : "none"}
+            {checklistDetails?.items ? missedItems().length : "none"}
           </span>
         </p>
         <ul className="row">{checklistDetails?.items && missedItems()}</ul>

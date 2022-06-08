@@ -83,13 +83,13 @@ const ChecklistForm = () => {
 
   const mapTemplateItems = newChecklist?.items.map((item) => (
     <li
-      key={`template-item-id-${item}`}
-      name={item}
+      key={`template-item-id-${Object.keys(item)}`}
+      name={Object.keys(item)}
       className="row border rounded shadow-sm ms-1 my-1 p-2 list-unstyled template-item"
       onClick={() => handleClickedItem(item)}
-      value={item}
+      value={Object.keys(item)}
     >
-      {item}
+      {Object.keys(item)}
     </li>
   ));
 

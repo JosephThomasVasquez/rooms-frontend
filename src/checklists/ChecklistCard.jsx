@@ -13,12 +13,42 @@ const ChecklistCard = ({ checklist }) => {
 
   const isCompleted = checklist.is_completed ? "checklist-completed" : "";
 
+  //   Filter completed items =================================================================
+  const completedItems = () => {
+    const filterCompleted = checklist.items.filter((item) => {
+      return Object.values(item).toString() == "true";
+    });
+
+    const displayItems = filterCompleted.map((item) => (
+      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+        <li className="list-unstyled">{Object.keys(item)}</li>
+      </div>
+    ));
+
+    return displayItems;
+  };
+
+  //   Filter missed items =================================================================
+  const missedItems = () => {
+    const filterCompleted = checklist.items.filter((item) => {
+      return Object.values(item).toString() == "false";
+    });
+
+    const displayItems = filterCompleted.map((item) => (
+      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+        <li className="list-unstyled">{Object.keys(item)}</li>
+      </div>
+    ));
+
+    return displayItems;
+  };
+
   return (
     <div className={`card py-2 px-4 my-2 shadow ${isCompleted}`}>
       <div className="row">
         <div className="col-10 fs-6 fw-bold">{checklist.checklist_name}</div>
         <Link
-          to={`/checklists/edit/${checklist.date_completed}/${checklist.id}`}
+          to={`/checklists/edit/${urlDate}/${checklist.id}`}
           className="col-2"
         >
           <PencilAltIcon className="checklist-edit-icon" />
@@ -47,11 +77,11 @@ const ChecklistCard = ({ checklist }) => {
           >
             <div className="col-3">
               <CheckIcon className="check-icon" />
-              {checklist.passed ? checklist.passed.length : "none"}
+              {checklist.items ? completedItems().length : "none"}
             </div>
             <div className="col-3">
               <XIcon className="x-icon" />
-              {checklist.missed ? checklist.missed.length : "none"}
+              {checklist.items ? missedItems().length : "none"}
             </div>
           </div>
         </div>

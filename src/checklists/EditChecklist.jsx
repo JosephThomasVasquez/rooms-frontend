@@ -9,8 +9,6 @@ const EditChecklist = () => {
   const { checklistId } = useParams();
   const params = useParams();
 
-  const initialCheckedItems = null;
-
   const [checklistDetails, setChecklistDetails] = useState(null);
   const [percentChecked, setPercentChecked] = useState(0);
   const [checkedItems, setCheckedItems] = useState([]);
@@ -41,12 +39,20 @@ const EditChecklist = () => {
     return () => abortController.abort();
   }, [checklistId]);
 
+  //   Update percentage and setCheckedItems =================================================================
+
   useEffect(() => {
     if (checklistDetails?.items?.length > 0) {
-      const percentage = (11 / checklistDetails.items.length) * 100;
-      console.log("percentage", percentage);
-
       setCheckedItems([...checklistDetails.items]);
+
+      const itemsCompleted = checklistDetails.items.reduce((total, item) => {
+        if (Object.values(item).toString() == "true") {
+          total += 1;
+        }
+        return total;
+      }, 0);
+
+      const percentage = (itemsCompleted / checklistDetails.items.length) * 100;
 
       setPercentChecked(percentage.toFixed());
     }
@@ -135,7 +141,6 @@ const EditChecklist = () => {
       <div className="row fw-bold">{percentChecked}% Completed</div>
       <div className="row mt-5 rounded-top shadow">
         {/* <div className="row">{JSON.stringify(checkedItems)}</div> */}
-        {/* <CheckIcon className="check-icon icon-bg-round-passed" /> */}
         <ul className="fs-4">{checkedItems && createItems()}</ul>
       </div>
       <div className="row mt-5 rounded-top shadow">
