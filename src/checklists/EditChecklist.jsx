@@ -26,7 +26,6 @@ const EditChecklist = () => {
         );
 
         if (response) {
-          console.log("response", response);
           setChecklistDetails(response);
         }
       } catch (error) {}
@@ -69,9 +68,6 @@ const EditChecklist = () => {
   };
 
   const handleClickedItem = (item) => {
-    // console.log(target.name);
-    console.log(item);
-
     // Validate if item exists
     // const isExistingItem = checklistDetails?.items?.find((i) => i === item);
 
@@ -90,14 +86,11 @@ const EditChecklist = () => {
       updatedArray[findChecked] = { [Object.keys(item).toString()]: false };
     }
     const updatedChecklist = { ...checklistDetails, items: updatedArray };
-    console.log("Updated checklist items:", updatedChecklist);
 
     setCheckedItems(updatedArray);
     setChecklistDetails(updatedChecklist);
 
     saveChecked(updatedChecklist);
-
-    // console.log(checklistDetails);
   };
 
   const saveChecked = (checklist) => {
@@ -122,7 +115,7 @@ const EditChecklist = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container pb-5">
       <h2>
         Checklist <span className="text-primary">{checklistDetails?.id}</span>
       </h2>
@@ -140,26 +133,7 @@ const EditChecklist = () => {
       </div>
       <div className="row fw-bold">{percentChecked}% Completed</div>
       <div className="row mt-5 rounded-top shadow">
-        {/* <div className="row">{JSON.stringify(checkedItems)}</div> */}
         <ul className="fs-4">{checkedItems && createItems()}</ul>
-      </div>
-      <div className="row mt-5 rounded-top shadow">
-        <p className="d-flex align-items-center rounded-top shadow">
-          <XIcon className="x-icon icon-bg-round-missed" />
-          <span className="fs-4 ms-2">
-            {checklistDetails?.missed
-              ? checklistDetails?.missed.length
-              : "none"}
-          </span>
-        </p>
-        <ul className="row">
-          {checklistDetails?.missed &&
-            checklistDetails?.missed.map((item) => (
-              <div key={`item-id-${item}`} className="col-3">
-                <li className="list-unstyled">{item}</li>
-              </div>
-            ))}
-        </ul>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ const ItemCard = ({ item, handleClickedItem }) => {
   const [checked, setChecked] = useState(Object.values(item).toString());
 
   useEffect(() => {
-    console.log(Object.values(item).toString());
     setChecked(Object.values(item).toString());
   }, [item]);
 

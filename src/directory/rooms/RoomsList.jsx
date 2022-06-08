@@ -16,7 +16,7 @@ const RoomsList = () => {
           const filterRooms = rooms.filter((room) => {
             return room.building_name === building_name;
           });
-          console.log(filterRooms);
+
           buildings[building_name] = filterRooms;
         });
 
