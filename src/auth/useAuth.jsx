@@ -1,13 +1,25 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
+import { isAuthenticated } from "../utils/cookieHandler";
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
+  useEffect(() => {
+    console.log("isAuthed", isAuthenticated());
+    const hasToken = JSON.parse(localStorage.getItem("user"));
+    if (hasToken) {
+      setUser(hasToken);
+    }
+  }, []);
+
   const loginUser = (user) => {
     // setting User
     console.log("user", user);
+    // const hasToken = JSON.parse(localStorage.getItem("user"));
+    // console.log(hasToken);
+
     setUser(user);
   };
 
