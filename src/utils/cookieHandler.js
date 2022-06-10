@@ -37,7 +37,7 @@ export const removeLocalStorageCookie = (key) => {
 
 // Authenticate user - set localStorage and cookie
 export const authenticateUser = (response, next) => {
-  console.log("Authenticate sign in response", response);
+  //   console.log("Authenticate sign in response", response);
   setCookie("token", response.token);
   setLocalStorageCookie("user", response);
   next();
@@ -45,7 +45,7 @@ export const authenticateUser = (response, next) => {
 
 // Check if token and user exists
 export const isAuthenticated = () => {
-  console.log("Check if authenticated");
+  //   console.log("Check if authenticated");
 
   if (window !== undefined) {
     const verifyCookie = getCookie("token");

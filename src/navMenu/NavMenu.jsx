@@ -1,12 +1,25 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SearchIcon } from "@heroicons/react/solid";
+import { useAuth } from "../auth/useAuth";
+import { isAuthenticated } from "../utils/cookieHandler";
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
   const [openNav, setOpenNav] = useState(false);
+  const [user, setUser] = useState(null);
 
-  console.log(openNav);
+  const auth = useAuth();
+
+  const isUser = auth.getLoggedInUser();
+
+  useEffect(() => {
+    if (isUser) {
+      setUser(isUser);
+    }
+  }, [auth.getLoggedInUser()]);
+
+  // console.log(openNav);
   const menuRef = useRef();
 
   const activeStyle = {
@@ -165,6 +178,53 @@ const NavMenu = () => {
             />
             <SearchIcon className="search-icon" type="submit" />
           </form>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+              {user ? (
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {user.email}
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <NavLink
+                        to="/user/profile"
+                        className="dropdown-item"
+                        aria-current="page"
+                        href="#"
+                        style={({ isActive }) =>
+                          isActive ? activeStyle : undefined
+                        }
+                      >
+                        User
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <Link
+                    to="/login"
+                    className="nav-link active"
+                    aria-current="page"
+                    href="#"
+                  >
+                    Login
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     </nav>

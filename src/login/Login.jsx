@@ -25,7 +25,7 @@ const Login = () => {
       try {
         const response = await loginUser(user, abortController.signal);
 
-        console.log("Logged in user:", response);
+        // console.log("Logged in user:", response);
 
         authenticateUser(response, () => {
           auth.loginUser(response);

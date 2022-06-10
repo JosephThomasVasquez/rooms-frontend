@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log("isAuthed", isAuthenticated());
+    // console.log("isAuthed", isAuthenticated());
     const hasToken = JSON.parse(localStorage.getItem("user"));
     if (hasToken) {
       setUser(hasToken);
@@ -16,11 +16,13 @@ export const AuthProvider = ({ children }) => {
 
   const loginUser = (user) => {
     // setting User
-    console.log("user", user);
-    // const hasToken = JSON.parse(localStorage.getItem("user"));
-    // console.log(hasToken);
+    // console.log("user", user);
 
     setUser(user);
+  };
+
+  const getLoggedInUser = () => {
+    return user;
   };
 
   const logoutUser = () => {
@@ -28,7 +30,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loginUser, logoutUser }}>
+    <AuthContext.Provider
+      value={{ user, getLoggedInUser, loginUser, logoutUser }}
+    >
       {children}
     </AuthContext.Provider>
   );

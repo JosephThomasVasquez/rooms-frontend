@@ -1,9 +1,11 @@
 import React from "react";
-import { AuthProvider } from "../auth/useAuth";
+import { AuthProvider, useAuth } from "../auth/useAuth";
 import NavMenu from "../navMenu/NavMenu";
 import Routers from "./Routers";
 
 const Layout = () => {
+  // const auth = useAuth();
+  // console.log("checking for user:", auth?.user);
   return (
     <AuthProvider>
       <NavMenu />

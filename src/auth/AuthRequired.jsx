@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, Navigate, Outlet } from "react-router-dom";
+import { isAuthenticated } from "../utils/cookieHandler";
 import { useAuth } from "./useAuth";
 
 const AuthRequired = ({ children }) => {
+  // const [isAuthenticated, setIsAuthenticated] = useState(null);
   const auth = useAuth();
+
+  // useEffect(() => {
+  //   console.log("useAuth user", auth.user);
+  //   setIsAuthenticated(auth.user);
+  //   console.log("triggering isAuth");
+  // }, []);
+
   const location = useLocation();
 
   if (!auth.user) {
