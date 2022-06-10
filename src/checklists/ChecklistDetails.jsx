@@ -58,7 +58,8 @@ const ChecklistDetails = () => {
     <div className="container">
       <div className="d-flex align-items-center">
         <h2>
-          Checklist <span className="text-primary">{checklistDetails?.id}</span>
+          Checklist <span className="text-primary">{checklistDetails?.id}</span>{" "}
+          Details
         </h2>
         <Link
           to={`/checklists/edit/${urlDate}/${checklistDetails?.id}`}

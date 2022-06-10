@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 // Auth Components
 import AuthRequired from "../auth/AuthRequired";
@@ -18,9 +18,9 @@ import ChecklistDetails from "../checklists/ChecklistDetails";
 import TemplateForm from "../checklistTemplates/TemplateForm";
 import ChecklistTemplates from "../checklistTemplates/ChecklistTemplates";
 import EditChecklist from "../checklists/EditChecklist";
+import Profile from "../users/Profile";
 
 const Routers = () => {
-  const location = useLocation();
   const auth = useAuth();
 
   // console.log("auth:", auth.user);
@@ -40,9 +40,19 @@ const Routers = () => {
     <>
       {/* ERROR HANDLER */}
       <ErrorMessage error={error} />
-      {/* USER ROUTES */}
 
       <Routes>
+        {/* USER ROUTES */}
+        <Route
+          exact
+          path="/user/profile/:userId"
+          element={
+            <AuthRequired>
+              <Profile />
+            </AuthRequired>
+          }
+        ></Route>
+
         <Route exact path="login" element={<Login />} />
         <Route
           exact

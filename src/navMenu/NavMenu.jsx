@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useAuth } from "../auth/useAuth";
-import { isAuthenticated } from "../utils/cookieHandler";
+// import { isAuthenticated } from "../utils/cookieHandler";
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
@@ -17,7 +17,7 @@ const NavMenu = () => {
     if (isUser) {
       setUser(isUser);
     }
-  }, [auth.getLoggedInUser()]);
+  }, [isUser]);
 
   // console.log(openNav);
   const menuRef = useRef();
@@ -59,7 +59,7 @@ const NavMenu = () => {
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
+                href="dropdown"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -102,7 +102,7 @@ const NavMenu = () => {
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
-                href="#"
+                href="dropdown"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
@@ -184,13 +184,13 @@ const NavMenu = () => {
                 <li className="nav-item dropdown">
                   <a
                     className="nav-link dropdown-toggle"
-                    href="#"
+                    href="dropdown"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {user.email}
+                    {user ? user.email : "User"}
                   </a>
                   <ul
                     className="dropdown-menu"
@@ -198,7 +198,7 @@ const NavMenu = () => {
                   >
                     <li>
                       <NavLink
-                        to="/user/profile"
+                        to={`/user/profile/user?email=${user.email}`}
                         className="dropdown-item"
                         aria-current="page"
                         href="#"
@@ -206,8 +206,17 @@ const NavMenu = () => {
                           isActive ? activeStyle : undefined
                         }
                       >
-                        User
+                        Profile
                       </NavLink>
+                    </li>
+                    <li>
+                      <div
+                        className="dropdown-item"
+                        aria-current="page"
+                        href="logout"
+                      >
+                        Logout
+                      </div>
                     </li>
                   </ul>
                 </li>

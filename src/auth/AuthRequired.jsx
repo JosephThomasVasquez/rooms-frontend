@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { isAuthenticated } from "../utils/cookieHandler";
+import React from "react";
+import { useLocation, Navigate } from "react-router-dom";
+// import { isAuthenticated } from "../utils/cookieHandler";
 import { useAuth } from "./useAuth";
 
 const AuthRequired = ({ children }) => {

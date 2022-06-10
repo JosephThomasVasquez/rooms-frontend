@@ -52,6 +52,11 @@ export const loginUser = async (user, signal) => {
   return await fetchJson(url, options, {});
 };
 
+const getUser = async (user, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/users/${user.email}`);
+  console.log(url);
+};
+
 //_____________________________________________________________________________________________________
 // API REQUESTS
 // Rooms
