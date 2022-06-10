@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { loginUser } from "../utils/apiRequests";
+import { authenticateUser } from "../utils/cookieHandler";
 
 const Login = () => {
   const [user, setUser] = useState("");
@@ -16,8 +18,25 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    auth.loginUser(user);
-    navigate(redirectPath, { replace: true });
+
+    const submitLogin = async () => {
+      const abortController = new AbortController();
+
+      try {
+        const response = await loginUser(user, abortController.signal);
+
+        console.log("Logged in user:", response);
+
+        authenticateUser(response, () => {
+          auth.loginUser(response);
+          navigate(redirectPath, { replace: true });
+        });
+      } catch (error) {
+        console.log("Login ERROR:", error);
+      }
+    };
+
+    submitLogin();
   };
 
   return (

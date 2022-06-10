@@ -30,17 +30,22 @@ async function fetchJson(url, options, onCancel) {
 
 //_____________________________________________________________________________________________________
 // API REQUESTS
-// Checklists
+// Users
 //_____________________________________________________________________________________________________
 
-export const getChecklists = async (params, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
+export const loginUser = async (user, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/users/login`);
+  // console.log(url);
+
   const options = {
-    method: "GET",
+    method: "POST",
     headers,
+    body: JSON.stringify({ data: user }),
+    withCredentials: true,
     signal,
   };
-  return await fetchJson(url, { headers, signal }, []);
+
+  return await fetchJson(url, options, {});
 };
 
 //_____________________________________________________________________________________________________
@@ -81,6 +86,16 @@ export const getBuildings = async (params, signal) => {
 // API REQUESTS
 // Checklists
 //_____________________________________________________________________________________________________
+
+export const getChecklists = async (params, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
+  const options = {
+    method: "GET",
+    headers,
+    signal,
+  };
+  return await fetchJson(url, { headers, signal }, []);
+};
 
 export const readChecklist = async (params, signal) => {
   const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${params}`);
