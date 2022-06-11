@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import { readChecklist, updateChecklist } from "../utils/apiRequests";
+import {
+  readChecklist,
+  updateChecklist,
+  updateChecklistComplete,
+} from "../utils/apiRequests";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
+import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import ItemCard from "./ItemCard";
 
 const EditChecklist = () => {
@@ -114,23 +119,67 @@ const EditChecklist = () => {
     updateChecklistItems();
   };
 
+  const completeChecklist = (checklist) => {
+    console.log("Completed Checklist saving...", checklist);
+    const abortController = new AbortController();
+
+    const setChecklistComplete = async () => {
+      try {
+        const response = await updateChecklist(
+          checklist,
+          abortController.signal
+        );
+
+        if (response) {
+          console.log("UPDATE response", response);
+          setChecklistDetails(response);
+        }
+      } catch (error) {}
+    };
+
+    setChecklistComplete();
+  };
+
+  const handleCompleteChecklist = () => {
+    // setChecklistDetails({ ...checklistDetails, is_completed: true });
+
+    const setComplete = { ...checklistDetails, is_completed: true };
+    console.log("setComplete!", setComplete);
+
+    completeChecklist(setComplete);
+  };
+
   return (
     <div className="container pb-5">
       <div className="row ps-3 card py-4 shadow-sm mb-4">
-        <h2 className="ps-0">
-          Checklist{" "}
+        {checklistDetails?.is_completed ? (
+          <span className="col-6 is-completed">completed</span>
+        ) : (
+          <span className="col-6 fs-6 fst-italic is-completed">
+            in progress
+          </span>
+        )}
+        <h2 className="col ps-0 checklist-title">
+          {checklistDetails?.checklist_name} <span className="fs-6">#</span>
           <span className="percent-completed">{checklistDetails?.id}</span>
         </h2>
-        <div className="row">Checklist: {checklistDetails?.checklist_name}</div>
+
+        {/* <div className="row">Checklist: {checklistDetails?.checklist_name}</div> */}
         <div>
-          <div className="row">Location: {checklistDetails?.location}</div>
           <div className="row">
-            Completed by: {checklistDetails?.completed_by}
+            <div className="col-2 fst-italic">Location: </div>
+            <div className="col">{checklistDetails?.location}</div>
           </div>
           <div className="row">
-            Date Completed:
-            {checklistDetails?.date_completed &&
-              dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+            <div className="col-2 fst-italic">Completed by:</div>
+            <div className="col">{checklistDetails?.completed_by}</div>
+          </div>
+          <div className="row">
+            <div className="col-2 fst-italic">Date Completed:</div>
+            <div className="col-2 fst-italic">
+              {checklistDetails?.date_completed &&
+                dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +194,15 @@ const EditChecklist = () => {
           <ul className="bg-checklist-edit fs-5">
             {checkedItems && createItems()}
           </ul>
+        </div>
+        <div className="row">
+          <div
+            className="d-flex justify-content-center align-items-center checklist-complete-btn"
+            onClick={handleCompleteChecklist}
+          >
+            <ClipboardCheckIcon className="icon-checklist-complete" />
+            <div>Complete</div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,3 +1,7 @@
+.checklist-title {
+  color: #00bf8c;
+}
+
 .check-icon {
   width: 24px;
   height: 24px;
@@ -50,6 +54,41 @@
   transition: all 0.5s ease;
 }
 
+.icon-checklist-complete {
+  width: 48px;
+  height: 48px;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  border: none;
+  transition: all 0.5s ease;
+}
+
+.checklist-complete-btn {
+  background: #00bf8c;
+  width: 200px;
+  padding: 10px 20px;
+  margin: 20px auto;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
+.checklist-complete-btn:hover {
+  background: hsl(164, 100%, 45%);
+  cursor: pointer;
+  width: 200px;
+  padding: 10px 20px;
+  margin: 20px auto;
+  color: white;
+  font-size: 1.5rem;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease;
+}
+
 .template-item {
   background-color: white;
   border-left: 10px solid rgba(0, 255, 0, 0.1) !important;
@@ -87,7 +126,7 @@
 
 .checklist-completed {
   opacity: 1;
-  background-color: rgba(240, 240, 240, 1);
+  background-color: rgba(240, 255, 240, 1);
 }
 
 .percent-completed {
