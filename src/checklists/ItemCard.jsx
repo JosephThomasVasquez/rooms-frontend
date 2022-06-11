@@ -16,8 +16,8 @@ const ItemCard = ({ item, handleClickedItem }) => {
   return (
     <li
       name={Object.keys(item)[0]}
-      className={`row border rounded shadow-sm my-1 p-2 list-unstyled ${
-        checked == "true" ? "template-item-check" : "template-item"
+      className={`row border rounded my-1 p-2 list-unstyled ${
+        checked == "true" ? "template-item-check shadow" : "template-item shadow-sm"
       }`}
       onClick={() => handleClickedItem(item)}
       value={Object.keys(item)}

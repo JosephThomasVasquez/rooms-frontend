@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <AuthProvider>
       <NavMenu />
-      <div className="container mx-auto p-3">
+      <div className="container-fluid mx-auto p-3">
         <Routers />
       </div>
     </AuthProvider>

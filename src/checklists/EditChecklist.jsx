@@ -116,24 +116,36 @@ const EditChecklist = () => {
 
   return (
     <div className="container pb-5">
-      <h2>
-        Checklist <span className="text-primary">{checklistDetails?.id}</span>
-      </h2>
-      <div className="row fs-5">
-        <div className="col">Checklist: {checklistDetails?.checklist_name}</div>
-        <div className="col">Location: {checklistDetails?.location}</div>
-        <div className="col">
-          Completed by: {checklistDetails?.completed_by}
-        </div>
-        <div className="col">
-          Date Completed:
-          {checklistDetails?.date_completed &&
-            dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+      <div className="row ps-3 card py-4 shadow-sm mb-4">
+        <h2 className="ps-0">
+          Checklist{" "}
+          <span className="percent-completed">{checklistDetails?.id}</span>
+        </h2>
+        <div className="row">Checklist: {checklistDetails?.checklist_name}</div>
+        <div>
+          <div className="row">Location: {checklistDetails?.location}</div>
+          <div className="row">
+            Completed by: {checklistDetails?.completed_by}
+          </div>
+          <div className="row">
+            Date Completed:
+            {checklistDetails?.date_completed &&
+              dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+          </div>
         </div>
       </div>
-      <div className="row fw-bold">{percentChecked}% Completed</div>
-      <div className="row mt-5 rounded-top shadow">
-        <ul className="fs-4">{checkedItems && createItems()}</ul>
+      <div className="">
+        <div className="">
+          <div className="d-flex justify-content-center pt-3 fw-bold fs-4">
+            <span className="me-2">{percentChecked}%</span>
+            <span className="percent-completed">Complete</span>
+          </div>
+        </div>
+        <div className="row mt-5 rounded-top shadow">
+          <ul className="bg-checklist-edit fs-5">
+            {checkedItems && createItems()}
+          </ul>
+        </div>
       </div>
     </div>
   );
