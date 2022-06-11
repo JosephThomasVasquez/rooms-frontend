@@ -17,7 +17,7 @@ const AuthRequired = ({ children }) => {
 
   if (!auth.user) {
     console.log("User not authenticated", auth.user);
-    return <Navigate to="/login" state={{ path: location.pathname }} />;
+    return <Navigate to="/user/login" state={{ path: location.pathname }} />;
   }
 
   return children;

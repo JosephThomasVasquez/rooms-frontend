@@ -1,34 +1,88 @@
 import React from "react";
 
 const Signup = () => {
+  const handleChange = () => {};
+
+  const handleSignup = () => {};
+
   return (
     <div className="container">
-      <form>
-        <div className="mb-3">
-          <label for="email" className="form-label">
-            Email address
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            aria-describedby="email"
-          />
+      <h2 className="text-4xl">Signup</h2>
+      <form onSubmit={handleSignup} className="p-5 shadow">
+        <div className="row">
+          <div className="col-6">
+            <label htmlFor="firstname" className="form-label">
+              First Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="firstname"
+              id="firstname"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="col-6">
+            <label htmlFor="lastname" className="form-label">
+              Last Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              name="lastname"
+              id="lastname"
+              onChange={handleChange}
+            />
+          </div>
         </div>
-        <div className="mb-3">
-          <label for="password" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-          />
+        <div className="row">
+          <div className="col">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              id="email"
+              onChange={handleChange}
+            />
+          </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Log in
-        </button>
+        <div className="row">
+          <div className="col-6 mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              id="password"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="col-6 mb-3">
+            <label htmlFor="confirm_password" className="form-label">
+              Confirm Password
+            </label>
+            <input
+              type="confirm_password"
+              className="form-control"
+              name="confirm_password"
+              id="confirm_password"
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+
+        <div className="col-2">
+          <button type="submit" className="btn btn-primary shadow">
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );

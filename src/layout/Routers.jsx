@@ -19,6 +19,7 @@ import TemplateForm from "../checklistTemplates/TemplateForm";
 import ChecklistTemplates from "../checklistTemplates/ChecklistTemplates";
 import EditChecklist from "../checklists/EditChecklist";
 import Profile from "../users/Profile";
+import Signup from "../signup/Signup";
 
 const Routers = () => {
   const auth = useAuth();
@@ -53,7 +54,8 @@ const Routers = () => {
           }
         ></Route>
 
-        <Route exact path="login" element={<Login />} />
+        <Route exact path="/user/login" element={<Login />} />
+        <Route exact path="/user/signup" element={<Signup />} />
         <Route
           exact
           path="dashboard"

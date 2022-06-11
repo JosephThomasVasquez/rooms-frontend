@@ -221,16 +221,29 @@ const NavMenu = () => {
                   </ul>
                 </li>
               ) : (
-                <li className="nav-item">
-                  <Link
-                    to="/login"
-                    className="nav-link active"
-                    aria-current="page"
-                    href="#"
-                  >
-                    Login
-                  </Link>
-                </li>
+                <>
+                  {" "}
+                  <li className="nav-item">
+                    <Link
+                      to="/user/login"
+                      className="nav-link active"
+                      aria-current="page"
+                      href="#"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      to="/user/signup"
+                      className="nav-link active"
+                      aria-current="page"
+                      href="#"
+                    >
+                      Signup
+                    </Link>
+                  </li>
+                </>
               )}
             </ul>
           </div>

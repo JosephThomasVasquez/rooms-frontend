@@ -86,6 +86,7 @@ const ChecklistDetails = () => {
           <span className="fs-4 ms-2">
             {checklistDetails?.items ? completedItems().length : "none"}
           </span>
+          <span className="ms-2 fst-italic">complete</span>
         </p>
         <ul className="row">{checklistDetails?.items && completedItems()}</ul>
       </div>
@@ -95,6 +96,7 @@ const ChecklistDetails = () => {
           <span className="fs-4 ms-2">
             {checklistDetails?.items ? missedItems().length : "none"}
           </span>
+          <span className="ms-2 fst-italic">incomplete</span>
         </p>
         <ul className="row">{checklistDetails?.items && missedItems()}</ul>
       </div>
