@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const redirectPath = location.state?.path || "/";
+  console.log(location);
 
   const handleChange = ({ target }) => {
     setUser({ ...user, [target.name]: target.value });

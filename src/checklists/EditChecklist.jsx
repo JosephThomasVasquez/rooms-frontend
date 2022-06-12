@@ -162,18 +162,21 @@ const EditChecklist = () => {
           <span className="percent-completed">{checklistDetails?.id}</span>
         </h2>
 
-        {/* <div className="row">Checklist: {checklistDetails?.checklist_name}</div> */}
         <div>
           <div className="row">
             <div className="col-2 fst-italic">Location: </div>
             <div className="col">{checklistDetails?.location}</div>
           </div>
           <div className="row">
-            <div className="col-2 fst-italic">Completed by:</div>
+            <div className="col-2 fst-italic">
+              {checklistDetails?.is_completed
+                ? "Completed by:"
+                : "Assigned to:"}
+            </div>
             <div className="col">{checklistDetails?.completed_by}</div>
           </div>
           <div className="row">
-            <div className="col-2 fst-italic">Date Completed:</div>
+            <div className="col-2 fst-italic">Created:</div>
             <div className="col-2 fst-italic">
               {checklistDetails?.date_completed &&
                 dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}

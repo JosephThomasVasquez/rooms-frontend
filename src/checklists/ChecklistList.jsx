@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { getChecklists } from "../utils/apiRequests";
 import ChecklistCard from "./ChecklistCard";
 import "./checklist.styles.css";
 
 const ChecklistList = ({ errorHandler }) => {
+  const location = useLocation();
+  // console.log("location", location);
+
   const [checklists, setChecklists] = useState(null);
-
-  const [search, setSearch] = useSearchParams();
-
-  console.log("search", search);
-  // setSearch({ group: "Any" });
 
   // fetches checklists from the backend
   const loadChecklists = () => {
