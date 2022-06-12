@@ -151,6 +151,15 @@ const Routers = () => {
         ></Route>
 
         <Route exact path="/" element={<Home />} />
+
+        <Route
+          path="*"
+          element={
+            <main style={{ padding: "1rem" }}>
+              <p>404 - This page does not exist.</p>
+            </main>
+          }
+        />
       </Routes>
     </>
   );
