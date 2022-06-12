@@ -3,15 +3,15 @@ import { getTemplates } from "../utils/apiRequests";
 
 const ChecklistTemplateSelector = ({ listTemplateItems }) => {
   const [templates, setTemplates] = useState(null);
-  const [templatesError, setTemplatesError] = useState(null);
+
   const [selectedTemplate, setSelectedTemplate] = useState("");
 
   // fetches checklists from the backend
-  const loadTemplates = () => {
+  const loadTemplates = ({ errorHandler }) => {
     const abortController = new AbortController();
     getTemplates(abortController.signal)
       .then(setTemplates)
-      .catch(setTemplatesError);
+      .catch((error) => errorHandler(error));
     return () => abortController.abort();
   };
 

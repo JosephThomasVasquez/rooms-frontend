@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getRooms } from "../../utils/apiRequests";
 
-const RoomsList = () => {
+const RoomsList = ({ errorHandler }) => {
   const [rooms, setRooms] = useState(null);
   const [roomsError, setRoomsError] = useState(null);
 
@@ -22,17 +22,17 @@ const RoomsList = () => {
 
         setRooms([...rooms]);
       })
-      .catch(setRoomsError);
+      .catch((error) => errorHandler(error));
     return () => abortController.abort();
   };
 
   useEffect(loadRooms, [setRooms]);
 
-  const mapRooms = rooms?.map((room, index) => (
-    <div key={room.id} className="col">
-      {room.room_name}
-    </div>
-  ));
+  //   const mapRooms = rooms?.map((room, index) => (
+  //     <div key={room.id} className="col">
+  //       {room.room_name}
+  //     </div>
+  //   ));
 
   const tableHeaders = () => {
     if (rooms?.length > 0) {

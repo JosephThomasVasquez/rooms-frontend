@@ -98,6 +98,15 @@ export const getBuildings = async (params, signal) => {
 
 export const getChecklists = async (params, signal) => {
   const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
+
+  console.log("params:", params);
+
+  if (params) {
+    Object.entries(params).forEach(([key, value]) =>
+      url.searchParams.append(key, value.toString())
+    );
+  }
+
   const options = {
     method: "GET",
     headers,

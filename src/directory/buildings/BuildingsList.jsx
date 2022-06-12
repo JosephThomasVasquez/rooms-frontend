@@ -4,14 +4,13 @@ import BuildingCard from "./BuildingCard";
 
 const BuildingsList = ({ errorHandler }) => {
   const [buildings, setBuildings] = useState(null);
-  const [buildingsError, setBuildingsError] = useState(null);
 
   // fetches checklists from the backend
   const loadBuildings = () => {
     const abortController = new AbortController();
     getBuildings(abortController.signal)
       .then(setBuildings)
-      .catch(setBuildingsError);
+      .catch((error) => errorHandler(error));
     return () => abortController.abort();
   };
 

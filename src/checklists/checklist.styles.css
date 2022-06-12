@@ -114,7 +114,7 @@
   /* border-left: 4px solid green !important; */
   border-top-left-radius: 40px !important;
   border-bottom-left-radius: 40px !important;
-  transition: all 0.5s ease;
+  transition: width margin-left 0.5s ease;
 }
 .template-item:hover,
 .template-item-check:hover {

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { getTemplates } from "../utils/apiRequests";
 import TemplateCard from "./TemplateCard";
 
-const ChecklistTemplates = () => {
+const ChecklistTemplates = ({ errorHandler }) => {
   const [templates, setTemplates] = useState(null);
-  const [templatesError, setTemplatesError] = useState(null);
 
   // fetches Templates from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
     getTemplates(abortController.signal)
       .then(setTemplates)
-      .catch(setTemplatesError);
+      .catch((error) => errorHandler(error));
     return () => abortController.abort();
   };
 

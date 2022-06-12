@@ -1,25 +1,33 @@
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getChecklists } from "../utils/apiRequests";
 import ChecklistCard from "./ChecklistCard";
 import "./checklist.styles.css";
 
-const ChecklistList = () => {
+const ChecklistList = ({ errorHandler }) => {
   const [checklists, setChecklists] = useState(null);
-  const [checklistError, setChecklistError] = useState(null);
+
+  const [search, setSearch] = useSearchParams();
+
+  console.log("search", search);
+  // setSearch({ group: "Any" });
 
   // fetches checklists from the backend
   const loadChecklists = () => {
     const abortController = new AbortController();
-    getChecklists(abortController.signal)
+    getChecklists("query", abortController.signal)
       .then(setChecklists)
-      .catch(setChecklistError);
+      .catch((error) => errorHandler(error));
     return () => abortController.abort();
   };
 
   useEffect(loadChecklists, [setChecklists]);
 
   const mapChecklists = checklists?.map((checklist) => (
-    <div key={checklist.id} className="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 checklist">
+    <div
+      key={checklist.id}
+      className="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12 checklist"
+    >
       <ChecklistCard checklist={checklist} />
     </div>
   ));

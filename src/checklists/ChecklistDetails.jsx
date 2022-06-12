@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { readChecklist } from "../utils/apiRequests";
 import { CheckIcon, XIcon, PencilAltIcon } from "@heroicons/react/solid";
 
-const ChecklistDetails = () => {
+const ChecklistDetails = ({ errorHandler }) => {
   const { checklistId } = useParams();
   const [checklistDetails, setChecklistDetails] = useState(null);
 
@@ -15,9 +15,7 @@ const ChecklistDetails = () => {
     setChecklistDetails(null);
     readChecklist(checklistId, abortController.signal)
       .then(setChecklistDetails)
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => errorHandler(error));
 
     return () => abortController.abort();
   }, [checklistId]);
