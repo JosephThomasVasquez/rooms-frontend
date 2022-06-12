@@ -34,8 +34,12 @@ const Checklists = ({ errorHandler }) => {
         "Completed",
       ];
 
-      const values = headers.map((head) => (
-        <th scope="col" key={head} className="table-headers">
+      const values = headers.map((head, index) => (
+        <th
+          scope="col"
+          key={`header=${head + index}`}
+          className="table-headers"
+        >
           {head[0].toUpperCase() + head.slice(1)}
         </th>
       ));
@@ -59,7 +63,7 @@ const Checklists = ({ errorHandler }) => {
       const percentage = ((itemsCompleted / list.items.length) * 100).toFixed();
 
       return (
-        <tr key={index} scope="row">
+        <tr key={`checklist-id-${id}`} scope="row">
           <td
             colSpan="1"
             className="d-flex justify-content-center align-middle"

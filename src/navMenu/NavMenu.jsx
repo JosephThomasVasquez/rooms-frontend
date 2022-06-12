@@ -48,7 +48,7 @@ const NavMenu = () => {
             <li className="nav-item mx-2">
               <Link
                 to="/dashboard"
-                className="nav-link active"
+                className="nav-link"
                 aria-current="page"
                 href="#"
               >
@@ -99,6 +99,26 @@ const NavMenu = () => {
                 </li>
               </ul>
             </li>
+            <li className="nav-item mx-2">
+              <Link
+                to="/checklists/create"
+                className="nav-link"
+                aria-current="new-checklist-page"
+                href="checklists/create"
+              >
+                New Checklist
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/checklists?group=any"
+                className="nav-link"
+                aria-current="checklists-page"
+                href="checklists"
+              >
+                Checklists
+              </Link>
+            </li>
             <li className="nav-item mx-2 dropdown">
               <a
                 className="nav-link dropdown-toggle"
@@ -108,35 +128,9 @@ const NavMenu = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Checklists
+                Templates
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <NavLink
-                    to="/checklists/create"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    New Checklist
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/checklists?group=any"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Checklists
-                  </NavLink>
-                </li>
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
