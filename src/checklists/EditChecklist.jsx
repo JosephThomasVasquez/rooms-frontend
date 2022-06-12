@@ -155,11 +155,9 @@ const EditChecklist = () => {
         {checklistDetails?.is_completed ? (
           <span className="col-6 is-completed">completed</span>
         ) : (
-          <span className="col-6 fs-6 fst-italic is-completed">
-            in progress
-          </span>
+          <span className="col-6 is-completed">in progress</span>
         )}
-        <h2 className="col ps-0 checklist-title">
+        <h2 className="col ps-2 checklist-title">
           {checklistDetails?.checklist_name} <span className="fs-6">#</span>
           <span className="percent-completed">{checklistDetails?.id}</span>
         </h2>

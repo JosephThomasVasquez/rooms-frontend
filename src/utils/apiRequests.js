@@ -97,22 +97,23 @@ export const getBuildings = async (params, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getChecklists = async (params, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
-
   console.log("params:", params);
-
-  if (params) {
-    Object.entries(params).forEach(([key, value]) =>
-      url.searchParams.append(key, value.toString())
-    );
-  }
 
   const options = {
     method: "GET",
     headers,
     signal,
   };
-  return await fetchJson(url, { headers, signal }, []);
+
+  // If there are params fetch from route with query
+  if (params) {
+    const url = new URL(`${REACT_APP_API_BASE_URL}/checklists?group=${params}`);
+    return await fetchJson(url, options, []);
+  }
+
+  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
+
+  return await fetchJson(url, options, []);
 };
 
 export const readChecklist = async (params, signal) => {

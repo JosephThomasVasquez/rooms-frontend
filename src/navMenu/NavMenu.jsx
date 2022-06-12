@@ -126,7 +126,7 @@ const NavMenu = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/checklists"
+                    to="/checklists?group=any"
                     className="dropdown-item"
                     aria-current="page"
                     href="#"

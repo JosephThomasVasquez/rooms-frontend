@@ -114,7 +114,7 @@
   /* border-left: 4px solid green !important; */
   border-top-left-radius: 40px !important;
   border-bottom-left-radius: 40px !important;
-  transition: width margin-left 0.5s ease;
+  transition: all 0.5s ease;
 }
 .template-item:hover,
 .template-item-check:hover {
@@ -167,4 +167,11 @@
 .bg-checklist {
   border: 4px solid rgba(0, 191, 140, 0.25);
   border-radius: 8px;
+}
+
+.is-completed {
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-style: italic;
 }

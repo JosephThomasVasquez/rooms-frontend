@@ -15,7 +15,7 @@ const ChecklistList = ({ errorHandler }) => {
   // fetches checklists from the backend
   const loadChecklists = () => {
     const abortController = new AbortController();
-    getChecklists("query", abortController.signal)
+    getChecklists("any", abortController.signal)
       .then(setChecklists)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();
