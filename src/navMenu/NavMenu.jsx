@@ -27,7 +27,7 @@ const NavMenu = () => {
   };
 
   return (
-    <nav className="ps-5 navbar navbar-expand-lg navbar-dark bg-dark py-3">
+    <nav className="ps-5 navbar navbar-expand-lg navbar-light bg-navmenu py-3">
       <div className="container-fluid">
         <a className="navbar-brand fw-bold" href="#">
           Rooms
@@ -45,7 +45,7 @@ const NavMenu = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item mx-2">
               <Link
                 to="/dashboard"
                 className="nav-link active"
@@ -56,7 +56,7 @@ const NavMenu = () => {
               </Link>
             </li>
 
-            <li className="nav-item dropdown">
+            <li className="nav-item mx-2 dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="dropdown"
@@ -99,7 +99,7 @@ const NavMenu = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item dropdown">
+            <li className="nav-item mx-2 dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="dropdown"
@@ -183,7 +183,7 @@ const NavMenu = () => {
               {user ? (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle user-link"
                     href="dropdown"
                     id="navbarDropdown"
                     role="button"
@@ -209,6 +209,18 @@ const NavMenu = () => {
                         Profile
                       </NavLink>
                     </li>
+                    {user.role === "admin" ? (
+                      <li>
+                        <NavLink
+                          to={`/admin/checklists`}
+                          className="dropdown-item"
+                          aria-current="page"
+                          href="admin"
+                        >
+                          Admin
+                        </NavLink>
+                      </li>
+                    ) : null}
                     <li>
                       <div
                         className="dropdown-item"

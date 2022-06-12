@@ -1,6 +1,24 @@
+.bg-navmenu {
+  color: black;
+  /* background: rgb(220, 255, 220); */
+
+  background: rgb(220, 255, 220);
+  background-image: linear-gradient(
+    90deg,
+    rgba(0, 191, 140, 1) 0%,
+    rgba(220, 255, 220, 1) 100%
+  );
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease;
+}
 
 .search-icon {
-    width: 32px;
-    height: 32px;
-    color: white;
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.user-link {
+  border: 2px solid rgba(0, 191, 140, 1);
+  border-radius: 50px;
 }

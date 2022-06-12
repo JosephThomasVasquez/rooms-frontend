@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { createTemplate } from "../utils/apiRequests";
 
-const TemplateForm = ({ user }) => {
+const TemplateForm = ({ user, errorHandler }) => {
   const initialFormData = {
     template_name: "",
     template_description: "",
     items: [],
     location: "",
     created_by: user.email,
+    group: "any",
   };
 
   const [newTemplate, setNewTemplate] = useState({ ...initialFormData });
@@ -25,7 +26,7 @@ const TemplateForm = ({ user }) => {
 
       console.log("response", response);
     } catch (error) {
-      console.log("error", error);
+      errorHandler(error);
     }
 
     return () => abortController.abort();

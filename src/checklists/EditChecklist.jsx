@@ -167,6 +167,7 @@ const EditChecklist = () => {
             <div className="col-2 fst-italic">Location: </div>
             <div className="col">{checklistDetails?.location}</div>
           </div>
+
           <div className="row">
             <div className="col-2 fst-italic">
               {checklistDetails?.is_completed
@@ -175,6 +176,7 @@ const EditChecklist = () => {
             </div>
             <div className="col">{checklistDetails?.completed_by}</div>
           </div>
+
           <div className="row">
             <div className="col-2 fst-italic">Created:</div>
             <div className="col-2 fst-italic">
@@ -184,25 +186,32 @@ const EditChecklist = () => {
           </div>
         </div>
       </div>
+
       <div className="">
-        <div className="">
-          <div className="d-flex justify-content-center pt-3 fw-bold fs-4">
-            <span className="me-2">{percentChecked}%</span>
-            <span className="percent-completed">Complete</span>
-          </div>
+        <div className="d-flex justify-content-center pt-3 fw-bold fs-4">
+          <span className="me-2">{percentChecked}%</span>
+          <span className="percent-completed">Complete</span>
         </div>
-        <div className="row mt-5 rounded-top shadow">
-          <ul className="bg-checklist-edit fs-5">
-            {checkedItems && createItems()}
-          </ul>
-        </div>
-        <div className="row">
-          <div
-            className="d-flex justify-content-center align-items-center checklist-complete-btn"
-            onClick={handleCompleteChecklist}
-          >
-            <ClipboardCheckIcon className="icon-checklist-complete" />
-            <div>Complete</div>
+      </div>
+
+      <div className="row mt-5 rounded-top shadow">
+        <ul className="bg-checklist-edit fs-5">
+          {checkedItems && createItems()}
+        </ul>
+      </div>
+
+      <div className="row">
+        <div
+          className={`d-flex justify-content-center align-items-center ${
+            !checklistDetails?.is_completed
+              ? "checklist-complete-btn"
+              : "checklist-complete-btn-finished"
+          }`}
+          onClick={handleCompleteChecklist}
+        >
+          <ClipboardCheckIcon className="icon-checklist-complete" />
+          <div>
+            {!checklistDetails?.is_completed ? "Submit" : "Completed"}
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { useAuth } from "../auth/useAuth";
 import { loginUser } from "../utils/apiRequests";
 import { authenticateUser } from "../utils/cookieHandler";
 
-const Login = () => {
+const Login = ({ errorHandler }) => {
   const [user, setUser] = useState("");
   const auth = useAuth();
   const location = useLocation();
@@ -33,7 +33,7 @@ const Login = () => {
           navigate(redirectPath, { replace: true });
         });
       } catch (error) {
-        console.log("Login ERROR:", error);
+        errorHandler(error);
       }
     };
 

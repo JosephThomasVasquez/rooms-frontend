@@ -54,28 +54,47 @@ const ChecklistDetails = ({ errorHandler }) => {
 
   return (
     <div className="container">
-      <div className="d-flex align-items-center">
-        <h2>
-          Checklist <span className="text-primary">{checklistDetails?.id}</span>{" "}
-          Details
-        </h2>
-        <Link
-          to={`/checklists/edit/${urlDate}/${checklistDetails?.id}`}
-          className="col-2 ms-3 mb-2"
-        >
-          <PencilAltIcon className="checklist-edit-icon" />
-        </Link>
-      </div>
-      <div className="card row fs-5">
-        <div className="col">Checklist: {checklistDetails?.checklist_name}</div>
-        <div className="col">Location: {checklistDetails?.location}</div>
-        <div className="col">
-          Completed by: {checklistDetails?.completed_by}
+      <div className="row ps-3 card py-4 shadow-sm mb-4">
+        <div className="d-flex align-items-center">
+          <h2 className="col checklist-title">
+            {checklistDetails?.checklist_name} <span className="fs-6">#</span>
+            <span className="percent-completed">{checklistDetails?.id}</span>
+          </h2>
+          <Link
+            to={`/checklists/edit/${urlDate}/${checklistDetails?.id}`}
+            className="col-2 ms-3 mb-2"
+          >
+            <PencilAltIcon className="checklist-edit-icon" />
+          </Link>
         </div>
-        <div className="col">
-          Date Completed:
-          {checklistDetails?.date_completed &&
-            dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+        {checklistDetails?.is_completed ? (
+          <span className="col-6 is-completed">completed</span>
+        ) : (
+          <span className="col-6 is-completed">in progress</span>
+        )}
+
+        <div>
+          <div className="row">
+            <div className="col-2 fst-italic">Location: </div>
+            <div className="col">{checklistDetails?.location}</div>
+          </div>
+
+          <div className="row">
+            <div className="col-2 fst-italic">
+              {checklistDetails?.is_completed
+                ? "Completed by:"
+                : "Assigned to:"}
+            </div>
+            <div className="col">{checklistDetails?.completed_by}</div>
+          </div>
+
+          <div className="row">
+            <div className="col-2 fst-italic">Created:</div>
+            <div className="col-2 fst-italic">
+              {checklistDetails?.date_completed &&
+                dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+            </div>
+          </div>
         </div>
       </div>
       <div className="row mt-5 rounded-top shadow">

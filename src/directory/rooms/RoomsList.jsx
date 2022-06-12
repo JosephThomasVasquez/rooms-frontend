@@ -50,7 +50,7 @@ const RoomsList = ({ errorHandler }) => {
       ];
 
       const values = headers.map((head) => (
-        <th scope="col" key={head} className="text-primary">
+        <th scope="col" key={head} className="checklist-title">
           {head[0].toUpperCase() + head.slice(1)}
         </th>
       ));
@@ -104,24 +104,6 @@ const RoomsList = ({ errorHandler }) => {
       );
     });
   };
-
-  <table>
-    <tr>
-      <th>Company</th>
-      <th>Contact</th>
-      <th>Country</th>
-    </tr>
-    <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
-    </tr>
-    <tr>
-      <td>Centro comercial Moctezuma</td>
-      <td>Francisco Chang</td>
-      <td>Mexico</td>
-    </tr>
-  </table>;
 
   return (
     <div className="container">

@@ -89,6 +89,19 @@
   transition: all 0.5s ease;
 }
 
+.checklist-complete-btn-finished {
+  background: hsl(164, 0%, 37%);
+  width: 200px;
+  padding: 10px 20px;
+  margin: 20px auto;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+}
+
 .template-item {
   background-color: white;
   border-left: 10px solid rgba(0, 255, 0, 0.1) !important;
@@ -174,4 +187,14 @@
   font-size: 1.25rem;
   font-weight: 700;
   font-style: italic;
+}
+
+/* ADMIN */
+.table-headers {
+  color: #00bf8c;
+  border-bottom: 2px solid #00bf8c;
+}
+
+.table-row {
+  background-color: rgba(0, 255, 0, 0.1);
 }
