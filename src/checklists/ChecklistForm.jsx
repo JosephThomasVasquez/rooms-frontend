@@ -7,7 +7,7 @@ import { createChecklist } from "../utils/apiRequests";
 import { PlusSmIcon } from "@heroicons/react/outline";
 import "./checklist.styles.css";
 
-const ChecklistForm = () => {
+const ChecklistForm = ({ errorHandler }) => {
   const auth = useAuth();
 
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const ChecklistForm = () => {
     location: "",
     is_completed: false,
     completed_by: "",
+    group: "",
     date_completed: null,
   };
 
@@ -38,6 +39,7 @@ const ChecklistForm = () => {
         location: findTemplate.location,
         is_completed: false,
         completed_by: auth.user.email,
+        group: "any",
         date_completed: createDateNow,
       };
 
@@ -64,7 +66,7 @@ const ChecklistForm = () => {
           navigate(`/checklists/edit/${dateFormatted}/${id}`);
         }
       } catch (error) {
-        console.log("error", error);
+        return (error) => errorHandler(error);
       }
     };
 
@@ -102,7 +104,8 @@ const ChecklistForm = () => {
         <div className="row d-flex align-items-center">
           <div className="col-4">
             <ChecklistTemplateSelector
-              anme="template-selector"
+              name="template-selector"
+              errorHandler={errorHandler}
               listTemplateItems={listTemplateItems}
             />
           </div>

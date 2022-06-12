@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getTemplates } from "../utils/apiRequests";
 
-const ChecklistTemplateSelector = ({ listTemplateItems }) => {
+const ChecklistTemplateSelector = ({ listTemplateItems, errorHandler }) => {
   const [templates, setTemplates] = useState(null);
 
   const [selectedTemplate, setSelectedTemplate] = useState("");
 
   // fetches checklists from the backend
-  const loadTemplates = ({ errorHandler }) => {
+  const loadTemplates = () => {
     const abortController = new AbortController();
     getTemplates(abortController.signal)
       .then(setTemplates)
