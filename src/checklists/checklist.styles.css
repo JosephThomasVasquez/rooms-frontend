@@ -196,5 +196,15 @@
 }
 
 .table-row {
-  background-color: rgba(0, 255, 0, 0.1);
+  color: #004432;
+  /* background-color: rgba(0, 255, 0, 0.1); */
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+.table-row:hover {
+  color: #00bf8c;
+  /* background-color: rgba(0, 255, 0, 0.1); */
+  text-decoration: none;
+  transition: all 0.5s ease;
 }

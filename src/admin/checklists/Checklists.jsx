@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getChecklists } from "../../utils/apiRequests";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
+import dayjs from "dayjs";
 import "../../checklists/checklist.styles.css";
 
 const Checklists = ({ errorHandler }) => {
@@ -50,8 +51,16 @@ const Checklists = ({ errorHandler }) => {
 
   const checklistRows = () => {
     return checklists?.map((list, index) => {
-      const { id, checklist_name, location, items, is_completed } = list;
+      const {
+        id,
+        checklist_name,
+        location,
+        items,
+        is_completed,
+        date_completed,
+      } = list;
       //   console.log(room);
+      const urlDate = dayjs(date_completed).format("MM-DD-YYYY");
 
       const itemsCompleted = list.items.reduce((total, item) => {
         if (Object.values(item).toString() == "true") {
@@ -71,7 +80,9 @@ const Checklists = ({ errorHandler }) => {
             {id}
           </td>
           <td colSpan="1" className="align-middle">
-            {checklist_name}
+            <Link to={`/checklists/edit/${urlDate}/${id}`} className="table-row">
+              {checklist_name}
+            </Link>
           </td>
           <td colSpan="1" className="align-middle">
             {location}
@@ -94,7 +105,7 @@ const Checklists = ({ errorHandler }) => {
                 .length
             }
           </td>
-          <td colSpan="1" className="text-center table-row">
+          <td colSpan="1" className="text-center">
             {is_completed ? (
               <CheckIcon className="check-icon icon-bg-round-passed" />
             ) : (
