@@ -210,9 +210,7 @@ const EditChecklist = () => {
           onClick={handleCompleteChecklist}
         >
           <ClipboardCheckIcon className="icon-checklist-complete" />
-          <div>
-            {!checklistDetails?.is_completed ? "Submit" : "Completed"}
-          </div>
+          <div>{!checklistDetails?.is_completed ? "Submit" : "Completed"}</div>
         </div>
       </div>
     </div>

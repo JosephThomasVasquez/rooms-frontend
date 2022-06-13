@@ -29,7 +29,7 @@ const NavMenu = () => {
   return (
     <nav className="ps-5 navbar navbar-expand-lg navbar-light bg-navmenu py-3">
       <div className="container-fluid">
-        <a className="navbar-brand fw-bold" href="#">
+        <a className="navbar-brand fw-bold nav-brand" href="dashboard">
           Rooms
         </a>
         <button
