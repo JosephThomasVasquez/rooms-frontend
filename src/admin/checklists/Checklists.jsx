@@ -26,20 +26,21 @@ const Checklists = ({ errorHandler }) => {
     if (checklists?.length > 0) {
       let headers = [
         "ID",
-        "Name",
-        "Location",
-        "% Complete",
-        "# Items",
-        "Completed",
-        "Missed",
-        "Completed",
+        "NAME",
+        "LOCATION",
+        "DATE",
+        "% COMPLETE",
+        "# ITEMS",
+        "COMPLETED",
+        "MISSED",
+        "STATUS",
       ];
 
       const values = headers.map((head, index) => (
         <th
           scope="col"
           key={`header=${head + index}`}
-          className="table-headers"
+          className="table-headers text-center align-middle"
         >
           {head[0].toUpperCase() + head.slice(1)}
         </th>
@@ -80,12 +81,18 @@ const Checklists = ({ errorHandler }) => {
             {id}
           </td>
           <td colSpan="1" className="align-middle">
-            <Link to={`/checklists/edit/${urlDate}/${id}`} className="table-row">
+            <Link
+              to={`/checklists/edit/${urlDate}/${id}`}
+              className="table-row"
+            >
               {checklist_name}
             </Link>
           </td>
           <td colSpan="1" className="align-middle">
             {location}
+          </td>
+          <td colSpan="1" className="align-middle text-center">
+            {dayjs(date_completed).format("MMM DD, YYYY")}
           </td>
           <td colSpan="1" className="align-middle text-center">
             {percentage}%

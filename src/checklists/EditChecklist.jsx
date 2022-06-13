@@ -10,7 +10,7 @@ import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import ItemCard from "./ItemCard";
 
-const EditChecklist = () => {
+const EditChecklist = ({ errorHandler }) => {
   const { checklistId } = useParams();
   const params = useParams();
 
@@ -33,7 +33,9 @@ const EditChecklist = () => {
         if (response) {
           setChecklistDetails(response);
         }
-      } catch (error) {}
+      } catch (error) {
+        errorHandler(error);
+      }
     };
 
     if (!checklistDetails) {
@@ -41,7 +43,7 @@ const EditChecklist = () => {
     }
 
     return () => abortController.abort();
-  }, [checklistId]);
+  }, [checklistId, setChecklistDetails]);
 
   //   Update percentage and setCheckedItems =================================================================
 
@@ -113,7 +115,9 @@ const EditChecklist = () => {
           console.log("UPDATE response", response);
           setChecklistDetails(response);
         }
-      } catch (error) {}
+      } catch (error) {
+        errorHandler(error);
+      }
     };
 
     updateChecklistItems();
@@ -134,7 +138,9 @@ const EditChecklist = () => {
           console.log("UPDATE response", response);
           setChecklistDetails(response);
         }
-      } catch (error) {}
+      } catch (error) {
+        errorHandler(error);
+      }
     };
 
     setChecklistComplete();
@@ -142,8 +148,15 @@ const EditChecklist = () => {
 
   const handleCompleteChecklist = () => {
     // setChecklistDetails({ ...checklistDetails, is_completed: true });
+    const createDateNow = dayjs().format("YYYY-MM-DD");
 
-    const setComplete = { ...checklistDetails, is_completed: true };
+    console.log("iscompleted??", checklistDetails.is_completed);
+
+    const setComplete = {
+      ...checklistDetails,
+      is_completed: !checklistDetails.is_completed,
+      date_completed: createDateNow,
+    };
     console.log("setComplete!", setComplete);
 
     completeChecklist(setComplete);

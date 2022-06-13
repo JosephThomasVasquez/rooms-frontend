@@ -138,8 +138,15 @@
 }
 
 .checklist-completed {
+  opacity: 0.65;
+  background-color: rgba(240, 255, 240, 1);
+  transition: all 0.5s ease;
+}
+
+.checklist-completed:hover {
   opacity: 1;
   background-color: rgba(240, 255, 240, 1);
+  transition: all 0.5s ease;
 }
 
 .percent-completed {

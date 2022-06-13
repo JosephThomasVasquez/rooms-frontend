@@ -8,7 +8,7 @@ import "./checklist.styles.css";
 const ChecklistCard = ({ checklist }) => {
   dayjs.extend(relativeTime);
   const formattedDate = dayjs(checklist.date_completed).format("MMM DD, YYYY");
-  const fromNow = dayjs(checklist.created_at).fromNow();
+  const fromNow = dayjs(checklist.date_completed).fromNow();
   const urlDate = dayjs(checklist.date_completed).format("MM-DD-YYYY");
 
   const isCompleted = checklist.is_completed ? "checklist-completed" : "";
