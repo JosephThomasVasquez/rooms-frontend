@@ -30,9 +30,7 @@ const Checklists = ({ errorHandler }) => {
         "LOCATION",
         "DATE",
         "% COMPLETE",
-        "# ITEMS",
         "COMPLETED",
-        "MISSED",
         "STATUS",
       ];
 
@@ -98,19 +96,10 @@ const Checklists = ({ errorHandler }) => {
             {percentage}%
           </td>
           <td colSpan="1" className="align-middle text-center">
-            {items?.length}
-          </td>
-          <td colSpan="1" className="align-middle text-center">
-            {
-              items.filter((item) => Object.values(item).toString() === "true")
+            {`${
+              items?.filter((item) => Object.values(item).toString() === "true")
                 .length
-            }
-          </td>
-          <td colSpan="1" className="align-middle text-center">
-            {
-              items.filter((item) => Object.values(item).toString() === "false")
-                .length
-            }
+            }/${items?.length}`}
           </td>
           <td colSpan="1" className="text-center">
             {is_completed ? (
