@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Logout from "../logout/Logout";
 import { Link, NavLink } from "react-router-dom";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useAuth } from "../auth/useAuth";
@@ -216,13 +217,7 @@ const NavMenu = () => {
                       </li>
                     ) : null}
                     <li>
-                      <div
-                        className="dropdown-item"
-                        aria-current="page"
-                        href="logout"
-                      >
-                        Logout
-                      </div>
+                      <Logout />
                     </li>
                   </ul>
                 </li>
