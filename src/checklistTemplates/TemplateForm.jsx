@@ -86,6 +86,18 @@ const TemplateForm = ({ user, errorHandler }) => {
     createNewTemplate();
   };
 
+  const mapItems = () => {
+    if (createdItems?.length > 0) {
+      return createdItems?.map((item) => (
+        <div key={Object.keys(item).toString()} className="col-3">
+          {Object.keys(item).toString()}
+        </div>
+      ));
+    } else {
+      return null;
+    }
+  };
+
   return (
     <div className="container">
       <div className="row d-flex align-items-center mb-3">
@@ -176,6 +188,7 @@ const TemplateForm = ({ user, errorHandler }) => {
         <div className="col-1">Items</div>
       </div>
       <div className="row">{JSON.stringify(newTemplate)}</div>
+      <div className="row">Items: {mapItems()}</div>
     </div>
   );
 };

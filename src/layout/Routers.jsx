@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 // Auth Components
 import AuthRequired from "../auth/AuthRequired";
 import { useAuth } from "../auth/useAuth";
+import { getUser } from "../utils/apiRequests";
 
 // Components
 import Home from "./Home";
@@ -37,6 +38,8 @@ const Routers = () => {
       setError(null);
     }
   };
+
+  const getUser = () => {};
 
   return (
     <>
@@ -164,14 +167,14 @@ const Routers = () => {
           }
         ></Route>
 
-        {/* <Route
+        <Route
           path="*"
           element={
             <main style={{ padding: "1rem" }}>
               <p>404 - This page does not exist.</p>
             </main>
           }
-        /> */}
+        />
       </Routes>
     </>
   );
