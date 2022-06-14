@@ -17,7 +17,7 @@ export const removeCookie = (key) => {
 // Get cookie
 export const getCookie = (key) => {
   if (window !== undefined) {
-    cookie.get(key);
+    return cookie.get(key);
   }
 };
 
@@ -45,13 +45,15 @@ export const authenticateUser = (response, next) => {
 
 // Check if token and user exists
 export const isAuthenticated = () => {
-  //   console.log("Check if authenticated");
-
   if (window !== undefined) {
     const verifyCookie = getCookie("token");
+    // console.log("verifyCookie:", verifyCookie);
 
     if (verifyCookie) {
-      if (localStorage.getItem("user")) {
+      const user = localStorage.getItem("user");
+
+      if (user) {
+        console.log("Check if authenticated", user);
         return JSON.parse(localStorage.getItem("user"));
       } else {
         return false;

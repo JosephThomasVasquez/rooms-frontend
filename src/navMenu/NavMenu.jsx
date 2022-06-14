@@ -31,7 +31,7 @@ const NavMenu = () => {
     <nav className="ps-5 navbar navbar-expand-lg navbar-light bg-navmenu py-3">
       <div className="container-fluid">
         <a className="navbar-brand fw-bold nav-brand" href="dashboard">
-          Rooms
+          ListStack
         </a>
         <button
           className="navbar-toggler"

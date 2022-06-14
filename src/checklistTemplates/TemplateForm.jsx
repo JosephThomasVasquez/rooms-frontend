@@ -7,7 +7,7 @@ const TemplateForm = ({ user, errorHandler }) => {
     template_description: "",
     items: [],
     location: "",
-    created_by: user.email,
+    created_by: user?.email,
     group: "any",
   };
 

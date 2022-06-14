@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./errorMessage.styles.css";
 const ErrorMessage = ({ error }) => {
-  const [displayError, setDisplayError] = useState("show");
+  const [displayError, setDisplayError] = useState(null);
   useEffect(() => {
     if (error) {
       setDisplayError("show");

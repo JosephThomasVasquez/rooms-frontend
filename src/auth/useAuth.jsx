@@ -7,10 +7,14 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    console.log("isAuthed", isAuthenticated());
+    const isAuth = isAuthenticated();
+    console.log("isAuthed", isAuth);
+    // if() {
+
+    // }
     const hasToken = JSON.parse(localStorage.getItem("user"));
-    if (hasToken) {
-      setUser(hasToken);
+    if (isAuth) {
+      setUser(isAuth);
     }
   }, []);
 

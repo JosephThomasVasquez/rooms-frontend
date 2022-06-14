@@ -1,21 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, Navigate } from "react-router-dom";
 // import { isAuthenticated } from "../utils/cookieHandler";
 import { useAuth } from "./useAuth";
+import { isAuthenticated } from "../utils/cookieHandler";
 
 const AuthRequired = ({ children }) => {
   // const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const auth = useAuth();
-
-  // useEffect(() => {
-  //   console.log("useAuth user", auth.user);
-  //   setIsAuthenticated(auth.user);
-  //   console.log("triggering isAuth");
-  // }, []);
-
   const location = useLocation();
+  const auth = useAuth();
+  const isUser = isAuthenticated();
+  console.log("isUser:", isUser);
 
-  if (!auth.user) {
+  useEffect(() => {}, []);
+
+  if (!isUser) {
     console.log("User not authenticated", auth.user);
     return <Navigate to="/user/login" state={{ path: location.pathname }} />;
   }
