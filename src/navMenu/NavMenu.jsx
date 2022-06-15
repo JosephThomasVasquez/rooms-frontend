@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useAuth } from "../auth/useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
+import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
@@ -30,8 +31,12 @@ const NavMenu = () => {
   return (
     <nav className="ps-5 navbar navbar-expand-lg navbar-light bg-navmenu py-3">
       <div className="container-fluid">
-        <a className="navbar-brand fw-bold nav-brand" href="dashboard">
-          QuickList
+        <a
+          className="navbar-brand fw-bold nav-brand d-flex align-items-center"
+          href={`/dashboard/user?email=${isAuthenticated()?.email}`}
+        >
+          <ClipboardCheckIcon className="icon-navbar-brand" />
+          <div className="title">QuickList</div>
         </a>
         <button
           className="navbar-toggler"

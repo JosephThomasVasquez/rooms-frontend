@@ -2,6 +2,15 @@
   color: #00bf8c;
 }
 
+.icon-navbar-brand{
+    width: 32px;
+    height: 32px;
+    color: rgba(255, 255, 255, 1);
+    border-radius: 50%;
+    border: none;
+    transition: all 0.5s ease;
+  }
+
 .check-icon {
   width: 24px;
   height: 24px;

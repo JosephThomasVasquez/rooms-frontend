@@ -6,7 +6,6 @@ import {
   updateChecklist,
   updateChecklistComplete,
 } from "../utils/apiRequests";
-import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import ItemCard from "./ItemCard";
 
@@ -62,7 +61,7 @@ const EditChecklist = ({ errorHandler }) => {
 
       setPercentChecked(percentage.toFixed());
     }
-  }, [checklistDetails]);
+  }, [checklistDetails, setChecklistDetails]);
 
   const createItems = () => {
     return checkedItems?.map((item) => (
