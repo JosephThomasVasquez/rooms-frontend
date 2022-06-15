@@ -111,7 +111,7 @@ const RoomsList = ({ errorHandler }) => {
         <h2>Rooms</h2>
       </div>
 
-      <table className="table shadow rounded">
+      <table className="table table-base shadow rounded">
         <thead>
           <tr>{tableHeaders()}</tr>
         </thead>

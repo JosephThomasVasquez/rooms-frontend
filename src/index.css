@@ -25,3 +25,8 @@ code {
 .show {
   transition: all 1s ease !important;
 }
+
+
+.table-base {
+  border-radius: 10px !important;
+}
