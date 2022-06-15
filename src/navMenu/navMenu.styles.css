@@ -1,5 +1,5 @@
 .nav-brand {
-    color: white;
+  color: white;
 }
 
 .bg-navmenu {
@@ -14,6 +14,18 @@
   );
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.5s ease;
+}
+
+.new-checklist-icon {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.icon-nav {
+  width: 24px;
+  height: 24px;
+  color: white;
 }
 
 .search-icon {

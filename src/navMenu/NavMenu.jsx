@@ -1,10 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import Logout from "../logout/Logout";
 import { Link, NavLink } from "react-router-dom";
-import { SearchIcon } from "@heroicons/react/solid";
 import { useAuth } from "../auth/useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
-import { ClipboardCheckIcon } from "@heroicons/react/outline";
+// ICON Imports
+import { SearchIcon } from "@heroicons/react/solid";
+import {
+  ClipboardCheckIcon,
+  PlusSmIcon,
+  CheckIcon,
+  OfficeBuildingIcon,
+} from "@heroicons/react/outline";
+// CSS
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
@@ -36,7 +43,7 @@ const NavMenu = () => {
           href={`/dashboard/user?email=${isAuthenticated()?.email}`}
         >
           <ClipboardCheckIcon className="icon-navbar-brand" />
-          <div className="title">QuickList</div>
+          <div>QuickList</div>
         </a>
         <button
           className="navbar-toggler"
@@ -51,81 +58,40 @@ const NavMenu = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item mx-2">
+            <li className="nav-item my-auto">
               <Link
                 to={`/dashboard/user?email=${isAuthenticated()?.email}`}
                 className="nav-link"
                 aria-current="page"
                 href="#"
               >
-                Dashboard
+                <div>Dashboard</div>
               </Link>
             </li>
 
-            <li className="nav-item mx-2 dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="dropdown"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Directory
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <NavLink
-                    to="/rooms"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Rooms
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/buildings"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Buildings
-                  </NavLink>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </ul>
-            </li>
             <li className="nav-item mx-2">
               <Link
                 to="/checklists/create"
-                className="nav-link"
+                className="nav-link d-flex align-items-center"
                 aria-current="new-checklist-page"
                 href="checklists/create"
               >
-                New Checklist
+                <PlusSmIcon className="new-checklist-icon" />
+                <div>New Checklist</div>
               </Link>
             </li>
-            <li>
+            <li className="my-auto">
               <Link
                 to="/checklists?group=any"
-                className="nav-link"
+                className="nav-link d-flex align-items-center"
                 aria-current="checklists-page"
                 href="checklists"
               >
-                Checklists
+                <CheckIcon className="icon-nav" />
+                <div>Checklists</div>
               </Link>
             </li>
-            <li className="nav-item mx-2 dropdown">
+            <li className="nav-item mx-2 my-auto dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="dropdown"
@@ -165,6 +131,50 @@ const NavMenu = () => {
                   >
                     Templates
                   </NavLink>
+                </li>
+              </ul>
+            </li>
+            <li className="nav-item me-2 my-auto dropdown">
+              <a
+                className="nav-link dropdown-toggle d-flex align-items-center"
+                href="dropdown"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <OfficeBuildingIcon className="icon-nav" />
+                <div>Directory</div>
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li>
+                  <NavLink
+                    to="/rooms"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Rooms
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/buildings"
+                    className="dropdown-item"
+                    aria-current="page"
+                    href="#"
+                    style={({ isActive }) =>
+                      isActive ? activeStyle : undefined
+                    }
+                  >
+                    Buildings
+                  </NavLink>
+                </li>
+                <li>
+                  <hr className="dropdown-divider" />
                 </li>
               </ul>
             </li>
