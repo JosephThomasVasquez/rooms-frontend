@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const isAuth = isAuthenticated();
-    console.log("isAuthed", isAuth);
+    // console.log("isAuthed", isAuth);
     // if() {
 
     // }

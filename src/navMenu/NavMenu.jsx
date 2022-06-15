@@ -3,7 +3,7 @@ import Logout from "../logout/Logout";
 import { Link, NavLink } from "react-router-dom";
 import { SearchIcon } from "@heroicons/react/solid";
 import { useAuth } from "../auth/useAuth";
-// import { isAuthenticated } from "../utils/cookieHandler";
+import { isAuthenticated } from "../utils/cookieHandler";
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
@@ -48,7 +48,7 @@ const NavMenu = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item mx-2">
               <Link
-                to="/dashboard"
+                to={`/dashboard/user?email=${isAuthenticated()?.email}`}
                 className="nav-link"
                 aria-current="page"
                 href="#"

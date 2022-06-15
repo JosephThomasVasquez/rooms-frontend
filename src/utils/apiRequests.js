@@ -53,8 +53,8 @@ export const loginUser = async (user, signal) => {
 };
 
 export const getUser = async (user, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/users/${user.email}`);
-  console.log(url);
+  const url = new URL(`${REACT_APP_API_BASE_URL}/users/user${user}`);
+  // console.log("url", url);
 
   const options = {
     method: "GET",

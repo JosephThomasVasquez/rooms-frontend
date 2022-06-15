@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import AuthRequired from "../auth/AuthRequired";
 import { useAuth } from "../auth/useAuth";
 import { getUser } from "../utils/apiRequests";
+import { isAuthenticated } from "../utils/cookieHandler";
 
 // Components
 import Home from "./Home";
@@ -39,7 +40,7 @@ const Routers = () => {
     }
   };
 
-  const getUser = () => {};
+  const getUser = (user) => {};
 
   return (
     <>
@@ -62,7 +63,7 @@ const Routers = () => {
         <Route exact path="/user/signup" element={<Signup />} />
         <Route
           exact
-          path="dashboard"
+          path={`dashboard/:user`}
           element={
             <AuthRequired>
               <Dashboard errorHandler={errorHandler} />

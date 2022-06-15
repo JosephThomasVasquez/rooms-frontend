@@ -53,7 +53,7 @@ export const isAuthenticated = () => {
       const user = localStorage.getItem("user");
 
       if (user) {
-        console.log("Check if authenticated", user);
+        // console.log("Check if authenticated", user);
         return JSON.parse(localStorage.getItem("user"));
       } else {
         return false;
