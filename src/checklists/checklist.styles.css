@@ -2,14 +2,14 @@
   color: #00bf8c;
 }
 
-.icon-navbar-brand{
-    width: 32px;
-    height: 32px;
-    color: rgba(255, 255, 255, 1);
-    border-radius: 50%;
-    border: none;
-    transition: all 0.5s ease;
-  }
+.icon-navbar-brand {
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  border: none;
+  transition: all 0.5s ease;
+}
 
 .check-icon {
   width: 24px;
@@ -223,4 +223,27 @@
   /* background-color: rgba(0, 255, 0, 0.1); */
   text-decoration: none;
   transition: all 0.5s ease;
+}
+
+.row-complete {
+  color: rgba(0, 191, 140, 1);
+
+  /* background-image: linear-gradient(
+    90deg,
+    rgba(0, 191, 140, 1) 0%,
+    rgba(220, 255, 220, 0.5) 0.25%,
+    rgba(255, 255, 255, 1) 30%,
+    rgba(255, 255, 255, 1) 70%,
+    rgba(220, 255, 220, 0.5) 99.75%,
+    rgba(0, 191, 140, 1) 100%
+  ); */
+}
+
+@keyframes gradientshift {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
 }

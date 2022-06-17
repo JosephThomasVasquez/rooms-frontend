@@ -92,7 +92,14 @@ const Checklists = ({ errorHandler }) => {
           <td colSpan="1" className="align-middle text-center">
             {dayjs(date_completed).format("MMM DD, YYYY")}
           </td>
-          <td colSpan="1" className="align-middle text-center">
+          <td
+            colSpan="1"
+            className={
+              percentage === "100"
+                ? "align-middle text-center row-complete"
+                : "align-middle text-center"
+            }
+          >
             {percentage}%
           </td>
           <td colSpan="1" className="align-middle text-center">
