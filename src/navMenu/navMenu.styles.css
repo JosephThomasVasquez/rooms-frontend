@@ -28,6 +28,12 @@
   color: white;
 }
 
+.icon-nav-user {
+  width: 24px;
+  height: 24px;
+  color: rgba(0, 191, 140, 1);
+}
+
 .search-icon {
   width: 32px;
   height: 32px;
@@ -35,6 +41,8 @@
 }
 
 .user-link {
+  color: rgba(0, 191, 140, 1);
+  background-color: rgba(220, 255, 220, 1);
   border: 2px solid rgba(0, 191, 140, 1);
   border-radius: 50px;
 }

@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
 // ICON Imports
-import { SearchIcon } from "@heroicons/react/solid";
+import { SearchIcon, UserCircleIcon } from "@heroicons/react/solid";
 import {
   ClipboardCheckIcon,
   PlusSmIcon,
@@ -193,14 +193,15 @@ const NavMenu = () => {
               {user ? (
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle user-link"
+                    className="nav-link dropdown-toggle user-link d-flex align-items-center"
                     href="dropdown"
                     id="navbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    {user ? user.email : "User"}
+                    <UserCircleIcon className="icon-nav-user me-1" />
+                    <div>{user ? user.email : "User"}</div>
                   </a>
                   <ul
                     className="dropdown-menu"
