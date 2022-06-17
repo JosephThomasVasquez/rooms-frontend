@@ -41,6 +41,7 @@ const TemplateForm = ({ user, errorHandler }) => {
 
   const createChecklistItem = (items) => {
     let itemsArray = [];
+
     if (items.length >= 1) {
       items.map((item) => {
         item = item.trim();
@@ -51,7 +52,7 @@ const TemplateForm = ({ user, errorHandler }) => {
         const isValid = hasValidCharacters.test(item);
         console.log("isValid", isValid);
 
-        if (isValid) {
+        if (isValid && isValid !== ",") {
           itemsArray.push({ [item]: false });
           // itemsArray.push(item);
         } else {
@@ -76,9 +77,15 @@ const TemplateForm = ({ user, errorHandler }) => {
 
   const handleChecklistItem = ({ target }) => {
     const items = target.value.split(",");
-    console.log("items", items);
+    // console.log("items", items);
 
-    createChecklistItem(items);
+    const filterItems = items.filter((item) => {
+      const itemTrimmed = item.trim();
+
+      return itemTrimmed !== "";
+    });
+
+    createChecklistItem(filterItems);
   };
 
   const saveTemplate = (e) => {
