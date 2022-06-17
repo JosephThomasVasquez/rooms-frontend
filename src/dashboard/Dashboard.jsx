@@ -32,7 +32,7 @@ const Dashboard = ({ errorHandler }) => {
     }
   }, []);
 
-  const mapRecentTasks = userDetails?.recent_tasks.map((item) => (
+  const mapRecentTasks = userDetails?.recent_tasks?.map((item) => (
     <div key={item.id} className="col-3 p-5">
       <div className="card">
         <div className="col">{item.id}</div>
@@ -52,7 +52,7 @@ const Dashboard = ({ errorHandler }) => {
       </div>
       <div className="col fs-5 fw-bold">Recent Tasks</div>
 
-      {userDetails?.recent_tasks.length > 0 ? (
+      {userDetails?.recent_tasks?.length > 0 ? (
         <div className="row">{mapRecentTasks}</div>
       ) : null}
     </div>
