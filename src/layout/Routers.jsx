@@ -54,7 +54,7 @@ const Routers = () => {
           path="/user/profile/:userId"
           element={
             <AuthRequired>
-              <Profile />
+              <Profile errorHandler={errorHandler} />
             </AuthRequired>
           }
         ></Route>

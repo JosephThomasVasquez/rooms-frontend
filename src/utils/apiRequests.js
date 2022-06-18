@@ -105,7 +105,7 @@ export const getBuildings = async (params, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getChecklists = async (params, signal) => {
-  console.log("params:", params);
+  // console.log("params:", params);
 
   const options = {
     method: "GET",

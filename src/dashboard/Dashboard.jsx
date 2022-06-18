@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { getUser } from "../utils/apiRequests";
 import "./dashboard.styles.css";
