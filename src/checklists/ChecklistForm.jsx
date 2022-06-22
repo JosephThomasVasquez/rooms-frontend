@@ -41,7 +41,10 @@ const ChecklistForm = ({ errorHandler }) => {
         completed_by: auth.user.email,
         group: "any",
         date_completed: createDateNow,
+        account_id: findTemplate.account_id,
       };
+
+      console.log("new Checklist data", checklistData);
 
       setNewChecklist(checklistData);
     }
