@@ -71,7 +71,11 @@ const Checklists = ({ errorHandler }) => {
       const percentage = ((itemsCompleted / list.items.length) * 100).toFixed();
 
       return (
-        <tr key={`checklist-id-${id}`} scope="row">
+        <tr
+          key={`checklist-id-${id}`}
+          scope="row"
+          className={percentage === "100" ? "row-max-complete" : ""}
+        >
           <td
             colSpan="1"
             className="d-flex justify-content-center align-middle"
@@ -102,7 +106,14 @@ const Checklists = ({ errorHandler }) => {
           >
             {percentage}%
           </td>
-          <td colSpan="1" className="align-middle text-center">
+          <td
+            colSpan="1"
+            className={
+              percentage === "100"
+                ? "align-middle text-center row-complete"
+                : "align-middle text-center"
+            }
+          >
             {`${
               items?.filter((item) => Object.values(item).toString() === "true")
                 .length
