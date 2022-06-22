@@ -9,7 +9,7 @@ const AuthRequired = ({ children }) => {
   const location = useLocation();
   const auth = useAuth();
   const isUser = isAuthenticated();
-  console.log("isUser:", isUser);
+  // console.log("isUser:", isUser);
 
   useEffect(() => {}, []);
 

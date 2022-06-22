@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createTemplate } from "../utils/apiRequests";
+import { isAuthenticated } from "../utils/cookieHandler";
 
 const TemplateForm = ({ user, errorHandler }) => {
   const initialFormData = {
@@ -9,6 +10,7 @@ const TemplateForm = ({ user, errorHandler }) => {
     location: "",
     created_by: user?.email,
     group: "any",
+    account_id: isAuthenticated().account_id,
   };
 
   const [newTemplate, setNewTemplate] = useState({ ...initialFormData });

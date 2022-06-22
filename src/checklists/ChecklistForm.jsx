@@ -31,7 +31,6 @@ const ChecklistForm = ({ errorHandler }) => {
       });
 
       const createDateNow = dayjs().format("YYYY-MM-DD");
-      console.log("date now", createDateNow);
 
       const checklistData = {
         checklist_name: findTemplate.template_name,
@@ -44,7 +43,7 @@ const ChecklistForm = ({ errorHandler }) => {
         account_id: findTemplate.account_id,
       };
 
-      console.log("new Checklist data", checklistData);
+      // console.log("new Checklist data", checklistData);
 
       setNewChecklist(checklistData);
     }

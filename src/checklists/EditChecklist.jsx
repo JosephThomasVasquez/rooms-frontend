@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
-import {
-  readChecklist,
-  updateChecklist,
-  updateChecklistComplete,
-} from "../utils/apiRequests";
+import { readChecklist, updateChecklist } from "../utils/apiRequests";
 import { ClipboardCheckIcon } from "@heroicons/react/outline";
 import ItemCard from "./ItemCard";
 
@@ -16,6 +12,9 @@ const EditChecklist = ({ errorHandler }) => {
   const [checklistDetails, setChecklistDetails] = useState(null);
   const [percentChecked, setPercentChecked] = useState(0);
   const [checkedItems, setCheckedItems] = useState([]);
+  const [isCompleted, setIsCompleted] = useState(
+    checklistDetails?.is_completed
+  );
   const isMounted = useRef(false);
 
   useEffect(() => {
@@ -63,6 +62,11 @@ const EditChecklist = ({ errorHandler }) => {
     }
   }, [checklistDetails, setChecklistDetails]);
 
+  // Effect if is_completed changes
+  useEffect(() => {
+    setIsCompleted(checklistDetails?.is_completed);
+  }, [checklistDetails]);
+
   const createItems = () => {
     return checkedItems?.map((item) => (
       <ItemCard
@@ -73,6 +77,7 @@ const EditChecklist = ({ errorHandler }) => {
     ));
   };
 
+  // Handle clicked items
   const handleClickedItem = (item) => {
     // Validate if item exists
     // const isExistingItem = checklistDetails?.items?.find((i) => i === item);
@@ -99,6 +104,7 @@ const EditChecklist = ({ errorHandler }) => {
     saveChecked(updatedChecklist);
   };
 
+  // Save checkeditems to database
   const saveChecked = (checklist) => {
     console.log("saving...", checklist);
     const abortController = new AbortController();
@@ -122,6 +128,7 @@ const EditChecklist = ({ errorHandler }) => {
     updateChecklistItems();
   };
 
+  // Toggle is_completed save to database
   const completeChecklist = (checklist) => {
     console.log("Completed Checklist saving...", checklist);
     const abortController = new AbortController();
@@ -136,6 +143,7 @@ const EditChecklist = ({ errorHandler }) => {
         if (response) {
           console.log("UPDATE response", response);
           setChecklistDetails(response);
+          setIsCompleted(response.is_completed);
         }
       } catch (error) {
         errorHandler(error);
@@ -149,14 +157,14 @@ const EditChecklist = ({ errorHandler }) => {
     // setChecklistDetails({ ...checklistDetails, is_completed: true });
     const createDateNow = dayjs().format("YYYY-MM-DD");
 
-    console.log("iscompleted??", checklistDetails.is_completed);
+    // console.log("iscompleted??", checklistDetails.is_completed);
 
     const setComplete = {
       ...checklistDetails,
       is_completed: !checklistDetails.is_completed,
       date_completed: createDateNow,
     };
-    console.log("setComplete!", setComplete);
+    // console.log("setComplete!", setComplete);
 
     completeChecklist(setComplete);
   };
@@ -213,17 +221,23 @@ const EditChecklist = ({ errorHandler }) => {
       </div>
 
       <div className="row">
-        <div
-          className={`d-flex justify-content-center align-items-center ${
-            !checklistDetails?.is_completed
-              ? "checklist-complete-btn"
-              : "checklist-complete-btn-finished"
-          }`}
-          onClick={handleCompleteChecklist}
-        >
-          <ClipboardCheckIcon className="icon-checklist-complete" />
-          <div>{!checklistDetails?.is_completed ? "Submit" : "Completed"}</div>
-        </div>
+        {!isCompleted ? (
+          <div
+            className="d-flex justify-content-center align-items-center checklist-complete-btn"
+            onClick={handleCompleteChecklist}
+          >
+            <ClipboardCheckIcon className="icon-checklist-complete" />
+            <div>Submit</div>
+          </div>
+        ) : (
+          <div
+            className="d-flex justify-content-center align-items-center checklist-complete-btn-finished"
+            onClick={handleCompleteChecklist}
+          >
+            <ClipboardCheckIcon className="icon-checklist-complete" />
+            <div>Completed</div>
+          </div>
+        )}
       </div>
     </div>
   );
