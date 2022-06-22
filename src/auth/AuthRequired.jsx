@@ -5,13 +5,10 @@ import { useAuth } from "./useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
 
 const AuthRequired = ({ children }) => {
-  // const [isAuthenticated, setIsAuthenticated] = useState(null);
   const location = useLocation();
   const auth = useAuth();
   const isUser = isAuthenticated();
   // console.log("isUser:", isUser);
-
-  useEffect(() => {}, []);
 
   if (!isUser) {
     console.log("User not authenticated", auth.user);
