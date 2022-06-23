@@ -84,7 +84,7 @@ const ChecklistList = ({ errorHandler }) => {
         </div>
       </div>
 
-      <div className="row">{mapChecklists}</div>
+      <div className="row pb-5">{mapChecklists}</div>
     </div>
   );
 };

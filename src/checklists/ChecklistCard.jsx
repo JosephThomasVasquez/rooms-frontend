@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -12,6 +12,8 @@ const ChecklistCard = ({ checklist }) => {
   const urlDate = dayjs(checklist.date_completed).format("MM-DD-YYYY");
 
   const isCompleted = checklist.is_completed ? "checklist-completed" : "";
+
+  const [displayItems, setDisplayItems] = useState(false);
 
   //   Filter completed items =================================================================
   const completedItems = () => {
@@ -41,6 +43,24 @@ const ChecklistCard = ({ checklist }) => {
     ));
 
     return displayItems;
+  };
+
+  const handleShowItems = (display) => {
+    setDisplayItems(display);
+  };
+
+  const displayMissed = () => {
+    const filterCompleted = checklist.items.filter((item) => {
+      return Object.values(item).toString() == "false";
+    });
+
+    const firstFive = filterCompleted.slice(0, 5);
+
+    return firstFive.map((item) => (
+      <li key={`item-id-${Object.keys(item)}-missed`}>
+        <XIcon className="x-icon-sm" /> {Object.keys(item)[0]}
+      </li>
+    ));
   };
 
   return (
@@ -79,10 +99,21 @@ const ChecklistCard = ({ checklist }) => {
               <CheckIcon className="check-icon" />
               {checklist.items ? completedItems().length : "none"}
             </div>
-            <div className="col-3">
+            <div
+              className="col-3"
+              onMouseOver={
+                missedItems().length > 0 ? () => handleShowItems(true) : null
+              }
+              onMouseOut={() => handleShowItems(false)}
+            >
               <XIcon className="x-icon" />
               {checklist.items ? missedItems().length : "none"}
             </div>
+            <ul
+              className={displayItems ? "display-items shadow" : "hide-items"}
+            >
+              {displayItems ? displayMissed() : null}
+            </ul>
           </div>
         </div>
       </Link>

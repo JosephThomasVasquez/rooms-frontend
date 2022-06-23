@@ -54,7 +54,7 @@ const ChecklistDetails = ({ errorHandler }) => {
 
   return (
     <div className="container">
-      <div className="row ps-3 card py-4 shadow-sm mb-4">
+      <div className="row ps-3 card py-4 shadow mb-4">
         <div className="d-flex align-items-center">
           <h2 className="col checklist-title">
             {checklistDetails?.checklist_name} <span className="fs-6">#</span>
@@ -97,8 +97,9 @@ const ChecklistDetails = ({ errorHandler }) => {
           </div>
         </div>
       </div>
-      <div className="row mt-5 rounded-top shadow">
-        <p className="d-flex align-items-center rounded-top shadow">
+
+      <div className="row mt-5 rounded shadow">
+        <p className="d-flex align-items-center rounded shadow-sm">
           <CheckIcon className="check-icon icon-bg-round-passed" />
           <span className="fs-4 ms-2">
             {checklistDetails?.items ? completedItems().length : "none"}
@@ -107,8 +108,9 @@ const ChecklistDetails = ({ errorHandler }) => {
         </p>
         <ul className="row">{checklistDetails?.items && completedItems()}</ul>
       </div>
-      <div className="row mt-5 rounded-top shadow">
-        <p className="d-flex align-items-center rounded-top shadow">
+
+      <div className="row mt-5 rounded shadow">
+        <p className="d-flex align-items-center rounded shadow-sm">
           <XIcon className="x-icon icon-bg-round-missed" />
           <span className="fs-4 ms-2">
             {checklistDetails?.items ? missedItems().length : "none"}

@@ -28,6 +28,12 @@
   color: #c00043;
 }
 
+.x-icon-sm {
+  width: 8px;
+  height: 8px;
+  color: #c00043;
+}
+
 .icon-bg-round-missed {
   background-color: #ffccde;
   border-radius: 50%;
@@ -249,6 +255,32 @@
     rgba(220, 255, 220, 0.5) 99.75%,
     rgba(0, 191, 140, 1) 100%
   );
+}
+
+.display-items {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  padding: 0 10px;
+  color: black;
+  background: rgba(255, 255, 255, 1);
+  border: 2px solid rgba(192, 0, 67, 0.25);
+  border-radius: 8px;
+  font-size: 0.76rem;
+  list-style: none;
+  z-index: 999;
+  opacity: 1;
+  transition: all 0.25s ease-out;
+}
+
+.hide-items {
+  opacity: 0;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0);
+  border: 2px solid rgba(192, 0, 67, 0);
+  /* transition: all 0.5s ease; */
 }
 
 @keyframes gradientshift {
