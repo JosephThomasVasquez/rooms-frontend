@@ -7,6 +7,8 @@ import { isAuthenticated } from "../utils/cookieHandler";
 import { SearchIcon, UserCircleIcon } from "@heroicons/react/solid";
 import {
   ClipboardCheckIcon,
+  ClipboardListIcon,
+  CollectionIcon,
   PlusSmIcon,
   CheckIcon,
   OfficeBuildingIcon,
@@ -69,14 +71,14 @@ const NavMenu = () => {
               </Link>
             </li>
 
-            <li className="nav-item mx-2">
+            <li className="nav-item my-auto mx-2">
               <Link
                 to="/checklists/create"
                 className="nav-link d-flex align-items-center"
                 aria-current="new-checklist-page"
                 href="checklists/create"
               >
-                <PlusSmIcon className="new-checklist-icon" />
+                <PlusSmIcon className="icon-nav" />
                 <div>New Checklist</div>
               </Link>
             </li>
@@ -87,25 +89,23 @@ const NavMenu = () => {
                 aria-current="checklists-page"
                 href="checklists"
               >
-                <CheckIcon className="icon-nav" />
+                <CollectionIcon className="icon-nav" />
                 <div>Checklists</div>
               </Link>
             </li>
             <li className="nav-item mx-2 my-auto dropdown">
               <a
-                className="nav-link dropdown-toggle"
+                className="nav-link dropdown-toggle d-flex align-items-center"
                 href="dropdown"
                 id="navbarDropdown"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Templates
+                <ClipboardListIcon className="icon-nav" />
+                <div>Templates</div>
               </a>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
                 <li>
                   <NavLink
                     to="/checklist-templates/create"
