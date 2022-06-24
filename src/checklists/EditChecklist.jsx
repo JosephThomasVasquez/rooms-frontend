@@ -170,7 +170,7 @@ const EditChecklist = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container pb-5">
+    <div className="container pb-5 bg-pattern-checklist shadow">
       <div className="row ps-3 card py-4 shadow-sm mb-4">
         {checklistDetails?.is_completed ? (
           <span className="col-6 is-completed">completed</span>
@@ -208,13 +208,13 @@ const EditChecklist = ({ errorHandler }) => {
       </div>
 
       <div className="">
-        <div className="d-flex justify-content-center pt-3 fw-bold fs-4">
+        <div className="d-flex justify-content-center align-items-center pt-3 fw-bold fs-4 percentage-title shadow">
           <span className="me-2">{percentChecked}%</span>
           <span className="percent-completed">Complete</span>
         </div>
       </div>
 
-      <div className="row mt-5 rounded-top shadow">
+      <div className="row mt-5 rounded">
         <ul className="bg-checklist-edit fs-5">
           {checkedItems && createItems()}
         </ul>
