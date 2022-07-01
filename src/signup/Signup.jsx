@@ -78,9 +78,9 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="col-2">
-          <button type="submit" className="btn btn-primary shadow">
-            Login
+        <div className="d-flex justify-content-center align-items-center">
+          <button type="submit" className="signup-btn">
+            Sign Up
           </button>
         </div>
       </form>
