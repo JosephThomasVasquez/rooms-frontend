@@ -221,16 +221,28 @@ const NavMenu = () => {
                       </NavLink>
                     </li>
                     {user.role === "admin" ? (
-                      <li>
-                        <NavLink
-                          to={`/admin/checklists`}
-                          className="dropdown-item"
-                          aria-current="page"
-                          href="admin"
-                        >
-                          Admin
-                        </NavLink>
-                      </li>
+                      <>
+                        <li>
+                          <NavLink
+                            to={`/admin/checklists`}
+                            className="dropdown-item"
+                            aria-current="page"
+                            href="admin"
+                          >
+                            Admin
+                          </NavLink>
+                        </li>
+                        <li>
+                          <NavLink
+                            to={`/admin/users`}
+                            className="dropdown-item"
+                            aria-current="page"
+                            href="/admin/users"
+                          >
+                            Users
+                          </NavLink>
+                        </li>
+                      </>
                     ) : null}
                     <li>
                       <Logout />

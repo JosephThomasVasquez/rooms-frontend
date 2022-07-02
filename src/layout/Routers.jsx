@@ -23,6 +23,7 @@ import EditChecklist from "../checklists/EditChecklist";
 import Profile from "../users/Profile";
 import Signup from "../signup/Signup";
 import Checklists from "../admin/checklists/Checklists";
+import UsersList from "../admin/users/UsersList";
 
 const Routers = () => {
   const auth = useAuth();
@@ -172,6 +173,16 @@ const Routers = () => {
           element={
             <AuthRequired>
               <Checklists errorHandler={errorHandler} />
+            </AuthRequired>
+          }
+        ></Route>
+
+        <Route
+          exact
+          path="/admin/users"
+          element={
+            <AuthRequired>
+              <UsersList errorHandler={errorHandler} />
             </AuthRequired>
           }
         ></Route>
