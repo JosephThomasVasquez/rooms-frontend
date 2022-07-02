@@ -70,7 +70,7 @@ const Login = ({ errorHandler }) => {
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-primary shadow">
+          <button type="submit" className="login-btn">
             Login
           </button>
         </div>

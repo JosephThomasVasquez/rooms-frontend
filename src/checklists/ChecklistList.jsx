@@ -80,7 +80,7 @@ const ChecklistList = ({ errorHandler }) => {
             checked={queryTerm === "any"}
           />
           <label className="form-check-label" htmlFor="inlineRadio2">
-            All Checklists
+            All
           </label>
         </div>
       </div>
