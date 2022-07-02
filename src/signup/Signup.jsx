@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { signupUser } from "../utils/apiRequests";
 import { authenticateUser } from "../utils/cookieHandler";
+import signupImage from "./signup_character.png";
+import "./signup.styles.css";
 
 const Signup = ({ errorHandler }) => {
   const [user, setUser] = useState("");
@@ -43,7 +45,15 @@ const Signup = ({ errorHandler }) => {
   return (
     <div className="container">
       <h2 className="text-4xl">Create Account</h2>
-      <form onSubmit={handleSignup} className="p-5 shadow">
+
+      <form onSubmit={handleSignup} className="p-5 shadow rounded">
+        <div className="row">
+          <img
+            src={signupImage}
+            alt="signup image of a person"
+            className="signup-img mx-auto"
+          />
+        </div>
         <div className="row">
           <div className="col-6">
             <label htmlFor="firstname" className="form-label">

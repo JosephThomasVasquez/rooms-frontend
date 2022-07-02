@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { loginUser } from "../utils/apiRequests";
 import { authenticateUser } from "../utils/cookieHandler";
+import loginImage from "./login_character.png";
+import "./login.styles.css";
 
 const Login = ({ errorHandler }) => {
   const [user, setUser] = useState("");
@@ -41,9 +43,17 @@ const Login = ({ errorHandler }) => {
   };
 
   return (
-    <div className="mb-3">
+    <div className="container mb-3">
       <h2 className="text-4xl">Login</h2>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="p-5 shadow rounded">
+        <div className="row">
+          <img
+            src={loginImage}
+            alt="login image of a person"
+            className="login-img mx-auto"
+          />
+        </div>
+
         <div>
           <label htmlFor="email" className="form-label">
             Email
@@ -56,7 +66,6 @@ const Login = ({ errorHandler }) => {
             onChange={handleChange}
           />
         </div>
-
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Password
