@@ -1,13 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../auth/useAuth";
+import { signupUser } from "../utils/apiRequests";
+import { authenticateUser } from "../utils/cookieHandler";
 
-const Signup = () => {
-  const handleChange = () => {};
+const Signup = ({ errorHandler }) => {
+  const [user, setUser] = useState("");
+  const auth = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleSignup = () => {};
+  const redirectPath = location.state?.path || "/";
+  console.log(location);
+
+  const handleChange = ({ target }) => {
+    setUser({ ...user, [target.name]: target.value });
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    const submitSignup = async () => {
+      const abortController = new AbortController();
+
+      try {
+        const response = await signupUser(user, abortController.signal);
+
+        // console.log("Logged in user:", response);
+
+        authenticateUser(response, () => {
+          auth.loginUser(response);
+          navigate(redirectPath, { replace: true });
+        });
+      } catch (error) {
+        errorHandler(error);
+      }
+    };
+
+    submitSignup();
+  };
 
   return (
     <div className="container">
-      <h2 className="text-4xl">Signup</h2>
+      <h2 className="text-4xl">Create Account</h2>
       <form onSubmit={handleSignup} className="p-5 shadow">
         <div className="row">
           <div className="col-6">
@@ -84,6 +119,7 @@ const Signup = () => {
           </button>
         </div>
       </form>
+      <div>{JSON.stringify(user)}</div>
     </div>
   );
 };

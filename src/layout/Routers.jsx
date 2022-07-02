@@ -59,8 +59,16 @@ const Routers = () => {
           }
         ></Route>
 
-        <Route exact path="/user/login" element={<Login />} />
-        <Route exact path="/user/signup" element={<Signup />} />
+        <Route
+          exact
+          path="/user/login"
+          element={<Login errorHandler={errorHandler} />}
+        />
+        <Route
+          exact
+          path="/user/signup"
+          element={<Signup errorHandler={errorHandler} />}
+        />
         <Route
           exact
           path={`dashboard/:user`}

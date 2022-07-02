@@ -52,6 +52,20 @@ export const loginUser = async (user, signal) => {
   return await fetchJson(url, options, {});
 };
 
+export const signupUser = async (user, signal) => {
+  const url = new URL(`${REACT_APP_API_BASE_URL}/users`);
+
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ data: user }),
+    withCredentials: true,
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};
+
 export const getUser = async (user, signal) => {
   const url = new URL(`${REACT_APP_API_BASE_URL}/users/user${user}`);
   // console.log("url", url);
