@@ -153,7 +153,7 @@
 }
 
 .checklist-completed {
-  opacity: 0.65;
+  opacity: 0.4;
   background-color: rgba(240, 255, 240, 1);
   transition: all 0.5s ease;
 }
@@ -302,4 +302,20 @@
   to {
     background-position: right;
   }
+}
+
+/* CUSTOM RADIO AND CHECKBOX */
+
+.custom-radio {
+  background: rgba(255, 255, 255, 1);
+  transition: all 0.25s ease;
+}
+
+.custom-radio:checked {
+  background: var(--primary-color);
+  transition: all 0.25s ease;
+}
+
+.custom-radio:focus {
+  background: var(--primary-color);
 }

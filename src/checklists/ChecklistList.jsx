@@ -58,7 +58,7 @@ const ChecklistList = ({ errorHandler }) => {
       <div className="d-flex align-items-center my-3">
         <div className="form-check me-4">
           <input
-            className="form-check-input"
+            className="form-check-input custom-radio"
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio1"
@@ -71,12 +71,13 @@ const ChecklistList = ({ errorHandler }) => {
         </div>
         <div className="form-check">
           <input
-            className="form-check-input"
+            className="form-check-input custom-radio"
             type="radio"
             name="inlineRadioOptions"
             id="inlineRadio2"
             value="all"
             onChange={handleChecklistFilter}
+            checked={queryTerm === "any"}
           />
           <label className="form-check-label" htmlFor="inlineRadio2">
             All Checklists
