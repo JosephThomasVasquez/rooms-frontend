@@ -103,7 +103,7 @@ const Routers = () => {
 
         <Route
           exact
-          path="checklists/create"
+          path="account/checklists/create"
           element={
             <AuthRequired>
               <ChecklistForm errorHandler={errorHandler} />

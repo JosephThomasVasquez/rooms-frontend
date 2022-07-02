@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getTemplates } from "../utils/apiRequests";
+import { isAuthenticated } from "../utils/cookieHandler";
 import TemplateCard from "./TemplateCard";
 
 const ChecklistTemplates = ({ errorHandler }) => {
@@ -8,7 +9,7 @@ const ChecklistTemplates = ({ errorHandler }) => {
   // fetches Templates from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
-    getTemplates(abortController.signal)
+    getTemplates(isAuthenticated().account_id, abortController.signal)
       .then(setTemplates)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();

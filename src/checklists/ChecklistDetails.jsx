@@ -6,6 +6,7 @@ import { CheckIcon, XIcon, PencilAltIcon } from "@heroicons/react/solid";
 
 const ChecklistDetails = ({ errorHandler }) => {
   const { checklistId } = useParams();
+  console.log("params:", useParams());
   const [checklistDetails, setChecklistDetails] = useState(null);
 
   const urlDate = dayjs(checklistDetails?.date_completed).format("MM-DD-YYYY");

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
+import { isAuthenticated } from "../utils/cookieHandler";
 import dayjs from "dayjs";
 import ChecklistTemplateSelector from "../checklistTemplates/ChecklistTemplateSelector";
 import { createChecklist } from "../utils/apiRequests";
@@ -108,6 +109,7 @@ const ChecklistForm = ({ errorHandler }) => {
             <ChecklistTemplateSelector
               name="template-selector"
               errorHandler={errorHandler}
+              accountId={isAuthenticated().account_id}
               listTemplateItems={listTemplateItems}
             />
           </div>

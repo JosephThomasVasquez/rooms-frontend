@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { isAuthenticated } from "../utils/cookieHandler";
 import { getTemplates } from "../utils/apiRequests";
 
-const ChecklistTemplateSelector = ({ listTemplateItems, errorHandler }) => {
+const ChecklistTemplateSelector = ({
+  accountId,
+  listTemplateItems,
+  errorHandler,
+}) => {
   const [templates, setTemplates] = useState(null);
 
   const [selectedTemplate, setSelectedTemplate] = useState("");
 
+  console.log(accountId);
+
   // fetches checklists from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
-    getTemplates(abortController.signal)
+    getTemplates(accountId, abortController.signal)
       .then(setTemplates)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();

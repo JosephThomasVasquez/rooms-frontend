@@ -32,6 +32,7 @@ const UsersList = ({ errorHandler }) => {
         "ROLE",
         "CREATED",
         "EDIT",
+        "DELETE",
       ];
 
       const values = headers.map((head, index) => (
@@ -84,6 +85,11 @@ const UsersList = ({ errorHandler }) => {
           <td colSpan="1" className="align-middle text-center">
             <Link to={`/account/users/${id}`} className="table-row">
               (Edit)
+            </Link>
+          </td>
+          <td colSpan="1" className="align-middle text-center">
+            <Link to={`/account/users/${id}`} className="table-row">
+              (Del)
             </Link>
           </td>
         </tr>

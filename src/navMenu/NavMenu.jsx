@@ -23,6 +23,7 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
+  console.log(user);
 
   useEffect(() => {
     if (isUser) {
@@ -73,7 +74,7 @@ const NavMenu = () => {
 
             <li className="nav-item my-auto mx-2">
               <Link
-                to="/checklists/create"
+                to={`/account/checklists/create`}
                 className="nav-link d-flex align-items-center"
                 aria-current="new-checklist-page"
                 href="checklists/create"
