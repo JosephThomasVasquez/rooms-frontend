@@ -79,7 +79,7 @@ const NavMenu = () => {
                 href="checklists/create"
               >
                 <PlusSmIcon className="icon-nav" />
-                <div>New Checklist</div>
+                <div>Create</div>
               </Link>
             </li>
             <li className="my-auto">

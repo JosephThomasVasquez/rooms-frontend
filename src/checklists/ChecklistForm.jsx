@@ -96,12 +96,12 @@ const ChecklistForm = ({ errorHandler }) => {
   return (
     <div className="container">
       <div className="row mb-3">
-        <h2>New Checklist</h2>
+        <h2>Create Checklist</h2>
       </div>
 
       <div className="row">
         <label htmlFor="template-selector" className="mb-1">
-          Choose Template
+          Choose Template:
         </label>
         <div className="row d-flex align-items-center">
           <div className="col-4">
