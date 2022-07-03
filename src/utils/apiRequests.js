@@ -142,11 +142,15 @@ export const getChecklists = async (params, signal) => {
   };
 
   // If there are params fetch from route with query
-  if (params === "any") {
-    const url = new URL(`${REACT_APP_API_BASE_URL}/checklists?group=${params}`);
+  if (params.users === "any") {
+    const url = new URL(
+      `${REACT_APP_API_BASE_URL}/checklists?account=${params.account}&group=${params.users}`
+    );
     return await fetchJson(url, options, []);
   } else {
-    const url = new URL(`${REACT_APP_API_BASE_URL}/checklists?user=${params}`);
+    const url = new URL(
+      `${REACT_APP_API_BASE_URL}/checklists?account=${params.account}&user=${params.users}`
+    );
     return await fetchJson(url, options, []);
   }
 

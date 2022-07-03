@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getChecklists } from "../../utils/apiRequests";
+import { isAuthenticated } from "../../utils/cookieHandler";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import dayjs from "dayjs";
 import "../../checklists/checklist.styles.css";
@@ -14,7 +15,10 @@ const Checklists = ({ errorHandler }) => {
   // fetches checklists from the backend
   const loadChecklists = () => {
     const abortController = new AbortController();
-    getChecklists("any", abortController.signal)
+    getChecklists(
+      { account: isAuthenticated().account_id, users: "any" },
+      abortController.signal
+    )
       .then(setChecklists)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();

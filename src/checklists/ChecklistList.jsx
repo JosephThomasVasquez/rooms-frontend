@@ -11,7 +11,10 @@ const ChecklistList = ({ errorHandler }) => {
   const navigate = useNavigate();
 
   const [checklists, setChecklists] = useState(null);
-  const [queryTerm, setQueryTerm] = useState("any");
+  const [queryTerm, setQueryTerm] = useState({
+    account: isAuthenticated().account_id,
+    users: "any",
+  });
 
   // fetches checklists from the backend
   const loadChecklists = () => {
@@ -37,13 +40,17 @@ const ChecklistList = ({ errorHandler }) => {
     // console.log("target:", target.value);
     // console.log(isAuthenticated().email);
     if (target.value === "user") {
-      setQueryTerm(isAuthenticated().email);
-      navigate(`/checklists?user=${queryTerm}`);
+      setQueryTerm({ ...queryTerm, users: isAuthenticated().email });
+      navigate(
+        `/checklists?account=${queryTerm.account}&user=${queryTerm.users}`
+      );
     }
 
     if (target.value === "all") {
-      setQueryTerm("any");
-      navigate(`/checklists?group=${queryTerm}`);
+      setQueryTerm({ ...queryTerm, users: "any" });
+      navigate(
+        `/checklists?account=${queryTerm.account}&group=${queryTerm.users}`
+      );
     }
 
     console.log(queryTerm);
