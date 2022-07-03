@@ -3,7 +3,7 @@ import { isAuthenticated } from "../utils/cookieHandler";
 import { getTemplates } from "../utils/apiRequests";
 
 const ChecklistTemplateSelector = ({
-  accountId,
+  user,
   listTemplateItems,
   errorHandler,
 }) => {
@@ -14,7 +14,7 @@ const ChecklistTemplateSelector = ({
   // fetches checklists from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
-    getTemplates(accountId, abortController.signal)
+    getTemplates(user, abortController.signal)
       .then(setTemplates)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();

@@ -215,14 +215,14 @@ export const updateChecklistComplete = async (checklist, signal) => {
 // Checklist Templates
 //_____________________________________________________________________________________________________
 
-export const getTemplates = async (accountId, signal) => {
+export const getTemplates = async (user, signal) => {
   const url = new URL(
     `${REACT_APP_API_BASE_URL}/checklist-templates/accountTemplates`
   );
   const options = {
     method: "POST",
     headers,
-    body: JSON.stringify({ data: { account_id: accountId } }),
+    body: JSON.stringify({ data: user }),
     signal,
   };
 

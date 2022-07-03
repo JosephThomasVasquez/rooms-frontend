@@ -9,7 +9,7 @@ const ChecklistTemplates = ({ errorHandler }) => {
   // fetches Templates from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
-    getTemplates(isAuthenticated().account_id, abortController.signal)
+    getTemplates(isAuthenticated(), abortController.signal)
       .then(setTemplates)
       .catch((error) => errorHandler(error));
     return () => abortController.abort();

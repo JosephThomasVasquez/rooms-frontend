@@ -109,7 +109,7 @@ const ChecklistForm = ({ errorHandler }) => {
             <ChecklistTemplateSelector
               name="template-selector"
               errorHandler={errorHandler}
-              accountId={isAuthenticated().account_id}
+              user={isAuthenticated()}
               listTemplateItems={listTemplateItems}
             />
           </div>

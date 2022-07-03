@@ -77,6 +77,14 @@ const TemplateForm = ({ user, errorHandler }) => {
     }
   };
 
+  const handleChecked = ({ target }) => {
+    if (newTemplate.group === "any") {
+      setNewTemplate({ ...newTemplate, [target.name]: "private" });
+    } else {
+      setNewTemplate({ ...newTemplate, [target.name]: "any" });
+    }
+  };
+
   const handleChecklistItem = ({ target }) => {
     const items = target.value.split(",");
     // console.log("items", items);
@@ -182,11 +190,14 @@ const TemplateForm = ({ user, errorHandler }) => {
             <div className="col-1 form-check">
               <input
                 type="checkbox"
+                name="group"
                 className="form-check-input"
                 id="sharable-check"
+                onChange={handleChecked}
+                checked={newTemplate.group === "any"}
               />
               <label className="form-check-label" htmlFor="sharable-check">
-                Sharable
+                {newTemplate.group === "private" ? "Share" : "Sharing"}
               </label>
             </div>
           </div>
