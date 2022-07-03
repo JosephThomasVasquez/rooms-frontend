@@ -44,8 +44,6 @@ const ChecklistForm = ({ errorHandler }) => {
         account_id: findTemplate.account_id,
       };
 
-      // console.log("new Checklist data", checklistData);
-
       setNewChecklist(checklistData);
     }
   };
@@ -82,15 +80,17 @@ const ChecklistForm = ({ errorHandler }) => {
     console.log(item);
   };
 
-  const mapTemplateItems = newChecklist?.items.map((item) => (
+  const mapTemplateItems = newChecklist?.items.map((item, index) => (
     <li
       key={`template-item-id-${Object.keys(item)}`}
       name={Object.keys(item)}
-      className="row border rounded shadow-sm ms-1 my-1 p-2 list-unstyled template-item"
+      className="col-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
       onClick={() => handleClickedItem(item)}
       value={Object.keys(item)}
     >
-      {Object.keys(item)}
+      <div className="row fw-bold">
+        {index + 1}. <span className="col mx-1">{Object.keys(item)}</span>
+      </div>
     </li>
   ));
 
@@ -129,7 +129,7 @@ const ChecklistForm = ({ errorHandler }) => {
         Items {`(${newChecklist.items.length})`}
       </div>
       {/* <div className="row">Location: {template}</div> */}
-      <div>{newChecklist.items && mapTemplateItems}</div>
+      <div className="row">{newChecklist.items && mapTemplateItems}</div>
     </div>
   );
 };

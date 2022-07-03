@@ -72,7 +72,7 @@ const EditChecklist = ({ errorHandler }) => {
       <ItemCard
         key={`checklist-item-id-${Object.keys(item)}`}
         item={item}
-        handleClickedItem={handleClickedItem}
+        handleClickedItem={!isCompleted ? handleClickedItem : null}
       />
     ));
   };

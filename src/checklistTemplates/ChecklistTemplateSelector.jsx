@@ -11,8 +11,6 @@ const ChecklistTemplateSelector = ({
 
   const [selectedTemplate, setSelectedTemplate] = useState("");
 
-  console.log(accountId);
-
   // fetches checklists from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();

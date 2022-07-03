@@ -23,7 +23,7 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     if (isUser) {
