@@ -15,6 +15,8 @@ const Logout = () => {
     auth.logoutUser();
 
     navigate("user/login");
+    // Reload page
+    window.location.reload(true);
   };
 
   return (
