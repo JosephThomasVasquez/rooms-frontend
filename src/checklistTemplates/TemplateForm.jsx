@@ -177,21 +177,17 @@ const TemplateForm = ({ user, errorHandler }) => {
             ></textarea>
           </div>
           <div className="row d-flex align-items-center mt-3">
-            <div className="col-1">
-              <button
-                type="submit"
-                className="btn btn-primary"
-                onClick={saveTemplate}
-              >
+            <div className="col-3">
+              <button type="submit" className="save-btn" onClick={saveTemplate}>
                 Save
               </button>
             </div>
 
-            <div className="col-1 form-check">
+            <div className="col-1 form-check ms-2">
               <input
                 type="checkbox"
                 name="group"
-                className="form-check-input"
+                className="form-check-input custom-checked"
                 id="sharable-check"
                 onChange={handleChecked}
                 checked={newTemplate.group === "any"}

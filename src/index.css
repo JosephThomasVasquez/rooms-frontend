@@ -35,7 +35,8 @@ code {
 }
 
 .signup-btn,
-.login-btn {
+.login-btn,
+.save-btn {
   width: 200px;
   height: 48px;
   color: rgba(255, 255, 255, 1);
@@ -49,10 +50,25 @@ code {
 }
 
 .signup-btn:hover,
-.login-btn:hover {
+.login-btn:hover,
+.save-btn:hover {
   border: none;
   cursor: pointer;
   transform: translateY(-2px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
   transition: all 0.5s ease;
+}
+
+.custom-checked {
+  background: rgba(255, 255, 255, 1);
+  transition: all 0.25s ease;
+}
+
+.custom-checked:checked {
+  background: var(--primary-color);
+  transition: all 0.25s ease;
+}
+
+.custom-checked:focus {
+  background: var(--primary-color);
 }
