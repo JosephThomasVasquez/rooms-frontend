@@ -110,7 +110,9 @@ const ChecklistCalendar = ({ errorHandler }) => {
 
   return (
     <div className="row calendar-form">
-      <p className="row text-center">Download checklists as a .csv file.</p>
+      <div className="row">
+        <p className="col-6">Download checklists as a .csv file.</p>
+      </div>
 
       <form className="rounded d-flex align-items-end px-2">
         <div className="col-3 me-3">
@@ -151,24 +153,29 @@ const ChecklistCalendar = ({ errorHandler }) => {
             <RefreshIcon className="refresh-csv-icon" />
             <div>Load</div>
           </button>
+          <div className="text-center">
+            {csvFile.length > 0 ? (
+              <div className="d-flex align-items-center">
+                <ArrowNarrowRightIcon className="arrow-right-icon me-3" />
 
-          {csvFile.length > 0 ? (
-            <div className="d-flex align-items-center">
-              <ArrowNarrowRightIcon className="arrow-right-icon me-3" />
-              <CSVLink
-                data={csvFile}
-                filename={"checklists.csv"}
-                headers={fields}
-                ref={csvLink}
-                target="_blank"
-                className="download-btn d-flex align-items-center justify-content-center"
-                onClick={handleDownload}
-              >
-                <DocumentDownloadIcon className="download-csv-icon" />
-                <div>.csv</div>
-              </CSVLink>
-            </div>
-          ) : null}
+                <CSVLink
+                  data={csvFile}
+                  filename={"checklists.csv"}
+                  headers={fields}
+                  ref={csvLink}
+                  target="_blank"
+                  className="download-btn d-flex align-items-center justify-content-center"
+                  onClick={handleDownload}
+                >
+                  <DocumentDownloadIcon className="download-csv-icon" />
+                  <div>.csv</div>
+                </CSVLink>
+                <div className="mx-3 px-3 checklists-label d-flex align-items-center">
+                  <span className="me-2 checklists-count">{csvFile.length}</span>Checklists
+                </div>
+              </div>
+            ) : null}
+          </div>
         </div>
       </form>
     </div>
