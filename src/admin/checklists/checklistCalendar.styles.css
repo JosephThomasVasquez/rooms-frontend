@@ -4,8 +4,15 @@
   padding-bottom: 20px;
 }
 
-.download-csv-icon {
+.download-csv-icon,
+.refresh-csv-icon {
   width: 24px;
   height: 24px;
   color: white;
+}
+
+.arrow-right-icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
 }

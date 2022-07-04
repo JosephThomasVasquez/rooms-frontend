@@ -64,6 +64,7 @@ code {
 .download-btn {
   width: 100px;
   height: 38px;
+  text-decoration: none;
   color: rgba(255, 255, 255, 1);
   background: var(--primary-color);
   font-size: 1rem;
