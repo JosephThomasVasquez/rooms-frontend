@@ -1,5 +1,7 @@
 :root {
   --primary-color: rgba(0, 191, 140, 1);
+  --primary-color-half: rgba(0, 191, 140, 0.5);
+  --primary-color-qtr: rgba(0, 191, 140, 0.25);
 }
 
 body {
@@ -57,6 +59,27 @@ code {
   transform: translateY(-2px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
   transition: all 0.5s ease;
+}
+
+.download-btn {
+  width: 100px;
+  height: 38px;
+  color: rgba(255, 255, 255, 1);
+  background: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease;
+}
+
+.download-btn:hover {
+  border: none;
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.25s ease;
 }
 
 .custom-checked {

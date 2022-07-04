@@ -214,6 +214,22 @@ export const updateChecklistComplete = async (checklist, signal) => {
   return await fetchJson(url, options, {});
 };
 
+export const generateChecklistCSV = async (params, signal) => {
+  // console.log("params:", params);
+  const url = new URL(
+    `${REACT_APP_API_BASE_URL}/account/admin/checklists/download/csv`
+  );
+
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ data: params }),
+    signal,
+  };
+
+  return await fetchJson(url, options, []);
+};
+
 //_____________________________________________________________________________________________________
 // API REQUESTS
 // Checklist Templates

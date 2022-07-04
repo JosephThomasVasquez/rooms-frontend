@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { loginUser } from "../utils/apiRequests";
-import { authenticateUser } from "../utils/cookieHandler";
+import { authenticateUser, isAuthenticated } from "../utils/cookieHandler";
 import loginImage from "./login_character.png";
 import "./login.styles.css";
 
@@ -11,9 +11,6 @@ const Login = ({ errorHandler }) => {
   const auth = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
-
-  const redirectPath = location.state?.path || "/";
-  console.log(location);
 
   const handleChange = ({ target }) => {
     setUser({ ...user, [target.name]: target.value });
@@ -31,6 +28,10 @@ const Login = ({ errorHandler }) => {
         // console.log("Logged in user:", response);
 
         authenticateUser(response, () => {
+          const redirectPath =
+            location.state?.path || `/dashboard/user?email=${response.email}`;
+          // console.log("location", location);
+
           auth.loginUser(response);
           navigate(redirectPath, { replace: true });
         });

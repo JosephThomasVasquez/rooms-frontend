@@ -1,0 +1,5 @@
+.calendar-form {
+  border: 2px solid var(--primary-color-half);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

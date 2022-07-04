@@ -29,7 +29,6 @@ const NavMenu = () => {
     if (isUser) {
       setUser(isUser);
     }
-    console.log("user:", user);
   }, [isUser]);
 
   // console.log(openNav);

@@ -5,6 +5,7 @@ import { isAuthenticated } from "../../utils/cookieHandler";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import dayjs from "dayjs";
 import "../../checklists/checklist.styles.css";
+import ChecklistCalendar from "./ChecklistCalendar";
 
 const Checklists = ({ errorHandler }) => {
   const location = useLocation();
@@ -140,13 +141,18 @@ const Checklists = ({ errorHandler }) => {
       <div className="row mb-3">
         <h2>Checklists</h2>
       </div>
+      <div className="row mb-3">
+        <ChecklistCalendar errorHandler={errorHandler} />
+      </div>
 
-      <table className="table table-base shadow rounded">
-        <thead>
-          <tr>{tableHeaders()}</tr>
-        </thead>
-        <tbody>{checklistRows()}</tbody>
-      </table>
+      <div className="row">
+        <table className="table table-base shadow rounded">
+          <thead>
+            <tr>{tableHeaders()}</tr>
+          </thead>
+          <tbody>{checklistRows()}</tbody>
+        </table>
+      </div>
     </div>
   );
 };
