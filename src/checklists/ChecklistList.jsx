@@ -84,7 +84,7 @@ const ChecklistList = ({ errorHandler }) => {
             id="inlineRadio2"
             value="all"
             onChange={handleChecklistFilter}
-            checked={queryTerm === "any"}
+            checked={queryTerm.users === "any"}
           />
           <label className="form-check-label" htmlFor="inlineRadio2">
             All

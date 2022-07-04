@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getChecklists, generateChecklistCSV } from "../../utils/apiRequests";
 import { isAuthenticated } from "../../utils/cookieHandler";
+import { DocumentDownloadIcon } from "@heroicons/react/solid";
 import "./checklistCalendar.styles.css";
 
 const ChecklistCalendar = ({ errorHandler }) => {
@@ -86,10 +87,12 @@ const ChecklistCalendar = ({ errorHandler }) => {
         />
       </div>
 
-      <div className="col-3 ms-3">
+      <div className="col-6 ms-3 d-flex align-items-center">
         <button type="submit" className="download-btn">
-          Download
+          <DocumentDownloadIcon className="download-csv-icon" />
+          .csv
         </button>
+        <p className="ms-3 my-auto">Download checklists as a .csv file.</p>
       </div>
     </form>
   );
