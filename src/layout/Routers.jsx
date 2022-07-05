@@ -188,6 +188,16 @@ const Routers = () => {
         ></Route>
 
         <Route
+          exact
+          path="/account/admin/user/:userId"
+          element={
+            <AuthRequired>
+              <Profile errorHandler={errorHandler} />
+            </AuthRequired>
+          }
+        ></Route>
+
+        <Route
           path="*"
           element={
             <main style={{ padding: "1rem" }}>

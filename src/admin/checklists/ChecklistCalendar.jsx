@@ -109,7 +109,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
   };
 
   return (
-    <div className="row calendar-form">
+    <div className="row calendar-form mx-auto">
       <div className="row">
         <p className="col-6">Download checklists as a .csv file.</p>
       </div>

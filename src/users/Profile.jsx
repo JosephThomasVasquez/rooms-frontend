@@ -3,12 +3,23 @@ import { useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { getUser } from "../utils/apiRequests";
 import dayjs from "dayjs";
+import { UserCircleIcon } from "@heroicons/react/solid";
+import "./profile.styles.css";
 
 const Profile = ({ errorHandler }) => {
   const auth = useAuth();
   const location = useLocation();
 
-  const [userDetails, setUserDetails] = useState(null);
+  const initialFormData = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    role: "",
+    account_id: "",
+  };
+
+  const [userDetails, setUserDetails] = useState({ ...initialFormData });
   const formattedDate = dayjs(userDetails?.created_at).format("MMM DD, YYYY");
 
   useEffect(() => {
@@ -21,7 +32,7 @@ const Profile = ({ errorHandler }) => {
 
         if (response) {
           setUserDetails(response);
-          // console.log("userDetails:", response);
+          console.log("userDetails:", response);
         }
       } catch (error) {
         errorHandler(error);
@@ -33,14 +44,112 @@ const Profile = ({ errorHandler }) => {
     }
   }, []);
 
+  const handleChange = ({ target }) => {};
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="container">
+      <h2 className="text-4xl">User Details</h2>
+      {userDetails ? (
+        <form onSubmit={handleUpdate} className="p-5 shadow rounded">
+          <div className="row">
+            <UserCircleIcon className="icon-profile-user mx-auto" />
+          </div>
+          <div className="fw-bold text-center">
+            {userDetails.role &&
+              userDetails?.role[0].toUpperCase() + userDetails?.role.slice(1)}
+          </div>
+          <div className="text-center">
+            {userDetails?.account_id > 1 ? userDetails?.account_name : null}
+          </div>
+          <div className="text-center mb-5">{formattedDate}</div>
+          <div className="row">
+            <div className="col-6">
+              <label htmlFor="firstname" className="form-label">
+                First Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="firstname"
+                id="firstname"
+                onChange={handleChange}
+                value={userDetails?.firstname}
+              />
+            </div>
+            <div className="col-6">
+              <label htmlFor="lastname" className="form-label">
+                Last Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="lastname"
+                id="lastname"
+                onChange={handleChange}
+                value={userDetails?.lastname}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <label htmlFor="email" className="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                id="email"
+                onChange={handleChange}
+                value={userDetails?.email}
+              />
+            </div>
+          </div>
+
+          <div className="row mb-3">
+            <div className="col-6 mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                id="password"
+                onChange={handleChange}
+                value={userDetails?.password}
+              />
+            </div>
+
+            <div className="col-6 mb-3">
+              <label htmlFor="confirm_password" className="form-label">
+                Confirm Password
+              </label>
+              <input
+                type="confirm_password"
+                className="form-control"
+                name="confirm_password"
+                id="confirm_password"
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="d-flex justify-content-center align-items-center">
+            <button type="submit" className="signup-btn">
+              Save changes
+            </button>
+          </div>
+        </form>
+      ) : null}
       <div className="row">Username: {userDetails?.email}</div>
       <div className="row">
         Name: {userDetails?.firstname} {userDetails?.lastname}
       </div>
       <div className="row">Account: {userDetails?.account_name}</div>
-      <div className="row">User Since: {formattedDate}</div>
     </div>
   );
 };

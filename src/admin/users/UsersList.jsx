@@ -83,7 +83,10 @@ const UsersList = ({ errorHandler }) => {
             {dayjs(created_at).format("MMM DD, YYYY")}
           </td>
           <td colSpan="1" className="align-middle text-center">
-            <Link to={`/account/users/${id}`} className="table-row">
+            <Link
+              to={`/account/admin/user/user?email=${email}`}
+              className="table-row"
+            >
               (Edit)
             </Link>
           </td>
