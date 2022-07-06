@@ -41,7 +41,8 @@ const ChecklistCalendar = ({ errorHandler }) => {
     { label: "Checklist Name", key: "checklist_name" },
     { label: "Items", key: "items" },
     { label: "Location", key: "location" },
-    { label: "Completed", key: "is_completed" },
+    { label: "Completed", key: "completed" },
+    { label: "Missed", key: "missed" },
     { label: "Completed By", key: "completed_by" },
     { label: "Date Completed", key: "date_completed" },
     { label: "Group", key: "group" },
@@ -171,7 +172,10 @@ const ChecklistCalendar = ({ errorHandler }) => {
                   <div>.csv</div>
                 </CSVLink>
                 <div className="mx-3 px-3 checklists-label d-flex align-items-center">
-                  <span className="me-2 checklists-count">{csvFile.length}</span>Checklists
+                  <span className="me-2 checklists-count">
+                    {csvFile.length}
+                  </span>
+                  Checklists
                 </div>
               </div>
             ) : null}
