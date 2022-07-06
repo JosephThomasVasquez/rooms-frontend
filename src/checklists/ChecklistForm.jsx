@@ -100,7 +100,7 @@ const ChecklistForm = ({ errorHandler }) => {
         <h2>Create Checklist</h2>
       </div>
 
-      <div className="row">
+      <div className="row py-3 mb-5 bg-card">
         <label htmlFor="template-selector" className="mb-1">
           Choose Template:
         </label>

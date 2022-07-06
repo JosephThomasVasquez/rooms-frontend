@@ -18,6 +18,11 @@ code {
     monospace;
 }
 
+.bg-card {
+  background: white;
+  border-radius: 8px;
+}
+
 .dropdown-menu,
 .dropdown-toggle,
 #navbarDropdown,

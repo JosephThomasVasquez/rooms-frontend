@@ -207,6 +207,12 @@
 .bg-pattern-checklist {
   background-image: url("/public/nice_snow.webp");
 }
+.bg-pattern-lists {
+  min-height: 100vh;
+  background-image: url("/public/subtle_grunge.webp");
+  background-size: auto;
+  background-repeat: repeat;
+}
 
 .percentage-title {
   background-color: white;

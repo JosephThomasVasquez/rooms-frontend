@@ -46,7 +46,7 @@ const Signup = ({ errorHandler }) => {
     <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl">Create Account</h2>
 
-      <form onSubmit={handleSignup} className="p-5 shadow rounded">
+      <form onSubmit={handleSignup} className="p-5 shadow rounded bg-card">
         <div className="row">
           <img
             src={signupImage}

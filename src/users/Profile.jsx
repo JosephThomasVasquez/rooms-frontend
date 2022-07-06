@@ -53,7 +53,7 @@ const Profile = ({ errorHandler }) => {
     <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl mt-3 mb-5">User Details</h2>
       {userDetails ? (
-        <form onSubmit={handleUpdate} className="p-5 rounded calendar-form">
+        <form onSubmit={handleUpdate} className="p-5 rounded calendar-form bg-card">
           <div className="row">
             <UserCircleIcon className="icon-profile-user mx-auto" />
           </div>

@@ -46,7 +46,7 @@ const Login = ({ errorHandler }) => {
   return (
     <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl">Login</h2>
-      <form onSubmit={handleLogin} className="p-5 shadow rounded">
+      <form onSubmit={handleLogin} className="p-5 shadow rounded bg-card">
         <div className="row">
           <img
             src={loginImage}

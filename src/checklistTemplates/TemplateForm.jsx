@@ -120,7 +120,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       <div className="row d-flex align-items-center mb-3">
         <h2>New Template</h2>
       </div>
-      <div className="row mb-5">
+      <div className="row py-3 mb-5 bg-card">
         <form>
           <div className="row">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">

@@ -141,11 +141,11 @@ const Checklists = ({ errorHandler }) => {
       <div className="row mb-3">
         <h2>Checklists</h2>
       </div>
-      <div className="row mb-3">
+      <div className="row mb-3 bg-card">
         <ChecklistCalendar errorHandler={errorHandler} />
       </div>
 
-      <div className="row">
+      <div className="row bg-card">
         <table className="table table-base shadow rounded">
           <thead>
             <tr>{tableHeaders()}</tr>
