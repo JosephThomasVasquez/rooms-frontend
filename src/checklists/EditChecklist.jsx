@@ -170,7 +170,7 @@ const EditChecklist = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container pb-5 bg-pattern-checklist shadow">
+    <div className="container mt-3 mb-5 pb-5 bg-pattern-checklist shadow">
       <div className="row ps-3 card py-4 shadow-sm mb-4">
         {checklistDetails?.is_completed ? (
           <span className="col-6 is-completed">completed</span>

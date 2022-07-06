@@ -50,10 +50,10 @@ const Profile = ({ errorHandler }) => {
     e.preventDefault();
   };
   return (
-    <div className="container">
-      <h2 className="text-4xl">User Details</h2>
+    <div className="container mt-3 mb-5 pb-5">
+      <h2 className="text-4xl mt-3 mb-5">User Details</h2>
       {userDetails ? (
-        <form onSubmit={handleUpdate} className="p-5 shadow rounded">
+        <form onSubmit={handleUpdate} className="p-5 rounded calendar-form">
           <div className="row">
             <UserCircleIcon className="icon-profile-user mx-auto" />
           </div>
@@ -145,11 +145,6 @@ const Profile = ({ errorHandler }) => {
           </div>
         </form>
       ) : null}
-      <div className="row">Username: {userDetails?.email}</div>
-      <div className="row">
-        Name: {userDetails?.firstname} {userDetails?.lastname}
-      </div>
-      <div className="row">Account: {userDetails?.account_name}</div>
     </div>
   );
 };

@@ -54,7 +54,7 @@ const ChecklistDetails = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-3 mb-5 pb-5">
       <div className="row ps-3 card py-4 shadow mb-4">
         <div className="d-flex align-items-center">
           <h2 className="col checklist-title">

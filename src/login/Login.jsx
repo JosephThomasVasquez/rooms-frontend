@@ -44,7 +44,7 @@ const Login = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container mb-3">
+    <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl">Login</h2>
       <form onSubmit={handleLogin} className="p-5 shadow rounded">
         <div className="row">

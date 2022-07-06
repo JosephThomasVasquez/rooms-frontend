@@ -43,7 +43,7 @@ const Signup = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl">Create Account</h2>
 
       <form onSubmit={handleSignup} className="p-5 shadow rounded">

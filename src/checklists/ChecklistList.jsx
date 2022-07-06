@@ -57,7 +57,7 @@ const ChecklistList = ({ errorHandler }) => {
   };
 
   return (
-    <div className="container px-5">
+    <div className="container mt-3 mb-5 pb-5">
       <div className="row mb-3">
         <h2>Checklists</h2>
       </div>
