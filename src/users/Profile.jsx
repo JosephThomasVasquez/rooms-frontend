@@ -66,7 +66,7 @@ const Profile = ({ errorHandler }) => {
           </div>
           <div className="text-center mb-5">{formattedDate}</div>
           <div className="row">
-            <div className="col-6">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6">
               <label htmlFor="firstname" className="form-label">
                 First Name
               </label>
@@ -79,7 +79,7 @@ const Profile = ({ errorHandler }) => {
                 value={userDetails?.firstname}
               />
             </div>
-            <div className="col-6">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6">
               <label htmlFor="lastname" className="form-label">
                 Last Name
               </label>
@@ -110,7 +110,7 @@ const Profile = ({ errorHandler }) => {
           </div>
 
           <div className="row mb-3">
-            <div className="col-6 mb-3">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
               <label htmlFor="password" className="form-label">
                 Password
               </label>
@@ -124,7 +124,7 @@ const Profile = ({ errorHandler }) => {
               />
             </div>
 
-            <div className="col-6 mb-3">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
               <label htmlFor="confirm_password" className="form-label">
                 Confirm Password
               </label>

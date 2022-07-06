@@ -106,7 +106,7 @@ const TemplateForm = ({ user, errorHandler }) => {
   const mapItems = () => {
     if (createdItems?.length > 0) {
       return createdItems?.map((item) => (
-        <div key={Object.keys(item).toString()} className="col-3">
+        <div key={Object.keys(item).toString()} className="col-12 col-sm-12 col-md-4 col-lg-3">
           {Object.keys(item).toString()}
         </div>
       ));
@@ -122,21 +122,37 @@ const TemplateForm = ({ user, errorHandler }) => {
       </div>
       <div className="row mb-5">
         <form>
-          <div className="mb-3">
-            <label htmlFor="template_name" className="form-label">
-              Template Name
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="template_name"
-              id="template_name"
-              aria-describedby="template-name"
-              onChange={handleInputChange}
-              value={newTemplate?.template_name}
-            />
+          <div className="row">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+              <label htmlFor="template_name" className="form-label">
+                Template Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="template_name"
+                id="template_name"
+                aria-describedby="template-name"
+                onChange={handleInputChange}
+                value={newTemplate?.template_name}
+              />
+            </div>
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+              <label htmlFor="location" className="form-label">
+                Location
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="location"
+                id="location"
+                aria-describedby="location"
+                onChange={handleInputChange}
+                value={newTemplate?.location}
+              />
+            </div>
           </div>
-          <div className="mb-3">
+          <div className="col-12 mb-3">
             <label htmlFor="template_description" className="form-label">
               Template Description
             </label>
@@ -150,22 +166,8 @@ const TemplateForm = ({ user, errorHandler }) => {
               value={newTemplate?.template_description}
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="location" className="form-label">
-              Location
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              name="location"
-              id="location"
-              aria-describedby="location"
-              onChange={handleInputChange}
-              value={newTemplate?.location}
-            />
-          </div>
 
-          <div className="col">
+          <div className="col-12">
             <label htmlFor="floatingTextarea" className="ms-2">
               Insert Items
             </label>
@@ -173,17 +175,18 @@ const TemplateForm = ({ user, errorHandler }) => {
               className="form-control"
               placeholder="Insert items separated by comma's here i.e. item1, item2, item3..."
               id="floatingTextarea"
+              rows="4"
               onChange={handleChecklistItem}
             ></textarea>
           </div>
           <div className="row d-flex align-items-center mt-3">
-            <div className="col-3">
+            <div className="col-12 col-sm-6 col-md-6 col-lg-6 my-3">
               <button type="submit" className="save-btn" onClick={saveTemplate}>
                 Save
               </button>
             </div>
 
-            <div className="col-1 form-check ms-2">
+            <div className="col-1 col-sm-1 col-md-1 col-lg-1 form-check ms-2">
               <input
                 type="checkbox"
                 name="group"
@@ -203,7 +206,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       <div className="row fs-4 fw-bold">
         <div className="col-1">Items</div>
       </div>
-      <div className="row">{JSON.stringify(newTemplate)}</div>
+      {/* <div className="row">{JSON.stringify(newTemplate)}</div> */}
       <div className="row">Items: {mapItems()}</div>
     </div>
   );

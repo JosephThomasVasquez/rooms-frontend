@@ -84,7 +84,7 @@ const ChecklistForm = ({ errorHandler }) => {
     <li
       key={`template-item-id-${Object.keys(item)}`}
       name={Object.keys(item)}
-      className="col-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
+      className="col-12 col-sm-12 col-md-4 col-lg-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
       onClick={() => handleClickedItem(item)}
       value={Object.keys(item)}
     >
@@ -105,7 +105,7 @@ const ChecklistForm = ({ errorHandler }) => {
           Choose Template:
         </label>
         <div className="row d-flex align-items-center">
-          <div className="col-4">
+          <div className="col-10 col-sm-10 col-md-10 col-lg-10">
             <ChecklistTemplateSelector
               name="template-selector"
               errorHandler={errorHandler}
@@ -113,7 +113,7 @@ const ChecklistForm = ({ errorHandler }) => {
               listTemplateItems={listTemplateItems}
             />
           </div>
-          <div className="col-2">
+          <div className="col-2 col-sm-2 col-md-2 col-lg-2">
             <PlusSmIcon
               className="icon-create"
               onClick={handleCreateChecklist}
