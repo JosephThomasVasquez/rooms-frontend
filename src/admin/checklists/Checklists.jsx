@@ -32,6 +32,7 @@ const Checklists = ({ errorHandler }) => {
       let headers = [
         "ID",
         "NAME",
+        "USER",
         "LOCATION",
         "DATE",
         "% COMPLETE",
@@ -58,6 +59,7 @@ const Checklists = ({ errorHandler }) => {
       const {
         id,
         checklist_name,
+        completed_by,
         location,
         items,
         is_completed,
@@ -94,6 +96,9 @@ const Checklists = ({ errorHandler }) => {
             >
               {checklist_name}
             </Link>
+          </td>
+          <td colSpan="1" className="align-middle">
+            {completed_by}
           </td>
           <td colSpan="1" className="align-middle">
             {location}

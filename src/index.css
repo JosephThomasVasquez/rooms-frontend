@@ -1,5 +1,6 @@
 :root {
   --primary-color: rgba(0, 191, 140, 1);
+  --primary-color-hover: rgba(147, 180, 171, 1);
   --primary-color-half: rgba(0, 191, 140, 0.5);
   --primary-color-qtr: rgba(0, 191, 140, 0.25);
 }
@@ -38,6 +39,7 @@ code {
 }
 
 .table-base {
+  padding: 0;
   border-radius: 10px !important;
 }
 

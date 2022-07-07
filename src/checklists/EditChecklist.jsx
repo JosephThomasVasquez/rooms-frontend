@@ -68,11 +68,13 @@ const EditChecklist = ({ errorHandler }) => {
   }, [checklistDetails]);
 
   const createItems = () => {
-    return checkedItems?.map((item) => (
+    return checkedItems?.map((item, index) => (
       <ItemCard
         key={`checklist-item-id-${Object.keys(item)}`}
         item={item}
-        handleClickedItem={!isCompleted ? handleClickedItem : null}
+        index={index}
+        isCompleted={isCompleted}
+        handleClickedItem={handleClickedItem}
       />
     ));
   };
@@ -106,7 +108,6 @@ const EditChecklist = ({ errorHandler }) => {
 
   // Save checkeditems to database
   const saveChecked = (checklist) => {
-    console.log("saving...", checklist);
     const abortController = new AbortController();
 
     const updateChecklistItems = async () => {
@@ -117,7 +118,6 @@ const EditChecklist = ({ errorHandler }) => {
         );
 
         if (response) {
-          console.log("UPDATE response", response);
           setChecklistDetails(response);
         }
       } catch (error) {
@@ -130,7 +130,6 @@ const EditChecklist = ({ errorHandler }) => {
 
   // Toggle is_completed save to database
   const completeChecklist = (checklist) => {
-    console.log("Completed Checklist saving...", checklist);
     const abortController = new AbortController();
 
     const setChecklistComplete = async () => {
@@ -141,7 +140,6 @@ const EditChecklist = ({ errorHandler }) => {
         );
 
         if (response) {
-          console.log("UPDATE response", response);
           setChecklistDetails(response);
           setIsCompleted(response.is_completed);
         }
@@ -154,17 +152,13 @@ const EditChecklist = ({ errorHandler }) => {
   };
 
   const handleCompleteChecklist = () => {
-    // setChecklistDetails({ ...checklistDetails, is_completed: true });
     const createDateNow = dayjs().format("YYYY-MM-DD");
-
-    // console.log("iscompleted??", checklistDetails.is_completed);
 
     const setComplete = {
       ...checklistDetails,
       is_completed: !checklistDetails.is_completed,
       date_completed: createDateNow,
     };
-    // console.log("setComplete!", setComplete);
 
     completeChecklist(setComplete);
   };

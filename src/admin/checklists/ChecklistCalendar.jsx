@@ -96,7 +96,6 @@ const ChecklistCalendar = ({ errorHandler }) => {
       setCSVFile(response);
 
       csvProperties.data = response;
-      console.log("csv data:", csvProperties.data);
       // csvLink.current.link.click();
     }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getAccountUsers } from "../../utils/apiRequests";
 import { isAuthenticated } from "../../utils/cookieHandler";
-// import { CheckIcon, XIcon } from "@heroicons/react/solid";
+import { DotsHorizontalIcon, TrashIcon } from "@heroicons/react/solid";
 import dayjs from "dayjs";
 import "../../checklists/checklist.styles.css";
 
@@ -66,12 +66,15 @@ const UsersList = ({ errorHandler }) => {
             {id}
           </td>
           <td colSpan="1" className="align-middle text-center">
-            {email}
+            <Link
+              to={`/account/admin/user/user?email=${email}`}
+              className="table-row"
+            >
+              {email}
+            </Link>
           </td>
           <td colSpan="1" className="align-middle text-center">
-            <Link to={`/account/users/${id}`} className="table-row">
-              {firstname}
-            </Link>
+            {firstname}
           </td>
           <td colSpan="1" className="align-middle text-center">
             {lastname}
@@ -87,12 +90,15 @@ const UsersList = ({ errorHandler }) => {
               to={`/account/admin/user/user?email=${email}`}
               className="table-row"
             >
-              (Edit)
+              <DotsHorizontalIcon className="check-icon" />
             </Link>
           </td>
           <td colSpan="1" className="align-middle text-center">
-            <Link to={`/account/users/${id}`} className="table-row">
-              (Del)
+            <Link
+              to={`/account/admin/user/user?email=${email}`}
+              className="table-row"
+            >
+              <TrashIcon className="x-icon" />
             </Link>
           </td>
         </tr>
