@@ -151,7 +151,7 @@ const Checklists = ({ errorHandler }) => {
       </div>
 
       <div className="row bg-card">
-        <table className="table table-base shadow rounded">
+        <table className="table-sm table-base shadow rounded">
           <thead>
             <tr>{tableHeaders()}</tr>
           </thead>
