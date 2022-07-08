@@ -24,6 +24,11 @@ code {
   border-radius: 8px;
 }
 
+.bg-card-rooms {
+  background: white;
+  border-radius: 0 8px 8px 8px;
+}
+
 .dropdown-menu,
 .dropdown-toggle,
 #navbarDropdown,
@@ -102,4 +107,12 @@ code {
 
 .custom-checked:focus {
   background: var(--primary-color);
+}
+
+.building-title {
+  width: 25%;
+  background: white;
+  font-size: 1.25rem;
+  padding: 4px;
+  border-radius: 8px 8px 0 0;
 }

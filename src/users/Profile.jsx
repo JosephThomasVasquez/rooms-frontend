@@ -53,7 +53,10 @@ const Profile = ({ errorHandler }) => {
     <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl mt-3 mb-5">User Details</h2>
       {userDetails ? (
-        <form onSubmit={handleUpdate} className="p-5 rounded calendar-form bg-card">
+        <form
+          onSubmit={handleUpdate}
+          className="p-5 rounded calendar-form bg-card"
+        >
           <div className="row">
             <UserCircleIcon className="icon-profile-user mx-auto" />
           </div>
@@ -65,7 +68,7 @@ const Profile = ({ errorHandler }) => {
             {userDetails?.account_id > 1 ? userDetails?.account_name : null}
           </div>
           <div className="text-center mb-5">{formattedDate}</div>
-          <div className="row">
+          <div className="row my-3">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6">
               <label htmlFor="firstname" className="form-label">
                 First Name
@@ -93,7 +96,7 @@ const Profile = ({ errorHandler }) => {
               />
             </div>
           </div>
-          <div className="row">
+          <div className="row my-3">
             <div className="col">
               <label htmlFor="email" className="form-label">
                 Email
@@ -107,9 +110,22 @@ const Profile = ({ errorHandler }) => {
                 value={userDetails?.email}
               />
             </div>
+            <div className="col">
+              <label htmlFor="email" className="form-label">
+                Role
+              </label>
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                id="email"
+                onChange={handleChange}
+                value={userDetails?.role}
+              />
+            </div>
           </div>
 
-          <div className="row mb-3">
+          <div className="row my-3">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
               <label htmlFor="password" className="form-label">
                 Password

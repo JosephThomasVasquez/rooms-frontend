@@ -23,7 +23,7 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
-  // console.log(user);
+  console.log(user);
 
   useEffect(() => {
     if (isUser) {
@@ -135,50 +135,52 @@ const NavMenu = () => {
                 </li>
               </ul>
             </li>
-            <li className="nav-item me-2 my-auto dropdown">
-              <a
-                className="nav-link dropdown-toggle d-flex align-items-center"
-                href="dropdown"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <OfficeBuildingIcon className="icon-nav" />
-                <div>Directory</div>
-              </a>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <NavLink
-                    to="/rooms"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Rooms
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/buildings"
-                    className="dropdown-item"
-                    aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
-                    }
-                  >
-                    Buildings
-                  </NavLink>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </ul>
-            </li>
+            {user?.account_id > 1 ? (
+              <li className="nav-item me-2 my-auto dropdown">
+                <a
+                  className="nav-link dropdown-toggle d-flex align-items-center"
+                  href="dropdown"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <OfficeBuildingIcon className="icon-nav" />
+                  <div>Directory</div>
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <NavLink
+                      to="/rooms"
+                      className="dropdown-item"
+                      aria-current="page"
+                      href="#"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      Rooms
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/buildings"
+                      className="dropdown-item"
+                      aria-current="page"
+                      href="#"
+                      style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                      }
+                    >
+                      Buildings
+                    </NavLink>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                </ul>
+              </li>
+            ) : null}
           </ul>
           <form className="d-flex align-items-center me-5" role="search">
             <input
