@@ -46,6 +46,15 @@ const Profile = ({ errorHandler }) => {
 
   const handleChange = ({ target }) => {};
 
+  const handleSelectedRole = ({ target }) => {
+    console.log(target.options[target.selectedIndex].value);
+
+    setUserDetails({
+      ...userDetails,
+      role: target.options[target.selectedIndex].value,
+    });
+  };
+
   const handleUpdate = (e) => {
     e.preventDefault();
   };
@@ -111,17 +120,20 @@ const Profile = ({ errorHandler }) => {
               />
             </div>
             <div className="col">
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="role" className="form-label">
                 Role
               </label>
-              <input
-                type="email"
-                className="form-control"
-                name="email"
-                id="email"
-                onChange={handleChange}
+              <select
+                class="form-select"
+                name="role"
+                id="role"
+                aria-label="Default select example"
+                onChange={handleSelectedRole}
                 value={userDetails?.role}
-              />
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
             </div>
           </div>
 
