@@ -48,7 +48,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       items.map((item) => {
         item = item.trim();
 
-        let hasValidCharacters = new RegExp(/^[0-9A-Za-z\s\-\_]+$/);
+        let hasValidCharacters = new RegExp(/^[0-9A-Za-z\s\-\_\']+$/);
         // let hasValidCharacters = new RegExp(/^[a-zA-Z0-9_.-]*$/);
 
         const isValid = hasValidCharacters.test(item);
@@ -106,7 +106,10 @@ const TemplateForm = ({ user, errorHandler }) => {
   const mapItems = () => {
     if (createdItems?.length > 0) {
       return createdItems?.map((item) => (
-        <div key={Object.keys(item).toString()} className="col-12 col-sm-12 col-md-4 col-lg-3">
+        <div
+          key={Object.keys(item).toString()}
+          className="col-12 col-sm-12 col-md-4 col-lg-3"
+        >
           {Object.keys(item).toString()}
         </div>
       ));

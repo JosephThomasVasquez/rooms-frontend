@@ -113,7 +113,7 @@ const UsersList = ({ errorHandler }) => {
       </div>
 
       {accountUsers && (
-        <table className="bg-card table table-base shadow rounded">
+        <table className="bg-card table table-base fw-light shadow rounded">
           <thead>
             <tr>{tableHeaders()}</tr>
           </thead>

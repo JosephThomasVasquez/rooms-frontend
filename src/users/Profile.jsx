@@ -47,7 +47,7 @@ const Profile = ({ errorHandler }) => {
   const handleChange = ({ target }) => {};
 
   const handleSelectedRole = ({ target }) => {
-    console.log(target.options[target.selectedIndex].value);
+    // console.log(target.options[target.selectedIndex].value);
 
     setUserDetails({
       ...userDetails,
@@ -58,6 +58,7 @@ const Profile = ({ errorHandler }) => {
   const handleUpdate = (e) => {
     e.preventDefault();
   };
+
   return (
     <div className="container mt-3 mb-5 pb-5">
       <h2 className="text-4xl mt-3 mb-5">User Details</h2>
@@ -124,7 +125,7 @@ const Profile = ({ errorHandler }) => {
                 Role
               </label>
               <select
-                class="form-select"
+                className="form-select"
                 name="role"
                 id="role"
                 aria-label="Default select example"
@@ -157,7 +158,7 @@ const Profile = ({ errorHandler }) => {
                 Confirm Password
               </label>
               <input
-                type="confirm_password"
+                type="password"
                 className="form-control"
                 name="confirm_password"
                 id="confirm_password"

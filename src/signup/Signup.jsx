@@ -114,7 +114,7 @@ const Signup = ({ errorHandler }) => {
               Confirm Password
             </label>
             <input
-              type="confirm_password"
+              type="password"
               className="form-control"
               name="confirm_password"
               id="confirm_password"

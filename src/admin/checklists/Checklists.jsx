@@ -81,7 +81,9 @@ const Checklists = ({ errorHandler }) => {
         <tr
           key={`checklist-id-${id}`}
           scope="row"
-          className={percentage === "100" ? "row-max-complete" : ""}
+          className={
+            percentage === "100" ? "row-max-complete table-row-text" : ""
+          }
         >
           <td
             colSpan="1"
@@ -89,7 +91,7 @@ const Checklists = ({ errorHandler }) => {
           >
             {id}
           </td>
-          <td colSpan="1" className="align-middle">
+          <td colSpan="1" className="align-middle table-row-text">
             <Link
               to={`/checklists/edit/${urlDate}/${id}`}
               className="table-row"
@@ -97,21 +99,21 @@ const Checklists = ({ errorHandler }) => {
               {checklist_name}
             </Link>
           </td>
-          <td colSpan="1" className="align-middle">
+          <td colSpan="1" className="align-middle table-row-text">
             {completed_by}
           </td>
-          <td colSpan="1" className="align-middle">
+          <td colSpan="1" className="align-middle table-row-text">
             {location}
           </td>
-          <td colSpan="1" className="align-middle text-center">
+          <td colSpan="1" className="align-middle table-row-text text-center">
             {dayjs(date_completed).format("MMM DD, YYYY")}
           </td>
           <td
             colSpan="1"
             className={
               percentage === "100"
-                ? "align-middle text-center row-complete"
-                : "align-middle text-center"
+                ? "align-middle table-row-text text-center row-complete"
+                : "align-middle table-row-text text-center"
             }
           >
             {percentage}%
@@ -120,8 +122,8 @@ const Checklists = ({ errorHandler }) => {
             colSpan="1"
             className={
               percentage === "100"
-                ? "align-middle text-center row-complete"
-                : "align-middle text-center"
+                ? "align-middle table-row-text text-center row-complete"
+                : "align-middle table-row-text text-center"
             }
           >
             {`${
@@ -151,7 +153,7 @@ const Checklists = ({ errorHandler }) => {
       </div>
 
       <div className="row bg-card">
-        <table className="table-sm table-base shadow rounded">
+        <table className="table-sm fw-light table-base shadow rounded">
           <thead>
             <tr>{tableHeaders()}</tr>
           </thead>

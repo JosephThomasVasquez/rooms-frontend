@@ -231,6 +231,7 @@
 
 /* ADMIN */
 .table-headers {
+  font-size: 0.8rem;
   color: #00bf8c;
   border-bottom: 2px solid #00bf8c;
 }
