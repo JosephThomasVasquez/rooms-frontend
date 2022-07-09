@@ -23,7 +23,6 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
-  console.log(user);
 
   useEffect(() => {
     if (isUser) {
@@ -31,7 +30,6 @@ const NavMenu = () => {
     }
   }, [isUser]);
 
-  // console.log(openNav);
   const menuRef = useRef();
 
   const activeStyle = {

@@ -8,10 +8,16 @@ const TemplateCard = ({ template }) => {
   return (
     <div className="card shadow">
       <div className="card-body">
-        <div className="col fw-bold fs-5">{template?.template_name}</div>
+        <div className="row d-flex align-items-center">
+          <div className="col-10 fw-bold fs-5">{template?.template_name}</div>
+          <div className="col-1 fw-bold badge rounded-pill bg-badge p-2 me-3 ms-auto">
+            {template?.group === "any" ? "Sharing" : ""}
+          </div>
+        </div>
         <hr />
         <div className="col">{template.template_description}</div>
         <div className="col">{template.items.length} items</div>
+        <div className="col">{template.created_by}</div>
         <div className="col">{formattedDate}</div>
         <div className="col-12 d-flex mt-3">
           <Link

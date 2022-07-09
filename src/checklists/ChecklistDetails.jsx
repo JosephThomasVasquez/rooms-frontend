@@ -6,7 +6,7 @@ import { CheckIcon, XIcon, PencilAltIcon } from "@heroicons/react/solid";
 
 const ChecklistDetails = ({ errorHandler }) => {
   const { checklistId } = useParams();
-  console.log("params:", useParams());
+
   const [checklistDetails, setChecklistDetails] = useState(null);
 
   const urlDate = dayjs(checklistDetails?.date_completed).format("MM-DD-YYYY");
@@ -55,7 +55,7 @@ const ChecklistDetails = ({ errorHandler }) => {
 
   return (
     <div className="container mt-3 mb-5 pb-5">
-      <div className="row ps-3 card py-4 shadow mb-4">
+      <div className="row ps-3 bg-card py-4 shadow mb-4">
         <div className="d-flex align-items-center">
           <h2 className="col checklist-title">
             {checklistDetails?.checklist_name} <span className="fs-6">#</span>
@@ -99,7 +99,7 @@ const ChecklistDetails = ({ errorHandler }) => {
         </div>
       </div>
 
-      <div className="row mt-5 rounded shadow">
+      <div className="row mt-5 bg-card rounded shadow">
         <p className="d-flex align-items-center rounded shadow-sm">
           <CheckIcon className="check-icon icon-bg-round-passed" />
           <span className="fs-4 ms-2">
@@ -110,7 +110,7 @@ const ChecklistDetails = ({ errorHandler }) => {
         <ul className="row">{checklistDetails?.items && completedItems()}</ul>
       </div>
 
-      <div className="row mt-5 rounded shadow">
+      <div className="row mt-5 bg-card rounded shadow">
         <p className="d-flex align-items-center rounded shadow-sm">
           <XIcon className="x-icon icon-bg-round-missed" />
           <span className="fs-4 ms-2">
