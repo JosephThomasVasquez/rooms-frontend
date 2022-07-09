@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Logout from "../logout/Logout";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
 // ICON Imports
@@ -17,13 +17,17 @@ import {
 import "./navMenu.styles.css";
 
 const NavMenu = () => {
-  const [openNav, setOpenNav] = useState(false);
-  const [user, setUser] = useState(null);
-
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
   // console.log(isUser);
+
+  const location = useLocation();
+
+  console.log("currentLocation", location);
+
+  const [openNav, setOpenNav] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (isUser) {
@@ -34,7 +38,8 @@ const NavMenu = () => {
   const menuRef = useRef();
 
   const activeStyle = {
-    backgroundColor: "#0088cc",
+    backgroundColor: "rgba(73, 220, 181, 0.5)",
+    color: "black",
   };
 
   return (
@@ -111,9 +116,11 @@ const NavMenu = () => {
                     to="/checklist-templates/create"
                     className="dropdown-item"
                     aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
+                    href="/checklist-templates/create"
+                    style={
+                      location.pathname === "/checklist-templates/create"
+                        ? activeStyle
+                        : null
                     }
                   >
                     New Template
@@ -124,9 +131,11 @@ const NavMenu = () => {
                     to="/checklist-templates"
                     className="dropdown-item"
                     aria-current="page"
-                    href="#"
-                    style={({ isActive }) =>
-                      isActive ? activeStyle : undefined
+                    href="/checklist-templates"
+                    style={
+                      location.pathname === "/checklist-templates"
+                        ? activeStyle
+                        : null
                     }
                   >
                     Templates
@@ -154,8 +163,8 @@ const NavMenu = () => {
                       className="dropdown-item"
                       aria-current="page"
                       href="#"
-                      style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
+                      style={
+                        location.pathname === "/rooms" ? activeStyle : undefined
                       }
                     >
                       Rooms
@@ -167,8 +176,10 @@ const NavMenu = () => {
                       className="dropdown-item"
                       aria-current="page"
                       href="#"
-                      style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
+                      style={
+                        location.pathname === "/buildings"
+                          ? activeStyle
+                          : undefined
                       }
                     >
                       Buildings
@@ -181,7 +192,7 @@ const NavMenu = () => {
               </li>
             ) : null}
           </ul>
-          <form className="d-flex align-items-center me-5" role="search">
+          {/* <form className="d-flex align-items-center me-5" role="search">
             <input
               className="form-control me-2"
               type="search"
@@ -189,7 +200,7 @@ const NavMenu = () => {
               aria-label="Search"
             />
             <SearchIcon className="search-icon" type="submit" />
-          </form>
+          </form> */}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
               {user ? (
@@ -215,8 +226,10 @@ const NavMenu = () => {
                         className="dropdown-item"
                         aria-current="page"
                         href="#"
-                        style={({ isActive }) =>
-                          isActive ? activeStyle : undefined
+                        style={
+                          location.pathname === "/user/profile/user"
+                            ? activeStyle
+                            : undefined
                         }
                       >
                         Profile
@@ -230,8 +243,13 @@ const NavMenu = () => {
                             className="dropdown-item"
                             aria-current="page"
                             href="admin"
+                            style={
+                              location.pathname === "/admin/checklists"
+                                ? activeStyle
+                                : undefined
+                            }
                           >
-                            Admin
+                            Checklists
                           </NavLink>
                         </li>
                         <li>
@@ -243,6 +261,11 @@ const NavMenu = () => {
                             className="dropdown-item"
                             aria-current="page"
                             href="/admin/users"
+                            style={
+                              location.pathname === "/admin/users"
+                                ? activeStyle
+                                : undefined
+                            }
                           >
                             Users
                           </NavLink>
@@ -253,6 +276,11 @@ const NavMenu = () => {
                             className="dropdown-item"
                             aria-current="page"
                             href="/account/admin/user/create"
+                            style={
+                              location.pathname === "/account/admin/user/create"
+                                ? activeStyle
+                                : undefined
+                            }
                           >
                             Add User
                           </NavLink>
