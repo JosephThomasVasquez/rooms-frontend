@@ -56,7 +56,7 @@ const Signup = ({ errorHandler }) => {
         </div>
         <div className="row">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-            <label htmlFor="firstname" className="form-label">
+            <label htmlFor="firstname" className="form-label label-input">
               First Name
             </label>
             <input
@@ -68,7 +68,7 @@ const Signup = ({ errorHandler }) => {
             />
           </div>
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-            <label htmlFor="lastname" className="form-label">
+            <label htmlFor="lastname" className="form-label label-input">
               Last Name
             </label>
             <input
@@ -82,7 +82,7 @@ const Signup = ({ errorHandler }) => {
         </div>
         <div className="row">
           <div className="col">
-            <label htmlFor="email" className="form-label">
+            <label htmlFor="email" className="form-label label-input">
               Email
             </label>
             <input
@@ -97,7 +97,7 @@ const Signup = ({ errorHandler }) => {
 
         <div className="row">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-            <label htmlFor="password" className="form-label">
+            <label htmlFor="password" className="form-label label-input">
               Password
             </label>
             <input
@@ -110,7 +110,10 @@ const Signup = ({ errorHandler }) => {
           </div>
 
           <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-            <label htmlFor="confirm_password" className="form-label">
+            <label
+              htmlFor="confirm_password"
+              className="form-label label-input"
+            >
               Confirm Password
             </label>
             <input

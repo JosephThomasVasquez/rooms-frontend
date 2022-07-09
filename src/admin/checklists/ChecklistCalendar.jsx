@@ -124,7 +124,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
 
       <form className="row rounded d-flex align-items-end px-2">
         <div className="col-12 col-sm-12 col-md-3 col-lg-3 me-3">
-          <label htmlFor="startDate" className="form-label">
+          <label htmlFor="startDate" className="form-label label-input">
             Start Date
           </label>
           <input
@@ -138,7 +138,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
           />
         </div>
         <div className="col-12 col-sm-12 col-md-3 col-lg-3">
-          <label htmlFor="endDate" className="form-label">
+          <label htmlFor="endDate" className="form-label label-input">
             End Date
           </label>
           <input

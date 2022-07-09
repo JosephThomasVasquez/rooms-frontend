@@ -19,6 +19,7 @@ import BuildingsList from "../directory/buildings/BuildingsList";
 import ChecklistDetails from "../checklists/ChecklistDetails";
 import TemplateForm from "../checklistTemplates/TemplateForm";
 import ChecklistTemplates from "../checklistTemplates/ChecklistTemplates";
+import TemplateDetails from "../checklistTemplates/TemplateDetails";
 import EditChecklist from "../checklists/EditChecklist";
 import Profile from "../users/Profile";
 import Signup from "../signup/Signup";
@@ -138,6 +139,16 @@ const Routers = () => {
           element={
             <AuthRequired>
               <ChecklistTemplates errorHandler={errorHandler} />
+            </AuthRequired>
+          }
+        ></Route>
+
+        <Route
+          exact
+          path="checklist-templates/:templateId/edit"
+          element={
+            <AuthRequired>
+              <TemplateForm errorHandler={errorHandler} />
             </AuthRequired>
           }
         ></Route>

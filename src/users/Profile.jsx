@@ -80,7 +80,7 @@ const Profile = ({ errorHandler }) => {
           <div className="text-center mb-5">{formattedDate}</div>
           <div className="row my-3">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-              <label htmlFor="firstname" className="form-label">
+              <label htmlFor="firstname" className="form-label label-input">
                 First Name
               </label>
               <input
@@ -93,7 +93,7 @@ const Profile = ({ errorHandler }) => {
               />
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6">
-              <label htmlFor="lastname" className="form-label">
+              <label htmlFor="lastname" className="form-label label-input">
                 Last Name
               </label>
               <input
@@ -108,7 +108,7 @@ const Profile = ({ errorHandler }) => {
           </div>
           <div className="row my-3">
             <div className="col">
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="email" className="form-label label-input">
                 Email
               </label>
               <input
@@ -121,7 +121,7 @@ const Profile = ({ errorHandler }) => {
               />
             </div>
             <div className="col">
-              <label htmlFor="role" className="form-label">
+              <label htmlFor="role" className="form-label label-input">
                 Role
               </label>
               <select
@@ -140,7 +140,7 @@ const Profile = ({ errorHandler }) => {
 
           <div className="row my-3">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <label htmlFor="password" className="form-label">
+              <label htmlFor="password" className="form-label label-input">
                 Password
               </label>
               <input
@@ -154,7 +154,10 @@ const Profile = ({ errorHandler }) => {
             </div>
 
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <label htmlFor="confirm_password" className="form-label">
+              <label
+                htmlFor="confirm_password"
+                className="form-label label-input"
+              >
                 Confirm Password
               </label>
               <input

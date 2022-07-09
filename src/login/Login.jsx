@@ -55,8 +55,8 @@ const Login = ({ errorHandler }) => {
           />
         </div>
 
-        <div>
-          <label htmlFor="email" className="form-label">
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label label-input">
             Email
           </label>
           <input
@@ -68,7 +68,7 @@ const Login = ({ errorHandler }) => {
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="password" className="form-label">
+          <label htmlFor="password" className="form-label label-input">
             Password
           </label>
           <input

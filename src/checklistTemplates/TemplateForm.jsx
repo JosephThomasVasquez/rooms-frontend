@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { createTemplate } from "../utils/apiRequests";
+import { useParams } from "react-router-dom";
+import { readTemplate, createTemplate } from "../utils/apiRequests";
 import { isAuthenticated } from "../utils/cookieHandler";
 
 const TemplateForm = ({ user, errorHandler }) => {
+  const { templateId } = useParams();
+
   const initialFormData = {
     template_name: "",
     template_description: "",
     items: [],
     location: "",
-    created_by: user?.email,
-    group: "any",
+    created_by: !templateId ? isAuthenticated().email : "",
+    group: "private",
     account_id: isAuthenticated().account_id,
   };
 
   const [newTemplate, setNewTemplate] = useState({ ...initialFormData });
+  const [textItems, setTextItems] = useState("");
   const [createdItems, setCreatedItems] = useState(null);
 
   // fetches checklists from the backend
@@ -25,8 +29,6 @@ const TemplateForm = ({ user, errorHandler }) => {
         newTemplate,
         abortController.abort()
       );
-
-      console.log("response", response);
     } catch (error) {
       errorHandler(error);
     }
@@ -34,8 +36,49 @@ const TemplateForm = ({ user, errorHandler }) => {
     return () => abortController.abort();
   };
 
+  // Read template if templateId exists
   useEffect(() => {
-    console.log("createdItems", createdItems);
+    const abortController = new AbortController();
+
+    const getTemplate = async () => {
+      try {
+        const response = await readTemplate(templateId, abortController.signal);
+
+        if (response) {
+          setNewTemplate(response);
+          const itemsArray = [];
+          response.items.forEach((item) => {
+            itemsArray.push(Object.keys(item)[0]);
+          });
+
+          const stringItems = itemsArray.join(", ");
+          setTextItems(stringItems);
+        } else {
+          setNewTemplate({
+            ...initialFormData,
+            created_by: isAuthenticated().email,
+          });
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+    };
+
+    if (templateId) {
+      getTemplate();
+    } else {
+      setNewTemplate({
+        ...initialFormData,
+        created_by: isAuthenticated().email,
+      });
+    }
+  }, [templateId]);
+
+  useEffect(() => {
+    handleChecklistItem({ target: { value: textItems } });
+  }, [textItems]);
+
+  useEffect(() => {
     setNewTemplate({ ...newTemplate, items: createdItems });
 
     console.log("newTemplate", newTemplate);
@@ -52,11 +95,9 @@ const TemplateForm = ({ user, errorHandler }) => {
         // let hasValidCharacters = new RegExp(/^[a-zA-Z0-9_.-]*$/);
 
         const isValid = hasValidCharacters.test(item);
-        console.log("isValid", isValid);
 
         if (isValid && isValid !== ",") {
           itemsArray.push({ [item]: false });
-          // itemsArray.push(item);
         } else {
           // itemsArray.push({ name: "Invalid Characters", checked: false });
           itemsArray.push("Invalid Characters");
@@ -64,7 +105,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       });
 
       setCreatedItems(itemsArray);
-    } else if (items[0].name === "") {
+    } else {
       setCreatedItems(null);
     }
   };
@@ -86,8 +127,8 @@ const TemplateForm = ({ user, errorHandler }) => {
   };
 
   const handleChecklistItem = ({ target }) => {
+    setTextItems(target.value);
     const items = target.value.split(",");
-    // console.log("items", items);
 
     const filterItems = items.filter((item) => {
       const itemTrimmed = item.trim();
@@ -108,7 +149,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       return createdItems?.map((item) => (
         <div
           key={Object.keys(item).toString()}
-          className="col-12 col-sm-12 col-md-4 col-lg-3"
+          className="col-12 col-sm-12 col-md-4 col-lg-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
         >
           {Object.keys(item).toString()}
         </div>
@@ -123,11 +164,16 @@ const TemplateForm = ({ user, errorHandler }) => {
       <div className="row d-flex align-items-center mb-3">
         <h2>New Template</h2>
       </div>
+      <div className="row">
+        <div className="col-6 template-edit-title">
+          Created by: {newTemplate.created_by}
+        </div>
+      </div>
       <div className="row py-3 mb-5 bg-card">
         <form>
           <div className="row">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <label htmlFor="template_name" className="form-label">
+              <label htmlFor="template_name" className="form-label label-input">
                 Template Name
               </label>
               <input
@@ -141,7 +187,7 @@ const TemplateForm = ({ user, errorHandler }) => {
               />
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <label htmlFor="location" className="form-label">
+              <label htmlFor="location" className="form-label label-input">
                 Location
               </label>
               <input
@@ -156,7 +202,10 @@ const TemplateForm = ({ user, errorHandler }) => {
             </div>
           </div>
           <div className="col-12 mb-3">
-            <label htmlFor="template_description" className="form-label">
+            <label
+              htmlFor="template_description"
+              className="form-label label-input"
+            >
               Template Description
             </label>
             <input
@@ -171,7 +220,10 @@ const TemplateForm = ({ user, errorHandler }) => {
           </div>
 
           <div className="col-12">
-            <label htmlFor="floatingTextarea" className="ms-2">
+            <label
+              htmlFor="floatingTextarea"
+              className="form-label label-input"
+            >
               Insert Items
             </label>
             <textarea
@@ -180,6 +232,7 @@ const TemplateForm = ({ user, errorHandler }) => {
               id="floatingTextarea"
               rows="4"
               onChange={handleChecklistItem}
+              value={textItems}
             ></textarea>
           </div>
           <div className="row d-flex align-items-center mt-3">

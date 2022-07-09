@@ -101,7 +101,7 @@ const ChecklistForm = ({ errorHandler }) => {
       </div>
 
       <div className="row py-3 mb-5 bg-card">
-        <label htmlFor="template-selector" className="mb-1">
+        <label htmlFor="template-selector" className="mb-1 label-input">
           Choose Template:
         </label>
         <div className="row d-flex align-items-center">
@@ -125,7 +125,7 @@ const ChecklistForm = ({ errorHandler }) => {
         </div>
       </div>
 
-      <div className="row fs-4 fw-bold ms-1">
+      <div className="row fs-4 fw-bold ms-1 label-input">
         Items {`(${newChecklist.items.length})`}
       </div>
       {/* <div className="row">Location: {template}</div> */}
