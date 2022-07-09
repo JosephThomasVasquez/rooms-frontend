@@ -29,14 +29,13 @@ const ChecklistTemplates = ({ errorHandler }) => {
     };
 
     getChecklistTemplates();
-    console.log("USER USER", user);
   };
 
   useEffect(loadTemplates, [setTemplates]);
 
   const mapTemplates = templates?.map((template) => (
     <div key={template.id} className="col-12 my-2">
-      <TemplateCard template={template} />
+      <TemplateCard user={user} template={template} />
     </div>
   ));
 

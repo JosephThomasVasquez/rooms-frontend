@@ -180,7 +180,6 @@ const Signup = ({ admin, errorHandler }) => {
           </button>
         </div>
       </form>
-      <div>{JSON.stringify(user)}</div>
     </div>
   );
 };
