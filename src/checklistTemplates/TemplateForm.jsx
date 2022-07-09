@@ -33,7 +33,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       if (templateId) {
         const response = await updateTemplate(
           newTemplate,
-          abortController.abort()
+          abortController.signal
         );
 
         setNewTemplate(response);
@@ -43,7 +43,7 @@ const TemplateForm = ({ user, errorHandler }) => {
 
       const response = await createTemplate(
         newTemplate,
-        abortController.abort()
+        abortController.signal
       );
 
       setNewTemplate(response);
@@ -182,7 +182,7 @@ const TemplateForm = ({ user, errorHandler }) => {
   return (
     <div className="container mt-3 mb-5 pb-5">
       <div className="row d-flex align-items-center mb-3">
-        <h2>New Template</h2>
+        <h2>{templateId ? "Edit Template" : "Create Template"}</h2>
       </div>
       <div className="row">
         <div className="col-6 template-edit-title">

@@ -209,6 +209,14 @@ const Routers = () => {
         ></Route>
 
         <Route
+          exact
+          path="/account/admin/user/create"
+          element={
+            <Signup admin={isAuthenticated()} errorHandler={errorHandler} />
+          }
+        />
+
+        <Route
           path="*"
           element={
             <main style={{ padding: "1rem" }}>

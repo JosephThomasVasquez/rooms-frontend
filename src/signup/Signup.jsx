@@ -6,17 +6,36 @@ import { authenticateUser } from "../utils/cookieHandler";
 import signupImage from "./signup_character.png";
 import "./signup.styles.css";
 
-const Signup = ({ errorHandler }) => {
-  const [user, setUser] = useState("");
+const Signup = ({ admin, errorHandler }) => {
   const auth = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
+  const initialFormData = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    role: "user",
+    password: "",
+    confirm_password: "",
+    account_id: admin ? admin.account_id : 1,
+  };
+
+  const [user, setUser] = useState({ ...initialFormData });
+
   const redirectPath = location.state?.path || "/";
   console.log(location);
 
+  console.log("admin", admin && admin);
+
   const handleChange = ({ target }) => {
     setUser({ ...user, [target.name]: target.value });
+
+    console.log(user);
+  };
+
+  const handleSelectedRole = ({ target }) => {
+    setUser({ ...user, role: target.options[target.selectedIndex].value });
   };
 
   const handleSignup = (e) => {
@@ -28,12 +47,14 @@ const Signup = ({ errorHandler }) => {
       try {
         const response = await signupUser(user, abortController.signal);
 
-        // console.log("Logged in user:", response);
-
-        authenticateUser(response, () => {
-          auth.loginUser(response);
-          navigate(redirectPath, { replace: true });
-        });
+        if (!admin) {
+          authenticateUser(response, () => {
+            auth.loginUser(response);
+            navigate(redirectPath, { replace: true });
+          });
+        } else {
+          navigate("/admin/users");
+        }
       } catch (error) {
         errorHandler(error);
       }
@@ -44,7 +65,9 @@ const Signup = ({ errorHandler }) => {
 
   return (
     <div className="container mt-3 mb-5 pb-5">
-      <h2 className="text-4xl">Create Account</h2>
+      <h2 className="text-4xl">
+        {admin?.account_name ? "Add User" : "Create Account"}
+      </h2>
 
       <form onSubmit={handleSignup} className="p-5 shadow rounded bg-card">
         <div className="row">
@@ -54,7 +77,14 @@ const Signup = ({ errorHandler }) => {
             className="signup-img mx-auto"
           />
         </div>
-        <div className="row">
+        {admin ? (
+          <div className="row">
+            <div className="col fw-bold mb-3">
+              Account: {admin?.account_name}
+            </div>
+          </div>
+        ) : null}
+        <div className="row mb-3">
           <div className="col-12 col-sm-12 col-md-6 col-lg-6">
             <label htmlFor="firstname" className="form-label label-input">
               First Name
@@ -80,7 +110,7 @@ const Signup = ({ errorHandler }) => {
             />
           </div>
         </div>
-        <div className="row">
+        <div className="row mb-3">
           <div className="col">
             <label htmlFor="email" className="form-label label-input">
               Email
@@ -93,6 +123,24 @@ const Signup = ({ errorHandler }) => {
               onChange={handleChange}
             />
           </div>
+          {admin ? (
+            <div className="col">
+              <label htmlFor="role" className="form-label label-input">
+                Role
+              </label>
+              <select
+                className="form-select"
+                name="role"
+                id="role"
+                aria-label="Default select example"
+                onChange={handleSelectedRole}
+                value={user.role}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          ) : null}
         </div>
 
         <div className="row">

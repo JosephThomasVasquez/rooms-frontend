@@ -5,14 +5,31 @@ import TemplateCard from "./TemplateCard";
 
 const ChecklistTemplates = ({ errorHandler }) => {
   const [templates, setTemplates] = useState(null);
+  const [user, setUser] = useState(null);
 
   // fetches Templates from the backend
   const loadTemplates = () => {
     const abortController = new AbortController();
-    getTemplates(isAuthenticated(), abortController.signal)
-      .then(setTemplates)
-      .catch((error) => errorHandler(error));
-    return () => abortController.abort();
+
+    const getChecklistTemplates = async () => {
+      setUser(isAuthenticated());
+      try {
+        const response = await getTemplates(
+          isAuthenticated(),
+          abortController.signal
+        );
+
+        if (response) {
+          setTemplates(response);
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+      return () => abortController.abort();
+    };
+
+    getChecklistTemplates();
+    console.log("USER USER", user);
   };
 
   useEffect(loadTemplates, [setTemplates]);

@@ -19,7 +19,10 @@ const TemplateCard = ({ template }) => {
         <div className="col">{template.items.length} items</div>
         <div className="col">{template.created_by}</div>
         <div className="col">{formattedDate}</div>
+
         <div className="col-12 d-flex mt-3">
+
+          {}
           <Link
             to={`/checklist-templates/${template.id}/edit`}
             className="template-edit-btn btn-card-fixed py-1"

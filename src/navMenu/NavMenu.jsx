@@ -23,6 +23,7 @@ const NavMenu = () => {
   const auth = useAuth();
 
   const isUser = auth.getLoggedInUser();
+  // console.log(isUser);
 
   useEffect(() => {
     if (isUser) {
@@ -234,6 +235,9 @@ const NavMenu = () => {
                           </NavLink>
                         </li>
                         <li>
+                          <hr className="dropdown-divider" />
+                        </li>
+                        <li>
                           <NavLink
                             to={`/admin/users`}
                             className="dropdown-item"
@@ -243,8 +247,21 @@ const NavMenu = () => {
                             Users
                           </NavLink>
                         </li>
+                        <li>
+                          <NavLink
+                            to={`/account/admin/user/create`}
+                            className="dropdown-item"
+                            aria-current="page"
+                            href="/account/admin/user/create"
+                          >
+                            Add User
+                          </NavLink>
+                        </li>
                       </>
                     ) : null}
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
                     <li>
                       <Logout />
                     </li>
