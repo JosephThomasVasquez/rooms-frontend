@@ -277,3 +277,19 @@ export const readTemplate = async (templateId, signal) => {
 
   return await fetchJson(url, options, {});
 };
+
+export const updateTemplate = async (template, signal) => {
+  const url = new URL(
+    `${REACT_APP_API_BASE_URL}/checklist-templates/update/${template.id}`
+  );
+  // console.log(url);
+
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify({ data: template }),
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};

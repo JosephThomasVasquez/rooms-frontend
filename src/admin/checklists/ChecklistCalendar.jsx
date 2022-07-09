@@ -2,6 +2,7 @@ import React, { useState, useEffect, createRef, useRef } from "react";
 import { CSVLink, CSVDownload } from "react-csv";
 import { getChecklists, generateChecklistCSV } from "../../utils/apiRequests";
 import { isAuthenticated } from "../../utils/cookieHandler";
+import dayjs from "dayjs";
 import {
   DocumentDownloadIcon,
   RefreshIcon,
@@ -13,9 +14,15 @@ const ChecklistCalendar = ({ errorHandler }) => {
   // For the csv download handler
   const csvLink = useRef();
 
+  const firstDay = dayjs().date(1).format("YYYY-MM-DD");
+  const lastDay = dayjs()
+    .date(1)
+    .add(dayjs().daysInMonth(), "day")
+    .format("YYYY-MM-DD");
+
   const initialFormData = {
-    startDate: "",
-    endDate: "",
+    startDate: firstDay,
+    endDate: lastDay,
   };
 
   const [dateRanges, setDateRanges] = useState({ ...initialFormData });
@@ -52,11 +59,14 @@ const ChecklistCalendar = ({ errorHandler }) => {
   ];
 
   const csvProperties = {
-    filename: "checklists.csv",
+    filename: "",
     headers: fields,
     data: csvFile,
     target: "_blank",
   };
+
+  const fileName = `${dateRanges.startDate}-to-${dateRanges.endDate}-checklists.csv`;
+  console.log(fileName);
 
   // const generatedCSVData = () => {
   //   console.log("GENERATING DATA DATA DATA DATA DATA");
@@ -68,6 +78,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
 
   const handleChange = ({ target }) => {
     setDateRanges({ ...dateRanges, [target.name]: target.value });
+    console.log(dateRanges);
   };
 
   // Get checklists fetch
@@ -169,7 +180,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
 
                   <CSVLink
                     data={csvFile}
-                    filename={"checklists.csv"}
+                    filename={fileName}
                     headers={fields}
                     ref={csvLink}
                     target="_blank"

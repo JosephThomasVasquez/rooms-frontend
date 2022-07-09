@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { readTemplate, createTemplate } from "../utils/apiRequests";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  readTemplate,
+  createTemplate,
+  updateTemplate,
+} from "../utils/apiRequests";
 import { isAuthenticated } from "../utils/cookieHandler";
 
 const TemplateForm = ({ user, errorHandler }) => {
   const { templateId } = useParams();
+  const navigate = useNavigate();
 
   const initialFormData = {
     template_name: "",
@@ -25,10 +30,25 @@ const TemplateForm = ({ user, errorHandler }) => {
     const abortController = new AbortController();
 
     try {
+      if (templateId) {
+        const response = await updateTemplate(
+          newTemplate,
+          abortController.abort()
+        );
+
+        setNewTemplate(response);
+        errorHandler("");
+        navigate("/checklist-templates");
+      }
+
       const response = await createTemplate(
         newTemplate,
         abortController.abort()
       );
+
+      setNewTemplate(response);
+      errorHandler("");
+      navigate("/checklist-templates");
     } catch (error) {
       errorHandler(error);
     }
