@@ -4,6 +4,7 @@ import { useAuth } from "../auth/useAuth";
 import { signupUser } from "../utils/apiRequests";
 import { authenticateUser } from "../utils/cookieHandler";
 import signupImage from "./signup_character.png";
+import addUserImage from "./addUser_character.png";
 import "./signup.styles.css";
 
 const Signup = ({ admin, errorHandler }) => {
@@ -71,11 +72,19 @@ const Signup = ({ admin, errorHandler }) => {
 
       <form onSubmit={handleSignup} className="p-5 shadow rounded bg-card">
         <div className="row">
-          <img
-            src={signupImage}
-            alt="signup image of a person"
-            className="signup-img mx-auto"
-          />
+          {admin ? (
+            <img
+              src={addUserImage}
+              alt="signup image of a person"
+              className="adduser-img mx-auto"
+            />
+          ) : (
+            <img
+              src={signupImage}
+              alt="signup image of a person"
+              className="signup-img mx-auto"
+            />
+          )}
         </div>
         {admin ? (
           <div className="row">

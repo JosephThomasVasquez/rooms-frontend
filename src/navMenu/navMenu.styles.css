@@ -1,3 +1,8 @@
+.dropdown-item:active {
+  color: black;
+  background-color: rgba(73, 220, 181, 0.5);
+}
+
 .nav-brand {
   color: white;
 }
