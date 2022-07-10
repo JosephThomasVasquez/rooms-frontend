@@ -154,6 +154,7 @@ const Signup = ({ admin, errorHandler }) => {
               name="password"
               id="password"
               onChange={handleChange}
+              autoComplete="new-password"
             />
           </div>
 
@@ -170,6 +171,7 @@ const Signup = ({ admin, errorHandler }) => {
               name="confirm_password"
               id="confirm_password"
               onChange={handleChange}
+              autoComplete="new-password"
             />
           </div>
         </div>
