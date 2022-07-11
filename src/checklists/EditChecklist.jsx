@@ -81,9 +81,6 @@ const EditChecklist = ({ errorHandler }) => {
 
   // Handle clicked items
   const handleClickedItem = (item) => {
-    // Validate if item exists
-    // const isExistingItem = checklistDetails?.items?.find((i) => i === item);
-
     // Find index of checked item
     const findChecked = checkedItems?.findIndex((i) => i === item);
 
@@ -176,24 +173,36 @@ const EditChecklist = ({ errorHandler }) => {
           <span className="percent-completed">{checklistDetails?.id}</span>
         </h2>
 
+        <div className="row">
+          <hr />
+        </div>
+
         <div>
-          <div className="row">
-            <div className="col-2 fst-italic">Location: </div>
-            <div className="col">{checklistDetails?.location}</div>
+          <div className="row mb-3">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
+              Location:{" "}
+            </div>
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2">
+              {checklistDetails?.location}
+            </div>
           </div>
 
-          <div className="row">
-            <div className="col-2 fst-italic">
+          <div className="row mb-3">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
               {checklistDetails?.is_completed
                 ? "Completed by:"
                 : "Assigned to:"}
             </div>
-            <div className="col">{checklistDetails?.completed_by}</div>
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2">
+              {checklistDetails?.completed_by}
+            </div>
           </div>
 
-          <div className="row">
-            <div className="col-2 fst-italic">Created:</div>
-            <div className="col-2 fst-italic">
+          <div className="row mb-3">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
+              Created:
+            </div>
+            <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic">
               {checklistDetails?.date_completed &&
                 dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
             </div>
