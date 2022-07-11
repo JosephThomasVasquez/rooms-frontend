@@ -23,6 +23,18 @@ code {
     monospace;
 }
 
+.search-icon {
+  max-width: 24px;
+  max-height: 24px;
+  color: var(--primary-color);
+  background: white;
+}
+
+.search-btn {
+  position: relative;
+  left: -45px;
+}
+
 .bg-card {
   background: white;
   border-radius: 8px;

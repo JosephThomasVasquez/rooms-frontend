@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/cookieHandler";
 import { getChecklists } from "../utils/apiRequests";
+import SearchForm from "../search/SearchForm";
 import ChecklistCard from "./ChecklistCard";
 import "./checklist.styles.css";
 
@@ -58,8 +59,8 @@ const ChecklistList = ({ errorHandler }) => {
         <h2>Checklists</h2>
       </div>
 
-      <div className="d-flex align-items-center my-3">
-        <div className="form-check me-4">
+      <div className="row d-flex align-items-center my-3">
+        <div className="col-12 col-sm-4 col-md-2 col-lg-2 form-check me-4 mb-3">
           <input
             className="form-check-input custom-radio"
             type="radio"
@@ -72,7 +73,7 @@ const ChecklistList = ({ errorHandler }) => {
             My Checklists
           </label>
         </div>
-        <div className="form-check">
+        <div className="col-12 col-sm-1 col-md-1 col-lg-1 form-check mb-3">
           <input
             className="form-check-input custom-radio"
             type="radio"
@@ -85,6 +86,9 @@ const ChecklistList = ({ errorHandler }) => {
           <label className="form-check-label" htmlFor="inlineRadio2">
             All
           </label>
+        </div>
+        <div className="col-12 col-sm-12 col-md-8 col-lg-6 mb-3">
+          <SearchForm />
         </div>
       </div>
 

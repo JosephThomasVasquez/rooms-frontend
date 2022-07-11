@@ -16,17 +16,14 @@ import {
 // CSS
 import "./navMenu.styles.css";
 
-const NavMenu = () => {
+const NavMenu = ({ openNav, setOpenNav }) => {
   const auth = useAuth();
+  const location = useLocation();
+  const menuRef = useRef();
 
   const isUser = auth.getLoggedInUser();
   // console.log(isUser);
 
-  const location = useLocation();
-
-  // console.log("currentLocation", location);
-
-  const [openNav, setOpenNav] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -34,8 +31,6 @@ const NavMenu = () => {
       setUser(isUser);
     }
   }, [isUser]);
-
-  const menuRef = useRef();
 
   const activeStyle = {
     backgroundColor: "rgba(73, 220, 181, 0.5)",
@@ -192,15 +187,7 @@ const NavMenu = () => {
               </li>
             ) : null}
           </ul>
-          {/* <form className="d-flex align-items-center me-5" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <SearchIcon className="search-icon" type="submit" />
-          </form> */}
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
               {user ? (
@@ -322,6 +309,7 @@ const NavMenu = () => {
               )}
             </ul>
           </div>
+          {openNav}
         </div>
       </div>
     </nav>

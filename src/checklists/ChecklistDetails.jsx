@@ -29,8 +29,11 @@ const ChecklistDetails = ({ errorHandler }) => {
       return Object.values(item).toString() == "true";
     });
 
-    const displayItems = filterCompleted.map((item) => (
-      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+    const displayItems = filterCompleted.map((item, index) => (
+      <div
+        key={`item-id-${Object.keys(item)}`}
+        className="col-12 col-sm-6 col-md-6 col-lg-4"
+      >
         <li className="list-unstyled">{Object.keys(item)}</li>
       </div>
     ));
@@ -44,8 +47,11 @@ const ChecklistDetails = ({ errorHandler }) => {
       return Object.values(item).toString() == "false";
     });
 
-    const displayItems = filterCompleted.map((item) => (
-      <div key={`item-id-${Object.keys(item)}`} className="col-3">
+    const displayItems = filterCompleted.map((item, index) => (
+      <div
+        key={`item-id-${Object.keys(item)}`}
+        className="col-12 col-sm-6 col-md-6 col-lg-4"
+      >
         <li className="list-unstyled">{Object.keys(item)}</li>
       </div>
     ));
