@@ -1,6 +1,17 @@
+import { authenticateUser, getCookie } from "./cookieHandler";
 //  Set Headers
 const headers = new Headers();
 headers.append("Content-Type", "application/json");
+
+const setHeaders = () => {
+  const headers = new Headers();
+  const cookie = getCookie("token");
+
+  headers.append("Content-Type", "application/json");
+  headers.append("Authorization", `Bearer ${cookie}`);
+
+  return headers;
+};
 
 const REACT_APP_API_BASE_URL = "http://localhost:5050/api";
 
@@ -49,6 +60,8 @@ export const loginUser = async (user, signal) => {
     signal,
   };
 
+  console.log("options", options);
+
   return await fetchJson(url, options, {});
 };
 
@@ -72,7 +85,7 @@ export const getAccountUsers = async (user, signal) => {
 
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: user }),
     signal,
   };
@@ -86,7 +99,7 @@ export const getUser = async (user, signal) => {
 
   const options = {
     method: "GET",
-    headers,
+    headers: setHeaders(),
     signal,
   };
 
@@ -107,7 +120,7 @@ export const getRooms = async (params, signal) => {
     );
   }
 
-  return await fetchJson(url, { headers, signal }, []);
+  return await fetchJson(url, { headers: setHeaders(), signal }, []);
 };
 
 //_____________________________________________________________________________________________________
@@ -124,7 +137,7 @@ export const getBuildings = async (params, signal) => {
     );
   }
 
-  return await fetchJson(url, { headers, signal }, []);
+  return await fetchJson(url, { headers: setHeaders(), signal }, []);
 };
 
 //_____________________________________________________________________________________________________
@@ -137,7 +150,7 @@ export const getChecklists = async (params, signal) => {
 
   const options = {
     method: "GET",
-    headers,
+    headers: setHeaders(),
     signal,
   };
 
@@ -165,7 +178,7 @@ export const readChecklist = async (params, signal) => {
 
   const options = {
     method: "GET",
-    headers,
+    headers: setHeaders(),
     signal,
   };
 
@@ -178,7 +191,7 @@ export const createChecklist = async (newChecklist, signal) => {
 
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: newChecklist }),
     signal,
   };
@@ -192,7 +205,7 @@ export const updateChecklist = async (checklist, signal) => {
 
   const options = {
     method: "PUT",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: checklist }),
     signal,
   };
@@ -206,7 +219,7 @@ export const updateChecklistComplete = async (checklist, signal) => {
 
   const options = {
     method: "PUT",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: checklist }),
     signal,
   };
@@ -222,7 +235,7 @@ export const generateChecklistCSV = async (params, signal) => {
 
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: params }),
     signal,
   };
@@ -241,7 +254,7 @@ export const getTemplates = async (user, signal) => {
   );
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: user }),
     signal,
   };
@@ -255,7 +268,7 @@ export const createTemplate = async (template, signal) => {
 
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: template }),
     signal,
   };
@@ -271,7 +284,7 @@ export const readTemplate = async (templateId, signal) => {
 
   const options = {
     method: "GET",
-    headers,
+    headers: setHeaders(),
     signal,
   };
 
@@ -286,7 +299,7 @@ export const updateTemplate = async (template, signal) => {
 
   const options = {
     method: "POST",
-    headers,
+    headers: setHeaders(),
     body: JSON.stringify({ data: template }),
     signal,
   };
