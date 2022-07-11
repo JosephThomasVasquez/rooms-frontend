@@ -105,6 +105,10 @@ const ChecklistCard = ({ checklist }) => {
                 missedItems().length > 0 ? () => handleShowItems(true) : null
               }
               onMouseOut={() => handleShowItems(false)}
+              onTouchStart={
+                missedItems().length > 0 ? () => handleShowItems(true) : null
+              }
+              onTouchEnd={() => handleShowItems(false)}
             >
               <XIcon className="x-icon" />
               {checklist.items ? missedItems().length : "none"}

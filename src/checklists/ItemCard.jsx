@@ -23,7 +23,7 @@ const ItemCard = ({ item, index, isCompleted, handleClickedItem }) => {
         {checked == "true" ? (
           <CheckIcon className="check-icon icon-bg-round-passed me-3" />
         ) : null}
-        {`${index}. ${Object.keys(item)}`}
+        {`${index + 1}. ${Object.keys(item)}`}
       </div>
     </li>
   );
