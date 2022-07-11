@@ -8,7 +8,6 @@ const AuthRequired = ({ children }) => {
   const location = useLocation();
   const auth = useAuth();
   const isUser = isAuthenticated();
-  // console.log("isUser:", isUser);
 
   if (!isUser) {
     console.log("User not authenticated", auth.user);

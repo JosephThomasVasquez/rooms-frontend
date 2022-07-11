@@ -7,7 +7,7 @@ import "./checklist.styles.css";
 
 const ChecklistList = ({ errorHandler }) => {
   const location = useLocation();
-  // console.log("location", location);
+
   const navigate = useNavigate();
 
   const [checklists, setChecklists] = useState(null);
@@ -37,8 +37,6 @@ const ChecklistList = ({ errorHandler }) => {
   ));
 
   const handleChecklistFilter = ({ target }) => {
-    // console.log("target:", target.value);
-    // console.log(isAuthenticated().email);
     if (target.value === "user") {
       setQueryTerm({ ...queryTerm, users: isAuthenticated().email });
       navigate(
@@ -52,8 +50,6 @@ const ChecklistList = ({ errorHandler }) => {
         `/checklists?account=${queryTerm.account}&group=${queryTerm.users}`
       );
     }
-
-    console.log(queryTerm);
   };
 
   return (

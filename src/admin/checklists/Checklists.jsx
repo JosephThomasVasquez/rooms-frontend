@@ -9,7 +9,6 @@ import ChecklistCalendar from "./ChecklistCalendar";
 
 const Checklists = ({ errorHandler }) => {
   const location = useLocation();
-  // console.log("location", location);
 
   const [checklists, setChecklists] = useState(null);
 
@@ -65,7 +64,7 @@ const Checklists = ({ errorHandler }) => {
         is_completed,
         date_completed,
       } = list;
-      //   console.log(room);
+
       const urlDate = dayjs(date_completed).format("MM-DD-YYYY");
 
       const itemsCompleted = list.items.reduce((total, item) => {

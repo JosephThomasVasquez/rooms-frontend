@@ -32,7 +32,6 @@ const Profile = ({ errorHandler }) => {
 
         if (response) {
           setUserDetails(response);
-          console.log("userDetails:", response);
         }
       } catch (error) {
         errorHandler(error);
@@ -47,8 +46,6 @@ const Profile = ({ errorHandler }) => {
   const handleChange = ({ target }) => {};
 
   const handleSelectedRole = ({ target }) => {
-    // console.log(target.options[target.selectedIndex].value);
-
     setUserDetails({
       ...userDetails,
       role: target.options[target.selectedIndex].value,

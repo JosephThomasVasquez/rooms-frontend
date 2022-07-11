@@ -66,19 +66,9 @@ const ChecklistCalendar = ({ errorHandler }) => {
   };
 
   const fileName = `${dateRanges.startDate}-to-${dateRanges.endDate}-checklists.csv`;
-  console.log(fileName);
-
-  // const generatedCSVData = () => {
-  //   console.log("GENERATING DATA DATA DATA DATA DATA");
-  //   // csvProperties.data = csvFile;
-  //   // console.log("csv data:", csvProperties.data);
-  // };
-
-  // useEffect(generatedCSVData, [fields]);
 
   const handleChange = ({ target }) => {
     setDateRanges({ ...dateRanges, [target.name]: target.value });
-    console.log(dateRanges);
   };
 
   // Get checklists fetch
@@ -92,22 +82,15 @@ const ChecklistCalendar = ({ errorHandler }) => {
 
     const abortController = new AbortController();
 
-    // console.log(dateRanges);
-    // console.log(checklists);
-
     const params = {
       ...isAuthenticated(),
       startDate: dateRanges.startDate,
       endDate: dateRanges.endDate,
     };
 
-    // console.log("params", params);
-
     const response = await generateChecklistCSV(params)
       .then((data) => data)
       .catch((error) => errorHandler(error));
-
-    console.log("response", response);
 
     if (response) {
       setCSVFile(response);
@@ -119,11 +102,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
     return () => abortController.abort();
   };
 
-  // console.log("csvFile", csvFile);
-
-  const handleDownload = () => {
-    console.log();
-  };
+  const handleDownload = () => {};
 
   return (
     <div className="row calendar-form mx-auto">

@@ -25,12 +25,9 @@ const Login = ({ errorHandler }) => {
       try {
         const response = await loginUser(user, abortController.signal);
 
-        // console.log("Logged in user:", response);
-
         authenticateUser(response, () => {
           const redirectPath =
             location.state?.path || `/dashboard/user?email=${response.email}`;
-          // console.log("location", location);
 
           auth.loginUser(response);
           navigate(redirectPath, { replace: true });

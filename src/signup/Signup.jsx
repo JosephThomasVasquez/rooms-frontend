@@ -25,14 +25,9 @@ const Signup = ({ admin, errorHandler }) => {
   const [user, setUser] = useState({ ...initialFormData });
 
   const redirectPath = location.state?.path || "/";
-  console.log(location);
-
-  console.log("admin", admin && admin);
 
   const handleChange = ({ target }) => {
     setUser({ ...user, [target.name]: target.value });
-
-    console.log(user);
   };
 
   const handleSelectedRole = ({ target }) => {

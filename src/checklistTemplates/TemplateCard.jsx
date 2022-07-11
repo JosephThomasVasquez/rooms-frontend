@@ -5,7 +5,7 @@ import "./template.styles.css";
 
 const TemplateCard = ({ user, template }) => {
   const formattedDate = dayjs(template.created_at).format("MMM DD, YYYY");
-  console.log("USER USER", user);
+
   return (
     <div className="card shadow">
       <div className="card-body">

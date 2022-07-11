@@ -13,7 +13,9 @@ const setHeaders = () => {
   return headers;
 };
 
-const REACT_APP_API_BASE_URL = "http://localhost:5050/api";
+const devAPI = "http://localhost:5050/api";
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
 
 // Handle fetch request with abort signaling
 async function fetchJson(url, options, onCancel) {
@@ -45,7 +47,7 @@ async function fetchJson(url, options, onCancel) {
 //_____________________________________________________________________________________________________
 
 export const loginUser = async (user, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/users/login`);
+  const url = new URL(`${API_BASE_URL}/users/login`);
   // console.log(url);
   // headers.append(
   //   "Authorization",
@@ -60,13 +62,11 @@ export const loginUser = async (user, signal) => {
     signal,
   };
 
-  console.log("options", options);
-
   return await fetchJson(url, options, {});
 };
 
 export const signupUser = async (user, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/users`);
+  const url = new URL(`${API_BASE_URL}/users`);
 
   const options = {
     method: "POST",
@@ -80,7 +80,7 @@ export const signupUser = async (user, signal) => {
 };
 
 export const getAccountUsers = async (user, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/account/admin/users`);
+  const url = new URL(`${API_BASE_URL}/account/admin/users`);
   // console.log("url", url);
 
   const options = {
@@ -94,7 +94,7 @@ export const getAccountUsers = async (user, signal) => {
 };
 
 export const getUser = async (user, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/users/user${user}`);
+  const url = new URL(`${API_BASE_URL}/users/user${user}`);
   // console.log("url", url);
 
   const options = {
@@ -112,7 +112,7 @@ export const getUser = async (user, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getRooms = async (params, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/rooms`);
+  const url = new URL(`${API_BASE_URL}/rooms`);
   if (params) {
     // Append params to the url
     Object.entries(params).forEach(([key, value]) =>
@@ -129,7 +129,7 @@ export const getRooms = async (params, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getBuildings = async (params, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/buildings`);
+  const url = new URL(`${API_BASE_URL}/buildings`);
   if (params) {
     // Append params to the url
     Object.entries(params).forEach(([key, value]) =>
@@ -146,8 +146,6 @@ export const getBuildings = async (params, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getChecklists = async (params, signal) => {
-  // console.log("params:", params);
-
   const options = {
     method: "GET",
     headers: setHeaders(),
@@ -157,24 +155,23 @@ export const getChecklists = async (params, signal) => {
   // If there are params fetch from route with query
   if (params.users === "any") {
     const url = new URL(
-      `${REACT_APP_API_BASE_URL}/checklists?account=${params.account}&group=${params.users}`
+      `${API_BASE_URL}/checklists?account=${params.account}&group=${params.users}`
     );
     return await fetchJson(url, options, []);
   } else {
     const url = new URL(
-      `${REACT_APP_API_BASE_URL}/checklists?account=${params.account}&user=${params.users}`
+      `${API_BASE_URL}/checklists?account=${params.account}&user=${params.users}`
     );
     return await fetchJson(url, options, []);
   }
 
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
+  const url = new URL(`${API_BASE_URL}/checklists`);
 
   return await fetchJson(url, options, []);
 };
 
 export const readChecklist = async (params, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${params}`);
-  // console.log(url);
+  const url = new URL(`${API_BASE_URL}/checklists/${params}`);
 
   const options = {
     method: "GET",
@@ -186,8 +183,7 @@ export const readChecklist = async (params, signal) => {
 };
 
 export const createChecklist = async (newChecklist, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists`);
-  // console.log(url);
+  const url = new URL(`${API_BASE_URL}/checklists`);
 
   const options = {
     method: "POST",
@@ -200,8 +196,7 @@ export const createChecklist = async (newChecklist, signal) => {
 };
 
 export const updateChecklist = async (checklist, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${checklist.id}`);
-  // console.log('API cehcklist id', url);
+  const url = new URL(`${API_BASE_URL}/checklists/${checklist.id}`);
 
   const options = {
     method: "PUT",
@@ -214,8 +209,7 @@ export const updateChecklist = async (checklist, signal) => {
 };
 
 export const updateChecklistComplete = async (checklist, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklists/${checklist.id}`);
-  // console.log('API cehcklist id', url);
+  const url = new URL(`${API_BASE_URL}/checklists/${checklist.id}`);
 
   const options = {
     method: "PUT",
@@ -228,10 +222,7 @@ export const updateChecklistComplete = async (checklist, signal) => {
 };
 
 export const generateChecklistCSV = async (params, signal) => {
-  // console.log("params:", params);
-  const url = new URL(
-    `${REACT_APP_API_BASE_URL}/account/admin/checklists/download/csv`
-  );
+  const url = new URL(`${API_BASE_URL}/account/admin/checklists/download/csv`);
 
   const options = {
     method: "POST",
@@ -249,9 +240,7 @@ export const generateChecklistCSV = async (params, signal) => {
 //_____________________________________________________________________________________________________
 
 export const getTemplates = async (user, signal) => {
-  const url = new URL(
-    `${REACT_APP_API_BASE_URL}/checklist-templates/accountTemplates`
-  );
+  const url = new URL(`${API_BASE_URL}/checklist-templates/accountTemplates`);
   const options = {
     method: "POST",
     headers: setHeaders(),
@@ -263,8 +252,7 @@ export const getTemplates = async (user, signal) => {
 };
 
 export const createTemplate = async (template, signal) => {
-  const url = new URL(`${REACT_APP_API_BASE_URL}/checklist-templates`);
-  // console.log(url);
+  const url = new URL(`${API_BASE_URL}/checklist-templates`);
 
   const options = {
     method: "POST",
@@ -277,10 +265,7 @@ export const createTemplate = async (template, signal) => {
 };
 
 export const readTemplate = async (templateId, signal) => {
-  const url = new URL(
-    `${REACT_APP_API_BASE_URL}/checklist-templates/${templateId}`
-  );
-  // console.log(url);
+  const url = new URL(`${API_BASE_URL}/checklist-templates/${templateId}`);
 
   const options = {
     method: "GET",
@@ -293,9 +278,8 @@ export const readTemplate = async (templateId, signal) => {
 
 export const updateTemplate = async (template, signal) => {
   const url = new URL(
-    `${REACT_APP_API_BASE_URL}/checklist-templates/update/${template.id}`
+    `${API_BASE_URL}/checklist-templates/update/${template.id}`
   );
-  // console.log(url);
 
   const options = {
     method: "POST",

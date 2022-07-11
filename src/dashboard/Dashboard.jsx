@@ -20,7 +20,6 @@ const Dashboard = ({ errorHandler }) => {
 
         if (response) {
           setUserDetails(response);
-          // console.log("userDetails:", response);
         }
       } catch (error) {
         errorHandler(error);

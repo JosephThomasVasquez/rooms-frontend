@@ -100,8 +100,6 @@ const TemplateForm = ({ user, errorHandler }) => {
 
   useEffect(() => {
     setNewTemplate({ ...newTemplate, items: createdItems });
-
-    console.log("newTemplate", newTemplate);
   }, [createdItems]);
 
   const createChecklistItem = (items) => {

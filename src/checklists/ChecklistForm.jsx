@@ -76,16 +76,11 @@ const ChecklistForm = ({ errorHandler }) => {
     return () => abortController.abort();
   };
 
-  const handleClickedItem = (item) => {
-    console.log(item);
-  };
-
   const mapTemplateItems = newChecklist?.items.map((item, index) => (
     <li
       key={`template-item-id-${Object.keys(item)}`}
       name={Object.keys(item)}
       className="col-12 col-sm-12 col-md-4 col-lg-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
-      onClick={() => handleClickedItem(item)}
       value={Object.keys(item)}
     >
       <div className="row fw-bold">

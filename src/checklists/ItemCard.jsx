@@ -8,11 +8,6 @@ const ItemCard = ({ item, index, isCompleted, handleClickedItem }) => {
     setChecked(Object.values(item).toString());
   }, [item]);
 
-  const checkedStyle = {
-    background: "red",
-  };
-
-  //   console.log(checked);
   return (
     <li
       name={Object.keys(item)[0]}

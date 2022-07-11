@@ -8,8 +8,6 @@ const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    console.log("Logged out");
-
     removeCookie("token");
     removeLocalStorageCookie("user");
     auth.logoutUser();

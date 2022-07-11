@@ -34,7 +34,7 @@ const Routers = () => {
   const [error, setError] = useState(null);
 
   const errorHandler = (errorFound = null) => {
-    console.log("error", errorFound);
+    // console.log("error", errorFound);
     if (errorFound && errorFound !== "clearErrors") {
       setError(errorFound);
     } else if (errorFound === "clearErrors") {

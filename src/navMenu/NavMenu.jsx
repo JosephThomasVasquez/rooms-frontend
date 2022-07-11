@@ -24,7 +24,7 @@ const NavMenu = () => {
 
   const location = useLocation();
 
-  console.log("currentLocation", location);
+  // console.log("currentLocation", location);
 
   const [openNav, setOpenNav] = useState(false);
   const [user, setUser] = useState(null);
