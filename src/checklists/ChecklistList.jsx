@@ -4,6 +4,7 @@ import { isAuthenticated } from "../utils/cookieHandler";
 import { getChecklists } from "../utils/apiRequests";
 import SearchForm from "../search/SearchForm";
 import ChecklistCard from "./ChecklistCard";
+import ContentLoader from "../layout/ContentLoader";
 import "./checklist.styles.css";
 
 const ChecklistList = ({ errorHandler }) => {
@@ -92,6 +93,11 @@ const ChecklistList = ({ errorHandler }) => {
         </div>
       </div>
 
+      <div className="row pb-5">
+        <div className="col-12 col-xl-3 col-lg-4 col-md-6 col-sm-12">
+          <ContentLoader />
+        </div>
+      </div>
       <div className="row pb-5">{mapChecklists}</div>
     </div>
   );
