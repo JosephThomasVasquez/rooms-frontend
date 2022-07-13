@@ -95,7 +95,7 @@ const ChecklistList = ({ errorHandler }) => {
       </div>
 
       {!checklists ? (
-        <div className="row pb-5">{createLoaders(6)}</div>
+        <div className="row pb-5">{createLoaders(12, "checklist")}</div>
       ) : (
         <div className="row pb-5">{mapChecklists}</div>
       )}

@@ -164,10 +164,6 @@ export const getChecklists = async (params, signal) => {
     );
     return await fetchJson(url, options, []);
   }
-
-  const url = new URL(`${API_BASE_URL}/checklists`);
-
-  return await fetchJson(url, options, []);
 };
 
 export const readChecklist = async (params, signal) => {

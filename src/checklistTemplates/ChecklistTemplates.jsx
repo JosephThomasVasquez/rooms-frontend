@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import createLoaders from "../layout/createLoaders";
 import { getTemplates } from "../utils/apiRequests";
 import { isAuthenticated } from "../utils/cookieHandler";
 import TemplateCard from "./TemplateCard";
@@ -35,7 +36,11 @@ const ChecklistTemplates = ({ errorHandler }) => {
 
   const mapTemplates = templates?.map((template) => (
     <div key={template.id} className="col-12 my-2">
-      <TemplateCard user={user} template={template} />
+      <TemplateCard
+        user={user}
+        template={template}
+        errorHandler={errorHandler}
+      />
     </div>
   ));
 
@@ -44,8 +49,11 @@ const ChecklistTemplates = ({ errorHandler }) => {
       <div className="row mb-3">
         <h2 className="fw-bold">Templates</h2>
       </div>
-
-      <div className="row">{mapTemplates}</div>
+      {!templates ? (
+        <div className="row pb-5">{createLoaders(12, "template")}</div>
+      ) : (
+        <div className="row pb-5">{mapTemplates}</div>
+      )}
     </div>
   );
 };
