@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import createLoaders from "../layout/createLoaders";
 import { getTemplates, deleteTemplate } from "../utils/apiRequests";
 import { isAuthenticated } from "../utils/cookieHandler";
 import TemplateCard from "./TemplateCard";
 
 const ChecklistTemplates = ({ errorHandler }) => {
+  const navigate = useNavigate();
+
   const [templates, setTemplates] = useState(null);
   const [user, setUser] = useState(null);
   const [selectedTemplate, setSelectedTemplate] = useState({});
@@ -45,6 +48,8 @@ const ChecklistTemplates = ({ errorHandler }) => {
       if (findTemplate) {
         console.log("deleted!", selectedTemplate.id);
         await deleteTemplate(selectedTemplate);
+
+        loadTemplates();
       }
     } catch (error) {
       errorHandler(error);
