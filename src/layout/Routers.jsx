@@ -25,6 +25,7 @@ import Profile from "../users/Profile";
 import Signup from "../signup/Signup";
 import Checklists from "../admin/checklists/Checklists";
 import UsersList from "../admin/users/UsersList";
+import SuccessNotification from "../notifications/SuccessNotification";
 
 const Routers = () => {
   const auth = useAuth();
@@ -32,6 +33,7 @@ const Routers = () => {
   // console.log("auth:", auth.user);
 
   const [error, setError] = useState(null);
+  const [successNotification, setSuccessNotification] = useState(null);
 
   const errorHandler = (errorFound = null) => {
     // console.log("error", errorFound);
@@ -42,12 +44,21 @@ const Routers = () => {
     }
   };
 
+  const successNotificationHandler = (notificationFound = null) => {
+    if (notificationFound && notificationFound !== "clearNotification") {
+      setSuccessNotification(notificationFound);
+    } else if (notificationFound === "clearNotification") {
+      setSuccessNotification(null);
+    }
+  };
+
   const getUser = (user) => {};
 
   return (
     <>
       {/* ERROR HANDLER */}
       <ErrorMessage error={error} />
+      <SuccessNotification notification={successNotification} />
 
       <Routes>
         {/* USER ROUTES */}
