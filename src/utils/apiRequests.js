@@ -286,3 +286,15 @@ export const updateTemplate = async (template, signal) => {
 
   return await fetchJson(url, options, {});
 };
+
+export const deleteTemplate = async (template, signal) => {
+  const url = new URL(`${API_BASE_URL}/checklist-templates/${template.id}`);
+
+  const options = {
+    method: "DELETE",
+    headers: setHeaders(),
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};

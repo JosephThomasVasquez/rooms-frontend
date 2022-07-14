@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import createLoaders from "../layout/createLoaders";
-import { getTemplates } from "../utils/apiRequests";
+import { getTemplates, deleteTemplate } from "../utils/apiRequests";
 import { isAuthenticated } from "../utils/cookieHandler";
 import TemplateCard from "./TemplateCard";
 
@@ -43,8 +43,8 @@ const ChecklistTemplates = ({ errorHandler }) => {
 
     try {
       if (findTemplate) {
-        // await deleteTemplate();
         console.log("deleted!", selectedTemplate.id);
+        await deleteTemplate(selectedTemplate);
       }
     } catch (error) {
       errorHandler(error);
