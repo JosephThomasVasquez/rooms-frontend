@@ -142,3 +142,7 @@ code {
 .label-input {
   color: var(--primary-color);
 }
+
+.fade {
+  transition: all 0.3s ease !important;
+}
