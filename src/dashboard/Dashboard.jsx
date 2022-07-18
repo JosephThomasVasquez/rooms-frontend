@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
-import ContentLoader from "../layout/ContentLoader";
+// import ContentLoader from "../layout/ContentLoader";
 import { getUser } from "../utils/apiRequests";
 import "./dashboard.styles.css";
 
@@ -55,8 +55,6 @@ const Dashboard = ({ errorHandler }) => {
       {userDetails?.recent_tasks?.length > 0 ? (
         <div className="row">{mapRecentTasks}</div>
       ) : null}
-
-      <ContentLoader />
     </div>
   );
 };

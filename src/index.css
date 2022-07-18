@@ -23,6 +23,31 @@ code {
     monospace;
 }
 
+/* PAGINATION */
+
+.page-item {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.pagination-icon {
+  padding: 3px 0;
+  width: 32px;
+  height: 100%;
+  color: var(--primary-color);
+  background: white;
+  transition: all 0.25s ease;
+}
+
+.pagination-icon:hover {
+  padding: 3px 0;
+  width: 32px;
+  height: 100%;
+  color: white;
+  background: var(--primary-color-hover);
+  transition: all 0.25s ease;
+}
+
 .search-icon {
   max-width: 24px;
   max-height: 24px;

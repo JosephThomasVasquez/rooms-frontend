@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { isAuthenticated } from "../utils/cookieHandler";
 import { getChecklists } from "../utils/apiRequests";
 import SearchForm from "../search/SearchForm";
 import ChecklistCard from "./ChecklistCard";
-import ContentLoader from "../layout/ContentLoader";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
 import "./checklist.styles.css";
 import createLoaders from "../layout/createLoaders";
 
@@ -17,6 +17,8 @@ const ChecklistList = ({ errorHandler }) => {
   const [queryTerm, setQueryTerm] = useState({
     account: isAuthenticated().account_id,
     users: "any",
+    skip: 0,
+    limit: 30,
   });
 
   // fetches checklists from the backend
@@ -92,6 +94,23 @@ const ChecklistList = ({ errorHandler }) => {
         <div className="col-12 col-sm-12 col-md-8 col-lg-6 mb-3">
           <SearchForm />
         </div>
+      </div>
+
+      <div className="row">
+        <nav aria-label="Page navigation example">
+          <ul className="pagination justify-content-center align-items-center">
+            <Link to="/checklists?group=any" className="page-item" aria-label="Previous">
+              <ChevronLeftIcon className="pagination-icon" />
+            </Link>
+            <Link to="/checklists?group=any" className="page-item">
+              <div className="page-link">{`${queryTerm.skip} - ${queryTerm.limit}`}</div>
+            </Link>
+
+            <Link to="/checklists?group=any" className="page-item" aria-label="Next">
+              <ChevronRightIcon className="pagination-icon" />
+            </Link>
+          </ul>
+        </nav>
       </div>
 
       {!checklists ? (

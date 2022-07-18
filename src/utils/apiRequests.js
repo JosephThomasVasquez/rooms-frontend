@@ -48,11 +48,6 @@ async function fetchJson(url, options, onCancel) {
 
 export const loginUser = async (user, signal) => {
   const url = new URL(`${API_BASE_URL}/users/login`);
-  // console.log(url);
-  // headers.append(
-  //   "Authorization",
-  //   `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJhbXlvb2hAYWFoYXNhaHMuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2NTQ4Mzc5NjYsImV4cCI6MTY1NDgzODAyNn0.2X_0cL2MoylZaSkMdIhDxPhKWqOyBqN5ptnRIL9UrWA"}`
-  // );
 
   const options = {
     method: "POST",
