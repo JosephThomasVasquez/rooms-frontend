@@ -84,7 +84,7 @@ const NavMenu = ({ openNav, setOpenNav }) => {
             </li>
             <li className="my-auto">
               <Link
-                to="/checklists?group=any"
+                to={`/checklists?group=any&page=1`}
                 className="nav-link d-flex align-items-center"
                 aria-current="checklists-page"
                 href="checklists"
@@ -226,7 +226,7 @@ const NavMenu = ({ openNav, setOpenNav }) => {
                       <>
                         <li>
                           <NavLink
-                            to={`/admin/checklists`}
+                            to={`/admin/checklists?group=any&page=1`}
                             className="dropdown-item"
                             aria-current="page"
                             href="admin"

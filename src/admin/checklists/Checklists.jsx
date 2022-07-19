@@ -11,20 +11,37 @@ const Checklists = ({ errorHandler }) => {
   const location = useLocation();
 
   const [checklists, setChecklists] = useState(null);
+  const [queryTerm, setQueryTerm] = useState({
+    account: isAuthenticated().account_id,
+    users: "any",
+    page: 1,
+    skip: 0,
+    limit: 5,
+  });
 
   // fetches checklists from the backend
   const loadChecklists = () => {
     const abortController = new AbortController();
-    getChecklists(
-      { account: isAuthenticated().account_id, users: "any" },
-      abortController.signal
-    )
-      .then(setChecklists)
-      .catch((error) => errorHandler(error));
-    return () => abortController.abort();
+
+    const getChecklistsData = async () => {
+      try {
+        const response = await getChecklists(queryTerm, abortController.signal);
+
+        console.log(response);
+
+        if (response) {
+          setChecklists(response);
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+      return () => abortController.abort();
+    };
+
+    getChecklistsData();
   };
 
-  useEffect(loadChecklists, [setChecklists]);
+  useEffect(loadChecklists, [setChecklists, queryTerm]);
 
   const tableHeaders = () => {
     if (checklists?.length > 0) {

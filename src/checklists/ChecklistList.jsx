@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
 import { isAuthenticated } from "../utils/cookieHandler";
-import { getChecklists } from "../utils/apiRequests";
+import { getChecklists, getCount } from "../utils/apiRequests";
 import SearchForm from "../search/SearchForm";
 import ChecklistCard from "./ChecklistCard";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid";
@@ -13,24 +13,70 @@ const ChecklistList = ({ errorHandler }) => {
 
   const navigate = useNavigate();
 
+  const [checklistCount, setChecklistCount] = useState({
+    count: null,
+    currentTotal: null,
+  });
   const [checklists, setChecklists] = useState(null);
   const [queryTerm, setQueryTerm] = useState({
     account: isAuthenticated().account_id,
     users: "any",
+    page: 1,
     skip: 0,
-    limit: 30,
+    limit: 10,
+    count: checklistCount,
   });
+
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    const getChecklistCount = async () => {
+      try {
+        const response = await getCount(queryTerm, abortController.signal);
+
+        if (response) {
+          const currentCount = queryTerm.page * queryTerm.limit;
+          setChecklistCount({
+            ...checklistCount,
+            count: response.count,
+            currentTotal: currentCount,
+          });
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+      return () => abortController.abort();
+    };
+
+    getChecklistCount();
+  }, [queryTerm]);
 
   // fetches checklists from the backend
   const loadChecklists = () => {
     const abortController = new AbortController();
-    getChecklists(queryTerm, abortController.signal)
-      .then(setChecklists)
-      .catch((error) => errorHandler(error));
-    return () => abortController.abort();
+
+    const getChecklistsData = async () => {
+      try {
+        const response = await getChecklists(queryTerm, abortController.signal);
+
+        if (response) {
+          setChecklists(response);
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+      return () => abortController.abort();
+    };
+    console.log("count", checklistCount);
+
+    getChecklistsData();
   };
 
   useEffect(loadChecklists, [setChecklists, queryTerm]);
+
+  useEffect(() => {
+    navigate(`/checklists?group=any&page=${queryTerm.page}`);
+  }, [queryTerm.page]);
 
   const mapChecklists = checklists?.map((checklist) => (
     <div
@@ -41,18 +87,36 @@ const ChecklistList = ({ errorHandler }) => {
     </div>
   ));
 
+  const handlePageChange = ({ target }) => {
+    console.log("targetName:", target.id);
+
+    if (
+      target.id === "nextPage" &&
+      checklistCount.currentTotal <= checklistCount.count
+    ) {
+      setQueryTerm({ ...queryTerm, page: (queryTerm.page += 1) });
+    }
+
+    if (target.id === "previousPage" && queryTerm.page > 1) {
+      setQueryTerm({ ...queryTerm, page: (queryTerm.page -= 1) });
+    }
+
+    // loadChecklists();
+    console.log(checklistCount);
+  };
+
   const handleChecklistFilter = ({ target }) => {
     if (target.value === "user") {
       setQueryTerm({ ...queryTerm, users: isAuthenticated().email });
       navigate(
-        `/checklists?account=${queryTerm.account}&user=${queryTerm.users}`
+        `/checklists?account=${queryTerm.account}&user=${queryTerm.users}&page=${queryTerm.page}`
       );
     }
 
     if (target.value === "all") {
       setQueryTerm({ ...queryTerm, users: "any" });
       navigate(
-        `/checklists?account=${queryTerm.account}&group=${queryTerm.users}`
+        `/checklists?account=${queryTerm.account}&group=${queryTerm.users}&page=${queryTerm.page}`
       );
     }
   };
@@ -97,20 +161,31 @@ const ChecklistList = ({ errorHandler }) => {
       </div>
 
       <div className="row">
-        <nav aria-label="Page navigation example">
+        <div aria-label="Page navigation example">
           <ul className="pagination justify-content-center align-items-center">
-            <Link to="/checklists?group=any" className="page-item" aria-label="Previous">
-              <ChevronLeftIcon className="pagination-icon" />
-            </Link>
+            <ChevronLeftIcon
+              className="page-item pagination-icon"
+              name="previousPage"
+              id="previousPage"
+              onClick={handlePageChange}
+            />
+
             <Link to="/checklists?group=any" className="page-item">
-              <div className="page-link">{`${queryTerm.skip} - ${queryTerm.limit}`}</div>
+              <div className="page-link">{`${
+                checklistCount.currentTotal - queryTerm.limit + 1
+              } - ${checklistCount.currentTotal}`}</div>
             </Link>
 
-            <Link to="/checklists?group=any" className="page-item" aria-label="Next">
-              <ChevronRightIcon className="pagination-icon" />
-            </Link>
+            <ChevronRightIcon
+              className={`page-item pagination-icon`}
+              aria-label="Next"
+              name="nextPage"
+              id="nextPage"
+              onClick={handlePageChange}
+            />
           </ul>
-        </nav>
+          {JSON.stringify(checklistCount)}
+        </div>
       </div>
 
       {!checklists ? (
