@@ -27,8 +27,6 @@ const Checklists = ({ errorHandler }) => {
       try {
         const response = await getChecklists(queryTerm, abortController.signal);
 
-        console.log(response);
-
         if (response) {
           setChecklists(response);
         }

@@ -41,7 +41,7 @@ const ChecklistForm = ({ errorHandler }) => {
         completed_by: auth.user.email,
         group: "any",
         date_completed: createDateNow,
-        account_id: findTemplate.account_id,
+        account_id: isAuthenticated().account_id,
       };
 
       setNewChecklist(checklistData);

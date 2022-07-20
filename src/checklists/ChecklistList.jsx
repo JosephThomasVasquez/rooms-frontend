@@ -13,6 +13,8 @@ const ChecklistList = ({ errorHandler }) => {
 
   const navigate = useNavigate();
 
+  const user = isAuthenticated().email;
+
   const [checklistCount, setChecklistCount] = useState({
     count: null,
     currentTotal: null,
@@ -20,7 +22,7 @@ const ChecklistList = ({ errorHandler }) => {
   const [checklists, setChecklists] = useState(null);
   const [queryTerm, setQueryTerm] = useState({
     account: isAuthenticated().account_id,
-    users: "any",
+    users: user ? user : "any",
     page: 1,
     skip: 0,
     limit: 10,
