@@ -24,7 +24,7 @@ const ChecklistList = ({ errorHandler }) => {
     page: 1,
     skip: 0,
     limit: 10,
-    count: checklistCount,
+    count: checklistCount.count,
   });
 
   useEffect(() => {
@@ -75,8 +75,15 @@ const ChecklistList = ({ errorHandler }) => {
   useEffect(loadChecklists, [setChecklists, queryTerm]);
 
   useEffect(() => {
-    navigate(`/checklists?group=any&page=${queryTerm.page}`);
-  }, [queryTerm.page]);
+    if (queryTerm.users === "any") {
+      navigate(`/checklists?group=any&page=${queryTerm.page}`);
+    }
+    if (queryTerm.users !== "any") {
+      navigate(
+        `/checklists?user=${isAuthenticated().email}&page=${queryTerm.page}`
+      );
+    }
+  }, [queryTerm.page, queryTerm]);
 
   const mapChecklists = checklists?.map((checklist) => (
     <div
@@ -109,14 +116,18 @@ const ChecklistList = ({ errorHandler }) => {
     if (target.value === "user") {
       setQueryTerm({ ...queryTerm, users: isAuthenticated().email });
       navigate(
-        `/checklists?account=${queryTerm.account}&user=${queryTerm.users}&page=${queryTerm.page}`
+        `/checklists?account=${queryTerm.account}&user=${
+          queryTerm.users
+        }&page=${1}`
       );
     }
 
     if (target.value === "all") {
       setQueryTerm({ ...queryTerm, users: "any" });
       navigate(
-        `/checklists?account=${queryTerm.account}&group=${queryTerm.users}&page=${queryTerm.page}`
+        `/checklists?account=${queryTerm.account}&group=${
+          queryTerm.users
+        }&page=${1}`
       );
     }
   };
@@ -170,11 +181,13 @@ const ChecklistList = ({ errorHandler }) => {
               onClick={handlePageChange}
             />
 
-            <Link to="/checklists?group=any" className="page-item">
-              <div className="page-link">{`${
-                checklistCount.currentTotal - queryTerm.limit + 1
-              } - ${checklistCount.currentTotal}`}</div>
-            </Link>
+            <div className="page-item">
+              <div className="px-3">{`${
+                checklistCount.currentTotal <= 10 ? "0" : ""
+              }${checklistCount.currentTotal - queryTerm.limit + 1} - ${
+                checklistCount.currentTotal
+              }`}</div>
+            </div>
 
             <ChevronRightIcon
               className={`page-item pagination-icon`}

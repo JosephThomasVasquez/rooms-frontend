@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getChecklists } from "../../utils/apiRequests";
+import { getChecklists } from "../../utils/adminApiRequests";
 import { isAuthenticated } from "../../utils/cookieHandler";
 import { CheckIcon, XIcon } from "@heroicons/react/solid";
 import dayjs from "dayjs";

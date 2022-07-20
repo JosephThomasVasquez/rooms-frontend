@@ -1,6 +1,9 @@
 import React, { useState, useEffect, createRef, useRef } from "react";
 import { CSVLink, CSVDownload } from "react-csv";
-import { getChecklists, generateChecklistCSV } from "../../utils/apiRequests";
+import {
+  getChecklists,
+  generateChecklistCSV,
+} from "../../utils/adminApiRequests";
 import { isAuthenticated } from "../../utils/cookieHandler";
 import dayjs from "dayjs";
 import {
@@ -33,7 +36,7 @@ const ChecklistCalendar = ({ errorHandler }) => {
   const loadChecklists = () => {
     const abortController = new AbortController();
     getChecklists(
-      { account: isAuthenticated().account_id, users: "any" },
+      { account: isAuthenticated().account_id, users: "any", page: "none" },
       abortController.signal
     )
       .then(setChecklists)

@@ -15,8 +15,8 @@ const setHeaders = () => {
 
 const devAPI = "http://localhost:5050/api";
 
-const API_BASE_URL = devAPI;
-// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
+// const API_BASE_URL = devAPI;
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
 
 // Handle fetch request with abort signaling
 async function fetchJson(url, options, onCancel) {
@@ -148,19 +148,12 @@ export const getChecklists = async (params, signal) => {
     signal,
   };
 
+  console.log("params", params);
+
   // If there are params fetch from route with query
   if (params.users === "any") {
-    if (!params.count) {
-      const url = new URL(
-        `${API_BASE_URL}/checklists?account=${params.account}&group=${
-          params.users
-        }&page=${1}`
-      );
-      return await fetchJson(url, options, []);
-    }
-
     const url = new URL(
-      `${API_BASE_URL}/checklists?account=${params.account}&group=${params.users}&page=${params.page}&count=${params.count}`
+      `${API_BASE_URL}/checklists?account=${params.account}&group=${params.users}&page=${params.page}`
     );
     return await fetchJson(url, options, []);
   } else {
@@ -178,7 +171,7 @@ export const getCount = async (params, signal) => {
     signal,
   };
 
-  // console.log("params", params);
+  console.log("params", params);
 
   // If there are params fetch from route with query
   if (params.users === "any") {
@@ -188,7 +181,7 @@ export const getCount = async (params, signal) => {
     return await fetchJson(url, options, []);
   } else {
     const url = new URL(
-      `${API_BASE_URL}/checklists/count?account=${params.account}&user=${params.users}&page=${params.page}`
+      `${API_BASE_URL}/checklists/count?account=${params.account}&user=${params.users}&page=${params.page}&count=${params.count}`
     );
     return await fetchJson(url, options, []);
   }
