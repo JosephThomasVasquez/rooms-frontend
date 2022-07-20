@@ -193,7 +193,6 @@ const ChecklistList = ({ errorHandler }) => {
               onClick={handlePageChange}
             />
           </ul>
-          {JSON.stringify(checklistCount)}
         </div>
       </div>
 
