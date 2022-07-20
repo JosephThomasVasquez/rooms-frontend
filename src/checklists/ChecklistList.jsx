@@ -67,7 +67,6 @@ const ChecklistList = ({ errorHandler }) => {
       }
       return () => abortController.abort();
     };
-    console.log("count", checklistCount);
 
     getChecklistsData();
   };
@@ -95,8 +94,6 @@ const ChecklistList = ({ errorHandler }) => {
   ));
 
   const handlePageChange = ({ target }) => {
-    console.log("targetName:", target.id);
-
     if (
       target.id === "nextPage" &&
       checklistCount.currentTotal <= checklistCount.count
@@ -107,9 +104,6 @@ const ChecklistList = ({ errorHandler }) => {
     if (target.id === "previousPage" && queryTerm.page > 1) {
       setQueryTerm({ ...queryTerm, page: (queryTerm.page -= 1) });
     }
-
-    // loadChecklists();
-    console.log(checklistCount);
   };
 
   const handleChecklistFilter = ({ target }) => {

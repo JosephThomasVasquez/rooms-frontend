@@ -86,8 +86,6 @@ export const getChecklists = async (params, signal) => {
     signal,
   };
 
-  console.log("params", params);
-
   // If there are params fetch from route with query
   if (params.users === "any") {
     const url = new URL(
