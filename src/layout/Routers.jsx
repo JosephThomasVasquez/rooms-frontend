@@ -26,6 +26,7 @@ import Signup from "../signup/Signup";
 import Checklists from "../admin/checklists/Checklists";
 import UsersList from "../admin/users/UsersList";
 import SuccessNotification from "../notifications/SuccessNotification";
+import CreateRoom from "../directory/rooms/CreateRoom";
 
 const Routers = () => {
   const auth = useAuth();
@@ -224,6 +225,14 @@ const Routers = () => {
           path="/account/admin/user/create"
           element={
             <Signup admin={isAuthenticated()} errorHandler={errorHandler} />
+          }
+        />
+
+        <Route
+          exact
+          path="/account/admin/rooms/create"
+          element={
+            <CreateRoom admin={isAuthenticated()} errorHandler={errorHandler} />
           }
         />
 

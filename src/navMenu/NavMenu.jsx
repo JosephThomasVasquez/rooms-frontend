@@ -272,6 +272,23 @@ const NavMenu = ({ openNav, setOpenNav }) => {
                             Add User
                           </NavLink>
                         </li>
+                        <hr className="dropdown-divider" />
+                        <li>
+                          <NavLink
+                            to={`/account/admin/rooms/create`}
+                            className="dropdown-item"
+                            aria-current="page"
+                            href="/account/admin/rooms/create"
+                            style={
+                              location.pathname ===
+                              "/account/admin/rooms/create"
+                                ? activeStyle
+                                : undefined
+                            }
+                          >
+                            Add Room
+                          </NavLink>
+                        </li>
                       </>
                     ) : null}
                     <li>
