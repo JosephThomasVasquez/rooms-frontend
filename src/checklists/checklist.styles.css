@@ -124,31 +124,31 @@
 }
 
 .template-item-check {
-  color: rgb(145, 171, 145);
+  /* color: rgb(145, 171, 145); */
+  color: var(--primary-color);
   /* background: rgb(220, 255, 220); */
-  background: rgb(220, 255, 220);
+  background: rgba(255, 255, 255, 0.25);
   background-image: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 1) 10%,
-    rgba(220, 255, 220, 1) 50%,
-    rgba(255, 255, 255, 1) 75%,
+    rgba(220, 255, 220, 0.25) 0%,
+    rgba(255, 255, 255, 1) 50%,
     rgba(255, 255, 255, 1) 100%
   );
-  background-size: 200%;
-  width: 50%;
+  background-size: 100%;
+  /* width: 50%;
 
-  margin-left: calc(100% / 2);
-  /* border-left: 4px solid green !important; */
+  margin-left: calc(100% / 2); */
+  border-left: 8px solid var(--primary-color-qtr) !important;
   border-top-left-radius: 40px !important;
   border-bottom-left-radius: 40px !important;
   transition: all 0.5s ease;
 }
 .template-item:hover,
 .template-item-check:hover {
+  color: black;
   background-color: rgba(0, 255, 0, 0.1);
 
-  background-position: 100%;
+  background-position: 50%;
   transition: all 0.5s ease;
 }
 
@@ -190,13 +190,7 @@
 }
 
 .bg-checklist-edit {
-  background: rgb(220, 255, 220);
-  background: linear-gradient(
-    90deg,
-    rgba(220, 255, 220, 0) 25%,
-    rgba(220, 255, 220, 1) 60%,
-    rgba(255, 255, 255, 0.5) 100%
-  );
+  background: rgb(255, 255, 255, 0);
 }
 
 .bg-checklist {

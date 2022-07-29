@@ -209,14 +209,14 @@ const EditChecklist = ({ errorHandler }) => {
           </div>
         </div>
       </div>
-
+      {/* Percentage completed Element */}
       <div className="">
         <div className="d-flex justify-content-center align-items-center pt-3 fw-bold fs-4 percentage-title shadow">
           <span className="me-2">{percentChecked}%</span>
           <span className="percent-completed">Complete</span>
         </div>
       </div>
-
+      {/* Display checklist Items */}
       <div className="row mt-5 rounded">
         <ul className="bg-checklist-edit fs-5">
           {checkedItems && createItems()}
