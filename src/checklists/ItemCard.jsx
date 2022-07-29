@@ -6,6 +6,7 @@ const ItemCard = ({ item, index, isCompleted, handleClickedItem }) => {
 
   useEffect(() => {
     setChecked(Object.values(item).toString());
+    // console.log("updated Window:", window.innerWidth);
   }, [item]);
 
   return (
@@ -24,7 +25,11 @@ const ItemCard = ({ item, index, isCompleted, handleClickedItem }) => {
           <CheckIcon className="check-icon icon-bg-round-passed me-3" />
         ) : null}
         <span className="item-number-light me-1">{index + 1}.</span>
-        {` ${Object.keys(item)}`}
+        {` ${
+          Object.keys(item).toString().length > 24 && window.innerWidth <= 500
+            ? Object.keys(item).toString().substring(0, 24) + "..."
+            : Object.keys(item)
+        }`}
       </div>
     </li>
   );
