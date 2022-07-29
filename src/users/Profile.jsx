@@ -20,6 +20,7 @@ const Profile = ({ errorHandler }) => {
   };
 
   const [userDetails, setUserDetails] = useState({ ...initialFormData });
+  const [confirmPassword, setConfirmPassword] = useState("");
   const formattedDate = dayjs(userDetails?.created_at).format("MMM DD, YYYY");
 
   useEffect(() => {
@@ -43,7 +44,13 @@ const Profile = ({ errorHandler }) => {
     }
   }, []);
 
-  const handleChange = ({ target }) => {};
+  const handleChange = ({ target }) => {
+    if (target.name === "confirm_password") {
+      setConfirmPassword(target.value);
+    } else {
+      setUserDetails({ ...userDetails, [target.name]: target.value });
+    }
+  };
 
   const handleSelectedRole = ({ target }) => {
     setUserDetails({
@@ -54,6 +61,18 @@ const Profile = ({ errorHandler }) => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
+
+    const updatedDetails = {
+      firstname: userDetails.firstname,
+      lastname: userDetails.lastname,
+      email: userDetails.email,
+      password: userDetails.password,
+      role: "user",
+      account_id: userDetails.account_id,
+      confirm_password: confirmPassword,
+    };
+
+    console.log("updatedDetails:", updatedDetails);
   };
 
   return (
@@ -117,22 +136,25 @@ const Profile = ({ errorHandler }) => {
                 value={userDetails?.email}
               />
             </div>
-            <div className="col">
-              <label htmlFor="role" className="form-label label-input">
-                Role
-              </label>
-              <select
-                className="form-select"
-                name="role"
-                id="role"
-                aria-label="Default select example"
-                onChange={handleSelectedRole}
-                value={userDetails?.role}
-              >
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
+
+            {userDetails.role === "admin" ? (
+              <div className="col">
+                <label htmlFor="role" className="form-label label-input">
+                  Role
+                </label>
+                <select
+                  className="form-select"
+                  name="role"
+                  id="role"
+                  aria-label="Default select example"
+                  onChange={handleSelectedRole}
+                  value={userDetails?.role}
+                >
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+            ) : null}
           </div>
 
           <div className="row my-3">
@@ -163,6 +185,7 @@ const Profile = ({ errorHandler }) => {
                 name="confirm_password"
                 id="confirm_password"
                 onChange={handleChange}
+                value={confirmPassword}
               />
             </div>
           </div>
