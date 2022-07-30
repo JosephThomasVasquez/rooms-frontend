@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useId } from "react";
 import { Link, useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import { readChecklist, updateChecklist } from "../utils/apiRequests";
@@ -8,6 +8,7 @@ import ItemCard from "./ItemCard";
 const EditChecklist = ({ errorHandler }) => {
   const { checklistId } = useParams();
   const params = useParams();
+  const keyId = useId();
 
   const [checklistDetails, setChecklistDetails] = useState(null);
   const [percentChecked, setPercentChecked] = useState(0);
@@ -70,7 +71,7 @@ const EditChecklist = ({ errorHandler }) => {
   const createItems = () => {
     return checkedItems?.map((item, index) => (
       <ItemCard
-        key={`checklist-item-id-${Object.keys(item)}`}
+        key={`checklist-item-id-${keyId}-${index}-${Object.keys(item)}`}
         item={item}
         index={index}
         isCompleted={isCompleted}

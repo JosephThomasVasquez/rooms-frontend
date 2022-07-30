@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../auth/useAuth";
 import { isAuthenticated } from "../utils/cookieHandler";
+import { nanoid } from "nanoid";
 import dayjs from "dayjs";
 import ChecklistTemplateSelector from "../checklistTemplates/ChecklistTemplateSelector";
 import { createChecklist } from "../utils/apiRequests";
@@ -76,9 +77,11 @@ const ChecklistForm = ({ errorHandler }) => {
     return () => abortController.abort();
   };
 
+  const keyId = useId();
+
   const mapTemplateItems = newChecklist?.items.map((item, index) => (
     <li
-      key={`template-item-id-${Object.keys(item)}`}
+      key={`template-item-id-${keyId}-${index}-${Object.keys(item)}`}
       name={Object.keys(item)}
       className="col-12 col-sm-12 col-md-4 col-lg-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
       value={Object.keys(item)}

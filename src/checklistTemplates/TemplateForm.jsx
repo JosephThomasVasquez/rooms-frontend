@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   readTemplate,
@@ -10,6 +10,7 @@ import { isAuthenticated } from "../utils/cookieHandler";
 const TemplateForm = ({ user, errorHandler }) => {
   const { templateId } = useParams();
   const navigate = useNavigate();
+  const keyId = useId();
 
   const initialFormData = {
     template_name: "",
@@ -164,9 +165,9 @@ const TemplateForm = ({ user, errorHandler }) => {
 
   const mapItems = () => {
     if (createdItems?.length > 0) {
-      return createdItems?.map((item) => (
+      return createdItems?.map((item, index) => (
         <div
-          key={Object.keys(item).toString()}
+          key={`${keyId}-${index}-${Object.keys(item).toString()}`}
           className="col-12 col-sm-12 col-md-4 col-lg-3 border rounded shadow-sm ms-1 my-1 py-2 list-unstyled template-item"
         >
           {Object.keys(item).toString()}

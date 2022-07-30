@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchIcon } from "@heroicons/react/outline";
 
 const SearchForm = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  useEffect(() => {
+    console.log("searchTerm", searchTerm);
+  }, [searchTerm]);
+
   const handleChange = ({ target }) => {
     setSearchTerm(target.value);
   };
+
+  const handleSearch = () => {};
 
   return (
     <div className="row justify-content-center">
@@ -24,6 +30,7 @@ const SearchForm = () => {
           <button
             className="btn bg-white border-start-0 border rounded-pill search-btn"
             type="button"
+            onClick={handleSearch}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
