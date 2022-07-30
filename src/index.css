@@ -23,6 +23,26 @@ code {
     monospace;
 }
 
+.navigate-back-btn {
+  position: fixed;
+  top: 14px;
+  left: 8px;
+  width: 48px;
+  z-index: 999;
+  padding: 6px;
+  color: var(--primary-color);
+  background-color: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  opacity: 0.25;
+  transition: all 0.5s ease;
+}
+
+.navigate-back-btn:hover {
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
 /* PAGINATION */
 
 .page-item {

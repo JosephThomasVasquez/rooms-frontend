@@ -109,7 +109,7 @@ const TemplateForm = ({ user, errorHandler }) => {
       items.map((item) => {
         item = item.trim();
 
-        let hasValidCharacters = new RegExp(/^[0-9A-Za-z\s\-\_\']+$/);
+        let hasValidCharacters = new RegExp(/^[0-9A-Za-z\s\-\_\'\&]+$/);
         // let hasValidCharacters = new RegExp(/^[a-zA-Z0-9_.-]*$/);
 
         const isValid = hasValidCharacters.test(item);

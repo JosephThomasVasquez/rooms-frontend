@@ -15,8 +15,8 @@ const setHeaders = () => {
 
 const devAPI = "http://localhost:5050/api";
 
-// const API_BASE_URL = devAPI;
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
+const API_BASE_URL = devAPI;
+// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
 
 // Handle fetch request with abort signaling
 async function fetchJson(url, options, onCancel) {
