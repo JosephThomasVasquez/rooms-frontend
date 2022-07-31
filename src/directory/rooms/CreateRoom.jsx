@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { searchChecklists } from "../../utils/apiRequests";
+import BuildingSelector from "./BuildingSelector";
 
-const CreateRoom = () => {
+const CreateRoom = ({ errorHandler }) => {
   const { roomId } = useParams();
 
   const initialFormData = {
@@ -20,7 +22,16 @@ const CreateRoom = () => {
   const [room, setRoom] = useState({ ...initialFormData });
 
   const handleInputChange = ({ target }) => {
-    const validInputs = ["template_name", "template_description", "location"];
+    const validInputs = [
+      "room_name",
+      "room_type",
+      "area_of_building",
+      "floor",
+      "max_capacity",
+      "arrangement_type",
+      "room_status",
+      "building_id",
+    ];
 
     if (validInputs.includes(target.name)) {
       setRoom({ ...room, [target.name]: target.value });
@@ -55,18 +66,7 @@ const CreateRoom = () => {
               />
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <label htmlFor="building_id" className="form-label label-input">
-                Building
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                name="building_id"
-                id="building_id"
-                aria-describedby="building_id"
-                onChange={handleInputChange}
-                value={room.building_id}
-              />
+              <BuildingSelector errorHandler={errorHandler} />
             </div>
           </div>
 
@@ -76,13 +76,13 @@ const CreateRoom = () => {
                 Room Type
               </label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 name="room_type"
                 id="room_type"
                 aria-describedby="room_type"
                 onChange={handleInputChange}
-                value={room.max_capacity}
+                value={room.room_type}
               />
             </div>
             <div className="col-6 col-sm-6 col-md-2 col-lg-2 mb-3">
@@ -133,6 +133,26 @@ const CreateRoom = () => {
             </div>
           </div>
 
+          <div className="row">
+            <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
+              <label
+                htmlFor="arrangement_type"
+                className="form-label label-input"
+              >
+                Arrangement
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="arrangement_type"
+                id="arrangement_type"
+                aria-describedby="arrangement_type"
+                onChange={handleInputChange}
+                value={room.arrangement_type}
+              />
+            </div>
+          </div>
+
           <div className="row d-flex align-items-center mt-3">
             <div className="col-12 col-sm-6 col-md-6 col-lg-6 my-3">
               <button
@@ -147,9 +167,7 @@ const CreateRoom = () => {
         </form>
       </div>
 
-      <div className="row fs-4 fw-bold">
-        <div className="col-1">Items</div>
-      </div>
+      <div className="row fs-4 fw-bold"></div>
       {/* <div className="row">{JSON.stringify(newTemplate)}</div> */}
     </div>
   );
