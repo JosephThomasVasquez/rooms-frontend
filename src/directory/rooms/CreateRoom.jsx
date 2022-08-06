@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { searchChecklists } from "../../utils/apiRequests";
+import { useNavigate, useParams } from "react-router-dom";
+import { createRoom } from "../../utils/apiRequests";
 import BuildingSelector from "./BuildingSelector";
 
 const CreateRoom = ({ errorHandler }) => {
   const { roomId } = useParams();
+
+  const navigate = useNavigate();
 
   const initialFormData = {
     room_name: "",
@@ -40,7 +42,24 @@ const CreateRoom = ({ errorHandler }) => {
 
   const submitCreateRoom = (e) => {
     e.preventDefault();
-    // createNewTemplate();
+
+    const abortController = new AbortController();
+
+    const makeRoom = async () => {
+      try {
+        const response = await createRoom(room, abortController.signal);
+        console.log("response:", response);
+        if (response) {
+          // navigate(`/rooms`);
+        }
+      } catch (error) {
+        return (error) => errorHandler(error);
+      }
+    };
+
+    makeRoom();
+
+    return () => abortController.abort();
   };
 
   return (
@@ -108,6 +127,8 @@ const CreateRoom = ({ errorHandler }) => {
                 className="form-control"
                 name="max_capacity"
                 id="max_capacity"
+                min={1}
+                max={999}
                 aria-describedby="max_capacity"
                 onChange={handleInputChange}
                 value={room.max_capacity}
@@ -119,7 +140,7 @@ const CreateRoom = ({ errorHandler }) => {
                 htmlFor="area_of_building"
                 className="form-label label-input"
               >
-                Area
+                Area of Building
               </label>
               <input
                 type="text"
@@ -168,7 +189,7 @@ const CreateRoom = ({ errorHandler }) => {
       </div>
 
       <div className="row fs-4 fw-bold"></div>
-      {/* <div className="row">{JSON.stringify(newTemplate)}</div> */}
+      <div className="row">{JSON.stringify(room)}</div>
     </div>
   );
 };

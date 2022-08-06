@@ -15,8 +15,8 @@ const setHeaders = () => {
 
 const devAPI = "http://localhost:5050/api";
 
-// const API_BASE_URL = devAPI;
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
+const API_BASE_URL = devAPI;
+// const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || devAPI;
 
 // Handle fetch request with abort signaling
 async function fetchJson(url, options, onCancel) {
@@ -117,6 +117,21 @@ export const getRooms = async (params, signal) => {
   }
 
   return await fetchJson(url, { headers: setHeaders(), signal }, []);
+};
+
+export const createRoom = async (room, signal) => {
+  const url = new URL(`${API_BASE_URL}/rooms`);
+
+  console.log("room API", room);
+
+  const options = {
+    method: "POST",
+    headers: setHeaders(),
+    body: JSON.stringify({ data: room }),
+    signal,
+  };
+
+  return await fetchJson(url, options, []);
 };
 
 //_____________________________________________________________________________________________________

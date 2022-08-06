@@ -30,6 +30,7 @@ const Dashboard = ({ errorHandler }) => {
     if (params !== "") {
       getUserDetails();
     }
+    console.log(userDetails);
   }, []);
 
   const mapRecentTasks = userDetails?.recent_tasks?.map((item) => (

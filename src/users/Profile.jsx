@@ -26,6 +26,7 @@ const Profile = ({ errorHandler }) => {
   useEffect(() => {
     const params = location.search;
 
+    // Make API GET request to get User Details and update userDetails state
     const getUserDetails = async () => {
       const abortController = new AbortController();
       try {
