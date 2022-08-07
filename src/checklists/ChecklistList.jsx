@@ -143,6 +143,7 @@ const ChecklistList = ({ errorHandler }) => {
             id="inlineRadio1"
             value="user"
             onChange={handleChecklistFilter}
+            checked={queryTerm.users}
           />
           <label className="form-check-label" htmlFor="inlineRadio1">
             My Checklists
