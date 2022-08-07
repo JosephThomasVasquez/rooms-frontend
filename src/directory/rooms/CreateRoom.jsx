@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { createRoom } from "../../utils/apiRequests";
 import BuildingSelector from "./BuildingSelector";
+import roomImage from "./Allura - Chilling.png";
 
 const CreateRoom = ({ errorHandler }) => {
   const { roomId } = useParams();
@@ -69,6 +70,13 @@ const CreateRoom = ({ errorHandler }) => {
       </div>
       <div className="row py-3 mb-5 bg-card">
         <form>
+          <div className="row">
+            <img
+              src={roomImage}
+              alt="Vector image of a room"
+              className="login-img mx-auto mb-5"
+            />
+          </div>
           <div className="row">
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
               <label htmlFor="room_name" className="form-label label-input">
@@ -187,9 +195,6 @@ const CreateRoom = ({ errorHandler }) => {
           </div>
         </form>
       </div>
-
-      <div className="row fs-4 fw-bold"></div>
-      <div className="row">{JSON.stringify(room)}</div>
     </div>
   );
 };

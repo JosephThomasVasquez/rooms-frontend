@@ -12,7 +12,7 @@ const Layout = () => {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
-    console.log("Clicked", openNav);
+    // console.log("Clicked", openNav);
 
     const handleClick = () => {
       setOpenNav(!openNav);
@@ -33,7 +33,10 @@ const Layout = () => {
 
   return (
     <AuthProvider>
-      <ArrowLeftIcon className="navigate-back-btn shadow" onClick={handleGoBack} />
+      <ArrowLeftIcon
+        className="navigate-back-btn shadow"
+        onClick={handleGoBack}
+      />
       <NavMenu openNav={openNav} setOpenNav={setOpenNav} />
       <div className="container-fluid mx-auto p-3 bg-pattern-lists">
         <Routers />
