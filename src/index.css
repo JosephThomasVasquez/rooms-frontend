@@ -197,3 +197,16 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
+
+.room-edit-icon {
+  width: 24px;
+  height: 24px;
+  color: rgb(114, 114, 114, 1);
+  transition: all 0.5s ease;
+}
+
+.room-edit-icon:hover {
+  transform: scale(1.5);
+  color: #00bf8c;
+  transition: all 0.5s ease;
+}

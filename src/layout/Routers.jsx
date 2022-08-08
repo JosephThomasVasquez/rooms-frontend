@@ -237,6 +237,14 @@ const Routers = () => {
         />
 
         <Route
+          exact
+          path="/account/admin/rooms/edit/:roomId"
+          element={
+            <CreateRoom admin={isAuthenticated()} errorHandler={errorHandler} />
+          }
+        />
+
+        <Route
           path="*"
           element={
             <main style={{ padding: "1rem" }}>

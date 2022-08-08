@@ -1,4 +1,6 @@
+import { PencilAltIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getRooms } from "../../utils/apiRequests";
 
 const RoomsList = ({ errorHandler }) => {
@@ -27,12 +29,6 @@ const RoomsList = ({ errorHandler }) => {
 
   useEffect(loadRooms, [setRooms]);
 
-  //   const mapRooms = rooms?.map((room, index) => (
-  //     <div key={room.id} className="col">
-  //       {room.room_name}
-  //     </div>
-  //   ));
-
   const tableHeaders = () => {
     if (rooms?.length > 0) {
       let headers = [
@@ -44,8 +40,8 @@ const RoomsList = ({ errorHandler }) => {
         "Cap",
         "Status",
         "Building",
-        "Details",
         "Edit",
+        "Delete",
       ];
 
       const values = headers.map((head) => (
@@ -107,6 +103,11 @@ const RoomsList = ({ errorHandler }) => {
             <td colSpan="1" className="align-middle">
               {room.building_name}
             </td>
+            <td colSpan="1" className="align-middle">
+              <Link to={`/account/admin/rooms/edit/${room.id}`}>
+                <PencilAltIcon className="room-edit-icon" />
+              </Link>
+            </td>
           </tr>
         );
       });
@@ -116,7 +117,7 @@ const RoomsList = ({ errorHandler }) => {
           <div className="col-3 mb-0 fw-light building-title shadow">
             <span className="ms-2">{arr[i]}</span>
           </div>
-          <div className="row">
+          <div className="row table-responsive">
             <table className="bg-card-rooms table shadow">
               <thead>
                 <tr>{tableHeaders()}</tr>
