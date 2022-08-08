@@ -1,4 +1,4 @@
-import { PencilAltIcon } from "@heroicons/react/outline";
+import { PencilIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRooms } from "../../utils/apiRequests";
@@ -105,7 +105,7 @@ const RoomsList = ({ errorHandler }) => {
             </td>
             <td colSpan="1" className="align-middle">
               <Link to={`/account/admin/rooms/edit/${room.id}`}>
-                <PencilAltIcon className="room-edit-icon" />
+                <PencilIcon className="room-edit-icon" />
               </Link>
             </td>
           </tr>
