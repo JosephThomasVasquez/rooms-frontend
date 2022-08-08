@@ -95,15 +95,16 @@ const ChecklistList = ({ errorHandler }) => {
     </div>
   ));
 
-  const handlePageChange = ({ target }) => {
+  const handlePageChange = (e) => {
+    console.log("clicked", e.target);
     if (
-      target.id === "nextPage" &&
+      e.target.id === "nextPage" &&
       checklistCount.currentTotal <= checklistCount.count
     ) {
       setQueryTerm({ ...queryTerm, page: (queryTerm.page += 1) });
     }
 
-    if (target.id === "previousPage" && queryTerm.page > 1) {
+    if (e.target.id === "previousPage" && queryTerm.page > 1) {
       setQueryTerm({ ...queryTerm, page: (queryTerm.page -= 1) });
     }
   };
@@ -169,14 +170,17 @@ const ChecklistList = ({ errorHandler }) => {
       </div>
 
       <div className="row">
-        <div aria-label="Page navigation example">
-          <ul className="pagination justify-content-center align-items-center">
-            <ChevronLeftIcon
-              className="page-item pagination-icon"
+        <div aria-label="Page navigation">
+          <ul className="pagination justify-content-center align-items-center my-3">
+            <div
               name="previousPage"
               id="previousPage"
+              aria-label="Previous"
+              className="page-item pagination-icon"
               onClick={handlePageChange}
-            />
+            >
+              <ChevronLeftIcon pointerEvents="none" />
+            </div>
 
             <div className="page-item">
               <div className="px-3">{`${
@@ -186,13 +190,15 @@ const ChecklistList = ({ errorHandler }) => {
               }`}</div>
             </div>
 
-            <ChevronRightIcon
-              className={`page-item pagination-icon`}
-              aria-label="Next"
+            <div
               name="nextPage"
               id="nextPage"
+              aria-label="Next"
+              className="page-item pagination-icon"
               onClick={handlePageChange}
-            />
+            >
+              <ChevronRightIcon pointerEvents="none" />
+            </div>
           </ul>
         </div>
       </div>
