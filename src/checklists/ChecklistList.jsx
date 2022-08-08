@@ -96,7 +96,6 @@ const ChecklistList = ({ errorHandler }) => {
   ));
 
   const handlePageChange = (e) => {
-    console.log("clicked", e.target);
     if (
       e.target.id === "nextPage" &&
       checklistCount.currentTotal <= checklistCount.count
