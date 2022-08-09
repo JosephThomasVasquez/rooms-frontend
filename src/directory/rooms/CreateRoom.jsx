@@ -95,7 +95,7 @@ const CreateRoom = ({ errorHandler }) => {
           navigate("/rooms");
         }
       } catch (error) {
-        return (error) => errorHandler(error);
+        errorHandler(error);
       }
     };
 
