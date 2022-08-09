@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createRoom } from "../../utils/apiRequests";
+import { createRoom, readRoom, updateRoom } from "../../utils/apiRequests";
 import BuildingSelector from "./BuildingSelector";
 import roomImage from "./Allura - Chilling.png";
 
@@ -41,6 +41,37 @@ const CreateRoom = ({ errorHandler }) => {
     }
   };
 
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    const getRoom = async () => {
+      try {
+        const response = await readRoom(roomId, abortController.signal);
+
+        if (response) {
+          setRoom(response);
+        } else {
+          setRoom({
+            ...initialFormData,
+          });
+        }
+      } catch (error) {
+        errorHandler(error);
+      }
+    };
+
+    if (roomId) {
+      getRoom();
+      console.log("getRoom:", room);
+    } else {
+      setRoom({
+        ...initialFormData,
+      });
+    }
+
+    return () => abortController.abort();
+  }, [roomId]);
+
   const submitCreateRoom = (e) => {
     e.preventDefault();
 
@@ -48,10 +79,21 @@ const CreateRoom = ({ errorHandler }) => {
 
     const makeRoom = async () => {
       try {
+        if (roomId) {
+          const response = await updateRoom(room, abortController.signal);
+          console.log("response roomId:", response);
+
+          setRoom(response);
+          errorHandler("");
+          navigate("/rooms");
+        }
+
         const response = await createRoom(room, abortController.signal);
-        console.log("response:", response);
+
         if (response) {
-          // navigate(`/rooms`);
+          setRoom(response);
+          errorHandler("");
+          navigate("/rooms");
         }
       } catch (error) {
         return (error) => errorHandler(error);
@@ -93,7 +135,10 @@ const CreateRoom = ({ errorHandler }) => {
               />
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
-              <BuildingSelector errorHandler={errorHandler} />
+              <BuildingSelector
+                errorHandler={errorHandler}
+                buildingId={room.building_id}
+              />
             </div>
           </div>
 

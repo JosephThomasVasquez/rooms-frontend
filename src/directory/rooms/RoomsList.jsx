@@ -63,15 +63,12 @@ const RoomsList = ({ errorHandler }) => {
       roomsByBuilding.add(room.building_name);
     });
 
-    // console.log(roomsByBuilding);
-
     const arr = Array.from(roomsByBuilding);
 
     const buildingListOfRooms = [];
 
     for (let i = 0; i < arr.length; i++) {
       const filteredRooms = rooms?.filter((room) => {
-        // console.log("ids:", building);
         return room.building_name === arr[i];
       });
 
