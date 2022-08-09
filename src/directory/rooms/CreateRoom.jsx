@@ -62,7 +62,6 @@ const CreateRoom = ({ errorHandler }) => {
 
     if (roomId) {
       getRoom();
-      console.log("getRoom:", room);
     } else {
       setRoom({
         ...initialFormData,
@@ -237,7 +236,7 @@ const CreateRoom = ({ errorHandler }) => {
                 className="save-btn"
                 onClick={submitCreateRoom}
               >
-                Create
+                {roomId ? "Update" : "Create"}
               </button>
             </div>
           </div>
