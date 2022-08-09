@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getBuildings } from "../../utils/apiRequests";
 
 const BuildingSelector = ({ buildingId, errorHandler }) => {
-  const [buildings, setBuildings] = useState(null);
+  const [buildings, setBuildings] = useState([]);
   const [selectedBuilding, setSelectedBuilding] = useState("");
 
   // Load buildings
@@ -59,7 +59,8 @@ const BuildingSelector = ({ buildingId, errorHandler }) => {
         className="form-select form-select-sm fw-bold"
         aria-label=".form-select-sm example"
         onChange={handleSelectBuilding}
-        value={selectedBuilding}
+        value={selectedBuilding ? selectedBuilding : 1}
+        required
       >
         {mapBuildings}
       </select>

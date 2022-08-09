@@ -111,7 +111,7 @@ const CreateRoom = ({ errorHandler }) => {
         <h2>{roomId ? "Edit Room" : "Add Room"}</h2>
       </div>
       <div className="row py-3 mb-5 bg-card">
-        <form>
+        <form className="form-group">
           <div className="row">
             <img
               src={roomImage}
@@ -132,6 +132,7 @@ const CreateRoom = ({ errorHandler }) => {
                 aria-describedby="room-name"
                 onChange={handleInputChange}
                 value={room.room_name}
+                required
               />
             </div>
             <div className="col-12 col-sm-12 col-md-6 col-lg-6 mb-3">
@@ -169,6 +170,7 @@ const CreateRoom = ({ errorHandler }) => {
                 aria-describedby="floor"
                 onChange={handleInputChange}
                 value={room.floor}
+                required
               />
             </div>
             <div className="col-6 col-sm-6 col-md-3 col-lg-3 mb-3">
@@ -181,7 +183,7 @@ const CreateRoom = ({ errorHandler }) => {
                 name="max_capacity"
                 id="max_capacity"
                 min={1}
-                max={999}
+                max={99999999}
                 aria-describedby="max_capacity"
                 onChange={handleInputChange}
                 value={room.max_capacity}

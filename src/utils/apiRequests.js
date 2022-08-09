@@ -122,8 +122,6 @@ export const getRooms = async (params, signal) => {
 export const createRoom = async (room, signal) => {
   const url = new URL(`${API_BASE_URL}/rooms`);
 
-  console.log("room API", room);
-
   const options = {
     method: "POST",
     headers: setHeaders(),
@@ -134,25 +132,25 @@ export const createRoom = async (room, signal) => {
   return await fetchJson(url, options, []);
 };
 
-export const updateRoom = async (room, signal) => {
-  const url = new URL(`${API_BASE_URL}/rooms/update/${room.id}`);
-
-  const options = {
-    method: "POST",
-    headers: setHeaders(),
-    body: JSON.stringify({ data: room }),
-    signal,
-  };
-
-  return await fetchJson(url, options, {});
-};
-
 export const readRoom = async (roomId, signal) => {
   const url = new URL(`${API_BASE_URL}/rooms/${roomId}`);
 
   const options = {
     method: "GET",
     headers: setHeaders(),
+    signal,
+  };
+
+  return await fetchJson(url, options, {});
+};
+
+export const updateRoom = async (room, signal) => {
+  const url = new URL(`${API_BASE_URL}/rooms/${room.id}`);
+
+  const options = {
+    method: "PUT",
+    headers: setHeaders(),
+    body: JSON.stringify({ data: room }),
     signal,
   };
 
@@ -347,7 +345,7 @@ export const updateTemplate = async (template, signal) => {
   );
 
   const options = {
-    method: "POST",
+    method: "PUT",
     headers: setHeaders(),
     body: JSON.stringify({ data: template }),
     signal,
