@@ -154,6 +154,7 @@ const CreateRoom = ({ errorHandler }) => {
                 name="room_type"
                 id="room_type"
                 aria-describedby="room_type"
+                placeholder="Meeting, Dining, Auditorium"
                 onChange={handleInputChange}
                 value={room.room_type}
               />
