@@ -168,6 +168,7 @@ const ChecklistList = ({ errorHandler }) => {
         </div>
       </div>
 
+      {/* Pagination */}
       <div className="row">
         <div aria-label="Page navigation">
           <ul className="pagination justify-content-center align-items-center my-3">
