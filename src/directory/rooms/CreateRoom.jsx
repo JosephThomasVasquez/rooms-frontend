@@ -100,8 +100,6 @@ const CreateRoom = ({ errorHandler }) => {
     };
 
     makeRoom();
-
-    return () => abortController.abort();
   };
 
   return (

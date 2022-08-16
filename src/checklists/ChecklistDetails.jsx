@@ -62,6 +62,11 @@ const ChecklistDetails = ({ errorHandler }) => {
   return (
     <div className="container mt-3 mb-5 pb-5">
       <div className="row ps-3 bg-card py-4 shadow mb-4">
+        {checklistDetails?.is_completed ? (
+          <span className="col-6 is-completed">completed</span>
+        ) : (
+          <span className="col-6 is-completed">in progress</span>
+        )}
         <div className="d-flex align-items-center">
           <h2 className="col checklist-title">
             {checklistDetails?.checklist_name} <span className="fs-6">#</span>
@@ -74,32 +79,42 @@ const ChecklistDetails = ({ errorHandler }) => {
             <PencilAltIcon className="checklist-edit-icon" />
           </Link>
         </div>
-        {checklistDetails?.is_completed ? (
-          <span className="col-6 is-completed">completed</span>
-        ) : (
-          <span className="col-6 is-completed">in progress</span>
-        )}
-
-        <div>
+        <div className="row ps-3">
           <div className="row">
-            <div className="col-2 fst-italic">Location: </div>
-            <div className="col">{checklistDetails?.location}</div>
+            <hr />
           </div>
 
-          <div className="row">
-            <div className="col-2 fst-italic">
-              {checklistDetails?.is_completed
-                ? "Completed by:"
-                : "Assigned to:"}
+          <div>
+            <div className="row mb-3">
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
+                Location:{" "}
+              </div>
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2">
+                {checklistDetails?.location}
+              </div>
             </div>
-            <div className="col">{checklistDetails?.completed_by}</div>
-          </div>
 
-          <div className="row">
-            <div className="col-2 fst-italic">Created:</div>
-            <div className="col-2 fst-italic">
-              {checklistDetails?.date_completed &&
-                dayjs(checklistDetails?.date_completed).format("MMM DD, YYYY")}
+            <div className="row mb-3">
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
+                {checklistDetails?.is_completed
+                  ? "Completed by:"
+                  : "Assigned to:"}
+              </div>
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2">
+                {checklistDetails?.completed_by}
+              </div>
+            </div>
+
+            <div className="row mb-3">
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic label-input">
+                Created:
+              </div>
+              <div className="col-12 col-sm-12 col-md-6 col-lg-2 fst-italic">
+                {checklistDetails?.date_completed &&
+                  dayjs(checklistDetails?.date_completed).format(
+                    "MMM DD, YYYY"
+                  )}
+              </div>
             </div>
           </div>
         </div>
