@@ -2,14 +2,19 @@ import { PencilIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRooms } from "../../utils/apiRequests";
+import { isAuthenticated } from "../../utils/cookieHandler";
 
 const RoomsList = ({ errorHandler }) => {
+  const user = isAuthenticated();
+
+  console.log(user);
+
   const [rooms, setRooms] = useState(null);
 
   // fetches checklists from the backend
   const loadRooms = () => {
     const abortController = new AbortController();
-    getRooms(abortController.signal)
+    getRooms(user.email, abortController.signal)
       .then((rooms) => {
         const buildings = {};
 

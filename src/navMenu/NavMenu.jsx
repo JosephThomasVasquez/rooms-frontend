@@ -154,7 +154,7 @@ const NavMenu = ({ openNav, setOpenNav }) => {
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
                     <NavLink
-                      to="/rooms"
+                      to={`/rooms?user=${isAuthenticated().email}`}
                       className="dropdown-item"
                       aria-current="page"
                       href="#"
