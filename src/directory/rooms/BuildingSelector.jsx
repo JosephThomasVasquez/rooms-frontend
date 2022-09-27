@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { getBuildings } from "../../utils/apiRequests";
 
-const BuildingSelector = ({ buildingId, errorHandler }) => {
+const BuildingSelector = ({
+  errorHandler,
+  buildingId,
+  handleBuildingSelector,
+}) => {
   const [buildings, setBuildings] = useState([]);
   const [selectedBuilding, setSelectedBuilding] = useState("");
 
@@ -48,6 +52,7 @@ const BuildingSelector = ({ buildingId, errorHandler }) => {
   const handleSelectBuilding = ({ target }) => {
     const buildingId = target.options[target.selectedIndex].value;
     setSelectedBuilding(buildingId);
+    handleBuildingSelector(buildingId);
   };
 
   return (

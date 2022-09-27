@@ -41,6 +41,10 @@ const CreateRoom = ({ errorHandler }) => {
     }
   };
 
+  const handleBuildingSelector = (id) => {
+    setRoom({ ...room, building_id: id });
+  };
+
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -78,15 +82,6 @@ const CreateRoom = ({ errorHandler }) => {
 
     const makeRoom = async () => {
       try {
-        if (roomId) {
-          const response = await updateRoom(room, abortController.signal);
-          console.log("response roomId:", response);
-
-          setRoom(response);
-          errorHandler("");
-          navigate("/rooms");
-        }
-
         const response = await createRoom(room, abortController.signal);
 
         if (response) {
@@ -99,7 +94,24 @@ const CreateRoom = ({ errorHandler }) => {
       }
     };
 
-    makeRoom();
+    const updateRoomDetails = async () => {
+      try {
+        const response = await updateRoom(room, abortController.signal);
+        console.log("response roomId:", response);
+
+        setRoom(response);
+        errorHandler("");
+        navigate("/rooms");
+      } catch (error) {
+        errorHandler(error);
+      }
+    };
+
+    if (roomId) {
+      updateRoomDetails();
+    } else {
+      makeRoom();
+    }
   };
 
   return (
@@ -136,6 +148,7 @@ const CreateRoom = ({ errorHandler }) => {
               <BuildingSelector
                 errorHandler={errorHandler}
                 buildingId={room.building_id}
+                handleBuildingSelector={handleBuildingSelector}
               />
             </div>
           </div>
@@ -239,6 +252,7 @@ const CreateRoom = ({ errorHandler }) => {
             </div>
           </div>
         </form>
+        <div>{JSON.stringify(room)}</div>
       </div>
     </div>
   );
