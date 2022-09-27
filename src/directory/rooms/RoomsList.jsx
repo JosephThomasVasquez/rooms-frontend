@@ -1,4 +1,4 @@
-import { PencilIcon } from "@heroicons/react/outline";
+import { PencilIcon, TrashIcon } from "@heroicons/react/outline";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getRooms } from "../../utils/apiRequests";
@@ -7,9 +7,10 @@ import { isAuthenticated } from "../../utils/cookieHandler";
 const RoomsList = ({ errorHandler }) => {
   const user = isAuthenticated();
 
-  console.log(user);
+  // console.log(user);
 
   const [rooms, setRooms] = useState(null);
+  const [selectedRoom, setSelectedRoom] = useState({});
 
   // fetches checklists from the backend
   const loadRooms = () => {
@@ -110,6 +111,15 @@ const RoomsList = ({ errorHandler }) => {
                 <PencilIcon className="room-edit-icon" />
               </Link>
             </td>
+            <td colSpan="1" className="align-middle">
+              <TrashIcon
+                className="x-icon"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteConfirmationModal"
+                value={room.room_name}
+                onClick={(e) => showModal(e, room)}
+              />
+            </td>
           </tr>
         );
       });
@@ -136,8 +146,82 @@ const RoomsList = ({ errorHandler }) => {
     return buildingListOfRooms;
   };
 
+  // Delete Room
+  const handleDelete = async () => {
+    const findRoom = rooms.find((room) => room.id === selectedRoom.id);
+
+    try {
+      if (findRoom) {
+        console.log("deleted!", selectedRoom.id);
+        // await deleteRoom(selectedRoom);
+
+        loadRooms();
+      }
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
+
+  // Show Modal
+  const showModal = ({ target }, room) => {
+    console.log(room, target);
+    setSelectedRoom(room);
+  };
+
+  const deleteConfirmationModal = (
+    <div
+      className="modal fade"
+      id="deleteConfirmationModal"
+      tabIndex="-1"
+      aria-labelledby="deleteConfirmationModalLabel"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h5 className="modal-title" id="deleteConfirmationModalLabel">
+              Confirm Delete Item?
+            </h5>
+
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div className="modal-body">
+            <div>
+              This operation cannot be undone. Are you sure you want to delete
+              the template:{" "}
+              <span className="fw-bold">{selectedRoom.room_name}</span> ?
+            </div>
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              data-bs-dismiss="modal"
+              onClick={handleDelete}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="container mt-3 mb-5 pb-5">
+      {deleteConfirmationModal}
       <div className="row mb-3">
         <h2>Rooms</h2>
       </div>
