@@ -2,7 +2,9 @@
   --primary-color: rgba(0, 191, 140, 1);
   --primary-color-hover: rgb(73, 220, 181);
   --primary-color-half: rgba(0, 191, 140, 0.5);
-  --primary-color-qtr: rgba(0, 191, 140, 0.25);
+  --primary-color-qtr: rgba(201, 201, 201, 0.282);
+  --cancel-btn-color: rgba(129, 129, 129, 1);
+  --cancel-btn-color-hover: rgb(160, 160, 160);
 }
 
 body {
@@ -129,6 +131,28 @@ code {
 .login-btn:hover,
 .save-btn:hover {
   background-color: var(--primary-color-hover);
+  border: none;
+  cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease;
+}
+
+.cancel-btn {
+  width: 200px;
+  height: 48px;
+  color: rgba(255, 255, 255, 1);
+  background: var(--cancel-btn-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.5s ease;
+}
+
+.cancel-btn:hover {
+  background-color: var(--cancel-btn-color-hover);
   border: none;
   cursor: pointer;
   transform: translateY(-2px);

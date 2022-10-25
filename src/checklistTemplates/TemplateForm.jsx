@@ -178,6 +178,11 @@ const TemplateForm = ({ user, errorHandler }) => {
     }
   };
 
+  // Go back to templates on cancel
+  const handleCancel = () => {
+    navigate("/checklist-templates");
+  };
+
   return (
     <div className="container mt-3 mb-5 pb-5">
       <div className="row d-flex align-items-center mb-3">
@@ -255,9 +260,18 @@ const TemplateForm = ({ user, errorHandler }) => {
             ></textarea>
           </div>
           <div className="row d-flex align-items-center mt-3">
-            <div className="col-12 col-sm-6 col-md-6 col-lg-6 my-3">
+            <div className="col-12 col-sm-6 col-md-4 col-lg-2 my-3">
               <button type="submit" className="save-btn" onClick={saveTemplate}>
                 Save
+              </button>
+            </div>
+            <div className="col-12 col-sm-6 col-md-4 col-lg-2 my-3">
+              <button
+                type="submit"
+                className="cancel-btn"
+                onClick={handleCancel}
+              >
+                Cancel
               </button>
             </div>
 

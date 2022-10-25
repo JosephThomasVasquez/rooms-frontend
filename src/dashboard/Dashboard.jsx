@@ -21,6 +21,7 @@ const Dashboard = ({ errorHandler }) => {
 
         if (response) {
           setUserDetails(response);
+          console.log(response);
         }
       } catch (error) {
         errorHandler(error);
@@ -30,7 +31,6 @@ const Dashboard = ({ errorHandler }) => {
     if (params !== "") {
       getUserDetails();
     }
-    console.log(userDetails);
   }, []);
 
   const mapRecentTasks = userDetails?.recent_tasks?.map((item) => (
